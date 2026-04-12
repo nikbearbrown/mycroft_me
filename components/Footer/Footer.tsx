@@ -93,10 +93,10 @@ export default function Footer() {
         <div className="mt-8 text-center text-sm text-muted-foreground space-y-1">
           <p>&copy; {currentYear} MoctarDatt.com. All rights reserved.</p>
           <p>
-            Built by{" "}
+            Built by Bear Brown, LLC{" "}
             <a href="https://bearbrown.co" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">bearbrown.co</a>
-            {" "}in collaboration with{" "}
-            <a href="https://irreducibly.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Irreducibly Human</a>
+            {" "}in collaboration with Irreducibly Human{" "}
+            <a href="https://irreducibly.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">irreducibly.xyz</a>
           </p>
         </div>
       </div>
