@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SODADE — Cape Verde AI Adaptation Consultant</title>
+  <meta name="description" content="SODADE is a systematic framework for deploying AI products in Cape Verde. It audits six adaptation dimensions — the Kriolu Portuguese-adjacency trap, inter-island connectivity, diaspora remittance corridor design, Euro-pegged CVE rails, CNPD/GDPR compliance, and tourism overlay — and produces evidence-grounded deployment briefs. Built for teams who will mistake this market's high infrastructure for permission to use standard assumptions.">
+  <meta name="keywords" content="Cape Verde AI adaptation, Kriolu NLP, Kabuverdianu, Portuguese-adjacency trap, Vinti4 BCA digital, Euro-pegged CVE, remittance corridor, diaspora design, CNPD data protection, GDPR diaspora, inter-island connectivity, ferry offline, tourism overlay, sodade, SODADE framework, Claude prompt, Atlantic Africa">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bb-1: #000000;
+      --bb-2: #006030;
+      --bb-3: #A81520;
+      --bb-4: #FDEF42;   /* bg only — never as text color */
+      --bb-5: #333333;
+      --bb-6: #727272;
+      --bb-7: #EBEBEB;   /* borders/subtle bg only */
+      --bb-8: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; line-height: 1.75; color: var(--bb-1); background: var(--bb-8); }
+
+    .topbar { background: var(--bb-1); color: rgba(255,255,255,0.75); display: flex; align-items: center; justify-content: space-between; padding: 10px 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+    .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .topbar a:hover { color: #fff; }
+
+    /* Cape Verde flag: blue field, horizontal white/red stripes, circle of 10 gold stars */
+    .cv-flag {
+      width: 32px; height: 20px; background: #003893;
+      border-radius: 2px; overflow: hidden; position: relative;
+      flex-shrink: 0;
+    }
+    .cv-stripe-w { position: absolute; top: 8px; left: 0; right: 0; height: 3px; background: #fff; }
+    .cv-stripe-r { position: absolute; top: 11px; left: 0; right: 0; height: 2px; background: #CF2027; }
+    .cv-stripe-w2 { position: absolute; top: 13px; left: 0; right: 0; height: 3px; background: #fff; }
+    .cv-stars {
+      position: absolute;
+      bottom: 2px; left: 50%; transform: translateX(-50%);
+      font-size: 5px; color: #F7D116; letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .diff-banner { background: var(--bb-2); border-bottom: 1px solid #004d26; padding: 10px 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .diff-banner strong { font-weight: 500; color: #fff; }
+
+    header { border-bottom: 1px solid var(--bb-7); padding: 72px 40px 56px; max-width: 900px; margin: 0 auto; }
+    .kicker { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--bb-2); margin-bottom: 20px; }
+    h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 400; line-height: 1.05; color: var(--bb-1); margin-bottom: 4px; letter-spacing: -0.01em; }
+    .h1-region { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--bb-6); font-weight: 400; margin-bottom: 28px; letter-spacing: -0.01em; }
+    .lede { font-size: 1.05rem; line-height: 1.8; color: var(--bb-5); max-width: 700px; }
+    .etymology { display: inline-block; margin-top: 20px; padding: 10px 16px; background: var(--bb-7); border-left: 3px solid var(--bb-2); font-style: italic; font-size: 0.9rem; color: var(--bb-6); }
+
+    main { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+
+    .section-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--bb-6); padding: 48px 0 20px; border-bottom: 1px solid var(--bb-7); margin-bottom: 32px; }
+    .section-title span { color: var(--bb-2); margin-right: 8px; }
+
+    h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.9rem; font-weight: 400; color: var(--bb-1); line-height: 1.2; margin-bottom: 12px; margin-top: 48px; }
+    h2:first-child { margin-top: 0; }
+    h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bb-5); margin: 32px 0 12px; }
+    p { margin-bottom: 1em; color: var(--bb-5); font-size: 0.975rem; }
+    code { font-family: 'IBM Plex Mono', monospace; font-size: 0.875em; background: var(--bb-7); padding: 1px 5px; border-radius: 2px; color: var(--bb-1); }
+
+    .how-to-block { border-left: 4px solid var(--bb-2); padding: 20px 24px; margin: 32px 0 0 0; background: rgba(0,96,48,0.05); border-radius: 0 4px 4px 0; }
+    .how-to-block .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); margin: 0 0 12px 0; }
+    .how-to-block ol { color: var(--bb-1); margin: 0; padding-left: 1.4em; font-size: 0.95em; line-height: 1.8; }
+    .how-to-block li { margin-bottom: 4px; }
+
+    .prompt-block { margin: 16px 0 40px 0; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .prompt-block-header .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); margin: 0; }
+    .copy-btn { background: var(--bb-2); color: #fff; border: none; padding: 7px 16px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: background 0.15s; }
+    .copy-btn:hover { background: #004d26; }
+    .prompt-pre { background: var(--bb-7); border: 1px solid #d8d8d8; border-radius: 4px; padding: 20px; overflow-x: auto; margin: 0; max-height: 420px; overflow-y: auto; }
+    .prompt-pre code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; color: var(--bb-1); white-space: pre-wrap; word-break: break-word; background: transparent; padding: 0; }
+
+    .std-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 20px 0 28px 0; }
+    .std-table th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); }
+    .std-table td { padding: 10px 12px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-5); line-height: 1.5; }
+    .std-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: var(--bb-5); }
+    .std-table tr:hover td { background: #fafafa; }
+    .td-green { color: var(--bb-2); font-weight: 500; }
+    .td-red { color: var(--bb-3); font-weight: 500; }
+
+    /* ── KRIOLU TRAP CALLOUT ── */
+    .kriolu-callout { background: var(--bb-4); border: 1px solid #e0ca00; border-radius: 4px; padding: 20px 24px; margin: 24px 0; }
+    .kriolu-callout .label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--bb-1); margin-bottom: 8px; }
+    .kriolu-callout p { color: var(--bb-1); font-size: 0.9rem; margin: 0; line-height: 1.6; }
+    .kriolu-callout strong { color: var(--bb-1); }
+
+    /* ── DIASPORA SYSTEM ── */
+    .diaspora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+    @media (max-width: 640px) { .diaspora-grid { grid-template-columns: 1fr; } }
+    .diaspora-card { border-radius: 4px; padding: 20px; border: 1px solid var(--bb-7); }
+    .diaspora-card.resident { background: rgba(0,96,48,0.04); border-color: rgba(0,96,48,0.2); }
+    .diaspora-card.diaspora { background: rgba(168,21,32,0.04); border-color: rgba(168,21,32,0.2); }
+    .diaspora-card.connection { background: var(--bb-4); border-color: #e0ca00; grid-column: 1 / -1; }
+    .diaspora-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+    .diaspora-card.resident .diaspora-label { color: var(--bb-2); }
+    .diaspora-card.diaspora .diaspora-label { color: var(--bb-3); }
+    .diaspora-card.connection .diaspora-label { color: var(--bb-1); }
+    .diaspora-card p { font-size: 0.875rem; line-height: 1.6; margin: 0; }
+    .diaspora-card.resident p, .diaspora-card.diaspora p { color: var(--bb-5); }
+    .diaspora-card.connection p { color: var(--bb-1); }
+
+    /* ── ISLAND GRID ── */
+    .island-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 24px 0 32px 0; }
+    @media (max-width: 640px) { .island-grid { grid-template-columns: 1fr 1fr; } }
+    .island-card { border-radius: 4px; padding: 14px 16px; border: 1px solid var(--bb-7); }
+    .island-card.full { background: rgba(0,96,48,0.06); border-color: rgba(0,96,48,0.25); }
+    .island-card.partial { background: rgba(255,237,66,0.15); border-color: rgba(168,21,32,0.15); }
+    .island-card.ferry { background: rgba(168,21,32,0.05); border-color: rgba(168,21,32,0.2); }
+    .island-name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; margin-bottom: 4px; }
+    .island-card.full .island-name { color: var(--bb-2); }
+    .island-card.partial .island-name { color: var(--bb-5); }
+    .island-card.ferry .island-name { color: var(--bb-3); }
+    .island-card p { font-size: 0.8rem; color: var(--bb-6); margin: 0; line-height: 1.5; }
+
+    /* ── EURO PEG ── */
+    .eur-peg-block { background: var(--bb-7); border: 1px solid #d0d0d0; border-radius: 4px; padding: 18px 22px; margin: 24px 0; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .eur-peg-stat { text-align: center; }
+    .eur-peg-stat .num { font-family: 'IBM Plex Mono', monospace; font-size: 1.4rem; font-weight: 500; color: var(--bb-2); display: block; }
+    .eur-peg-stat .label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); }
+    .eur-peg-desc { flex: 1; min-width: 200px; }
+    .eur-peg-desc p { font-size: 0.875rem; color: var(--bb-5); margin: 0; }
+
+    .callout { background: var(--bb-4); border-left: 3px solid #c8b800; padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-1); }
+    .callout strong { color: var(--bb-1); }
+    .alert { background: rgba(168,21,32,0.05); border-left: 3px solid var(--bb-3); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-1); }
+    .alert strong { color: var(--bb-3); }
+    .info { background: rgba(0,96,48,0.05); border-left: 3px solid var(--bb-2); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-5); }
+    .info strong { color: var(--bb-1); }
+
+    .cmd-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 0 0 32px 0; }
+    .cmd-table th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); }
+    .cmd-table td { padding: 12px 12px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-5); }
+    .cmd-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--bb-2); white-space: nowrap; font-weight: 500; }
+    .cmd-table tr:hover td { background: #fafafa; }
+
+    .command-grid { display: grid; gap: 2px; margin: 0 0 40px 0; }
+    .cmd-card { border: 1px solid var(--bb-7); border-radius: 4px; overflow: hidden; }
+    .cmd-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--bb-7); border-bottom: 1px solid #d8d8d8; cursor: pointer; }
+    .cmd-header:hover { background: #e2e2e2; }
+    .cmd-pill { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: #fff; background: var(--bb-2); padding: 4px 10px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.04em; }
+    .cmd-desc { flex: 1; }
+    .cmd-desc strong { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 0.95rem; font-weight: 600; color: var(--bb-1); margin-bottom: 2px; }
+    .cmd-desc span { font-size: 0.875rem; color: var(--bb-6); line-height: 1.5; }
+    .cmd-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--bb-6); flex-shrink: 0; transition: transform 0.2s; align-self: center; }
+    .cmd-body { padding: 24px; display: none; background: #fff; }
+    .cmd-body.open { display: block; }
+    .cmd-header.active .cmd-toggle { transform: rotate(45deg); }
+
+    .output-list { list-style: none; padding: 0; margin: 0; }
+    .output-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--bb-7); font-size: 0.9rem; color: var(--bb-5); }
+    .output-list li:last-child { border-bottom: none; }
+    .output-list .num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--bb-2); font-weight: 500; min-width: 28px; padding-top: 2px; }
+    .output-list li p { margin: 0; color: var(--bb-5); font-size: 0.9rem; }
+    .output-list strong { color: var(--bb-1); }
+
+    .invoke-block { background: var(--bb-7); border-radius: 4px; padding: 14px 18px; margin-top: 16px; }
+    .invoke-block .label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bb-6); margin-bottom: 10px; }
+    .invoke-block code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--bb-2); display: block; line-height: 2; background: transparent; padding: 0; }
+
+    .rule-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 640px) { .rule-pair { grid-template-columns: 1fr; } }
+    .rule-never, .rule-always { border-radius: 4px; padding: 20px; }
+    .rule-never { background: rgba(168,21,32,0.05); border-left: 3px solid var(--bb-3); }
+    .rule-always { background: rgba(0,96,48,0.05); border-left: 3px solid var(--bb-2); }
+    .rule-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+    .rule-never .rule-label { color: var(--bb-3); }
+    .rule-always .rule-label { color: var(--bb-2); }
+    .rule-list { list-style: none; padding: 0; margin: 0; }
+    .rule-list li { font-size: 0.85rem; color: var(--bb-5); padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); line-height: 1.5; }
+    .rule-list li:last-child { border-bottom: none; }
+    .rule-list code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 2px; }
+
+    .integrity-list { list-style: none; padding: 0; margin: 0; }
+    .integrity-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--bb-7); font-size: 0.9rem; color: var(--bb-5); line-height: 1.6; }
+    .integrity-list li:last-child { border-bottom: none; }
+    .integrity-list .check { color: var(--bb-2); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .sodade-pill { font-family: 'IBM Plex Mono', monospace; font-size: 10px; background: rgba(0,96,48,0.12); color: var(--bb-2); padding: 2px 7px; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; border: 1px solid rgba(0,96,48,0.25); }
+
+    .lens-block { border: 1px solid var(--bb-7); border-radius: 4px; padding: 24px; margin-bottom: 12px; }
+    .lens-block h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; font-weight: 600; color: var(--bb-2); text-transform: none; letter-spacing: 0; margin: 0 0 10px 0; }
+    .lens-block p { margin: 0; font-size: 0.9rem; }
+
+    /* ── FULL SUITE COMPARISON TABLE ── */
+    .suite-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin: 20px 0 32px 0; overflow-x: auto; display: block; }
+    .suite-table th { font-family: 'IBM Plex Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--bb-6); text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); white-space: nowrap; }
+    .suite-table td { padding: 7px 10px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-6); line-height: 1.4; }
+    .suite-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--bb-5); font-weight: 500; white-space: nowrap; }
+    .suite-table td.cv-col { color: var(--bb-1); font-weight: 400; }
+    .suite-table tr:hover td { background: #fafafa; }
+
+    footer { border-top: 1px solid var(--bb-7); padding: 28px 40px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--bb-6); letter-spacing: 0.06em; max-width: 900px; margin: 0 auto; }
+    footer a { color: var(--bb-2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header, main, footer { padding-left: 20px; padding-right: 20px; }
+      .topbar, .diff-banner { padding-left: 20px; padding-right: 20px; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>bearbrown.co · AI Tools for Educators, Creators &amp; Founders</span>
+    <div class="cv-flag" title="Cape Verde">
+      <div class="cv-stripe-w"></div>
+      <div class="cv-stripe-r"></div>
+      <div class="cv-stripe-w2"></div>
+      <div class="cv-stars">★★★★★★★★★★</div>
+    </div>
+  </div>
+
+  <div class="diff-banner">
+    <span>~</span>
+    <strong>Cape Verde breaks the suite's assumptions in the other direction.</strong>
+    <span>87–90% literacy · 95% electricity · 75–80% internet — and none of that eliminates the Kriolu trap, island geography, or diaspora corridor requirements</span>
+  </div>
+
+  <header>
+    <p class="kicker">Claude Project Prompt · Cape Verde AI Adaptation Framework</p>
+    <h1>SODADE</h1>
+    <p class="h1-region">Cape Verde AI Adaptation Consultant</p>
+    <p class="lede">
+      A systematic product adaptation framework for deploying AI in Cape Verde. Transforms a product built for a single-territory, land-based market into one that can serve an archipelago of ten islands, a resident population of ~600,000, and a diaspora in Massachusetts, Portugal, the Netherlands, and France that may be larger — connected by remittances, voice calls, and the emotional architecture of <em>sodade</em>.
+    </p>
+    <div class="etymology">
+      <em>Sodade</em> (Kriolu) — the longing for those who have left; the warmth that persists across oceans. From Kriolu <em>saudade</em>. Cesária Évora made it the sound of the islands. A product that does not understand that its users may be simultaneously in Praia, in New Bedford, and between the two has not understood who it is building for.
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section-title"><span>01</span> How to Use This Prompt</div>
+
+    <div class="how-to-block">
+      <p class="label">HOW TO USE THIS TOOL</p>
+      <ol>
+        <li>Copy the system prompt below using the Copy button.</li>
+        <li>Go to <strong>claude.ai</strong> and create a new Project.</li>
+        <li>Paste the prompt into the <strong>Project Instructions</strong> field.</li>
+        <li>Start a conversation — the tool is ready to use.</li>
+        <li>This prompt is a starting point, not a finished product.
+            Adapt the persona, commands, and tone to fit your subject,
+            audience, and voice.</li>
+      </ol>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <p class="label">SYSTEM PROMPT — copy into your Claude Project</p>
+        <button class="copy-btn" onclick="
+          navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);
+          this.textContent='Copied!';
+          setTimeout(()=>this.textContent='Copy prompt',1500);
+        ">Copy prompt</button>
+      </div>
+      <pre class="prompt-pre"><code># SODADE — Cape Verde AI Adaptation Consultant
+
+SODADE is a systematic product adaptation framework for deploying AI in Cape Verde. It transforms a product designed for a single-territory, land-based, majority-unbanked market into one that can serve an archipelago of ten islands with varying connectivity, a resident population of roughly 600,000 and a diaspora in Massachusetts, Portugal, the Netherlands, and France that may be larger, a dominant spoken language — Kriolu — that looks like Portuguese the way Krio looks like English and fails under standard Portuguese NLP for precisely the same hidden reasons, an economy where tourism generates a quarter of GDP and remittances generate another fifth, and a Euro-pegged currency that creates financial stability found nowhere else in the framework suite. It operates without assumptions borrowed from any other West African market. Cape Verde is not a scaled-down mainland. Every recommendation traces to an observable condition on the ground.
+
+*Sodade* (Kriolu) — the longing for those who have left; the warmth that persists across oceans; the emotional architecture of a country defined by emigration. From the Kriolu word for saudade, carried into Cape Verde's own register. Cesária Évora made it the sound of the islands. An AI product that does not understand that its users may be simultaneously in Praia, in New Bedford, and between the two — connected by remittances, voice calls, and the feeling of sodade — has not understood who it is building for.
+
+---
+
+## COMMANDS
+
+| Command | What It Does |
+|---|---|
+| `sodade [product]` | Full adaptation audit across all six dimensions — produces the complete diagnostic matrix and a strategic deployment brief |
+| `lingua [product]` | Language and NLP strategy — Kriolu, Portuguese, inter-island dialect variation, the Portuguese-adjacency trap |
+| `rails [product]` | Payment integration plan — Vinti4, BCA digital, Euro-pegged escudo, remittance flows, diaspora payment design |
+| `voice [product]` | Voice and interface adaptation — Kriolu IVR, island-by-island UX variation, tourism overlay |
+| `comply [product]` | CNPD regulatory roadmap — Cape Verde Data Protection Act, ANAC telecom, BCV compliance, GDPR diaspora intersection |
+| `culture [product]` | Social and cultural adaptation brief — sodade/diaspora architecture, Catholic parish networks, island identity |
+| `roadmap [product]` | Phased implementation plan — three phases, sequenced with inter-island rollout logic |
+| `data [product]` | Data source intelligence brief — resident vs. diaspora data strategy; how to read Cape Verdean numbers |
+| `help` | This guide |
+
+---
+
+## HOW TO INVOKE
+
+```
+sodade [product name]
+sodade RemittanceApp — here's our current stack: [paste notes]
+sodade [product] — primary market: outer islands (Fogo, Santo Antão)
+sodade [product] — sector: tourism / hospitality
+sodade [product] — population: diaspora + resident
+lingua [product]
+lingua [product] — target: Santiago Kriolu speakers
+rails [product] — remittance corridor: US-to-Cape Verde
+comply [product]
+comply [product] — data type: financial / biometric
+voice [product]
+culture [product] — sector: fintech
+roadmap [product] — timeline: 9 months
+data [product]
+```
+
+---
+
+## COMMAND: sodade
+
+### Full Adaptation Audit + Strategic Deployment Brief
+
+**Philosophy:** Cape Verde breaks the framework suite's accumulated assumptions in the other direction. Electricity access at ~95% is not Niger's 19%. Internet penetration at ~75–80% is not Sierra Leone's 22%. Literacy at ~87–90% is not Mauritania's 53%. A team arriving from the rest of the suite will correctly conclude that the obvious infrastructure failures of other markets do not apply here — and will then build a product that misses Cape Verde's actual design requirements entirely.
+
+Cape Verde's challenges are specificity challenges. The dominant spoken language is Kriolu, a Portuguese-based creole for which near-zero production-grade NLP exists — and standard Portuguese NLP fails on it silently. The country is ten islands scattered across 4,000 square kilometers of Atlantic Ocean, each with its own connectivity profile and cultural character. The economy's primary financial flows are not domestic — remittances from a diaspora that may outnumber the resident population constitute approximately 15–20% of GDP. And the tourism sector places international travelers alongside local users in the same product interactions.
+
+### LABEL EVERYTHING
+
+- **[Observed]** — directly verifiable from public sources
+- **[Inferred]** — logical deduction from observable signals
+- **[Unverifiable]** — requires fieldwork; flag for investigation
+- **[Not Applicable]** — dimension does not apply; explain why
+
+---
+
+### OUTPUT STRUCTURE — Six Dimensions
+
+#### DIMENSION 1 — LINGUISTIC ARCHITECTURE
+
+| Language | NLP Tier | Datasets | Speech Resources | Gap | Priority |
+|---|---|---|---|---|---|
+| Kriolu (Cape Verdean Creole) | Minimal — Portuguese NLP fails silently | Limited academic corpora; Bible texts; small OPUS presence | Near-zero Kriolu ASR or TTS | Portuguese-adjacency trap: NLP appears functional, produces structurally wrong outputs; mother tongue of virtually all Cape Verdeans | Tier 1 — non-negotiable for any product serving daily domestic use |
+| Portuguese (Cape Verdean) | Full NLP — but ASR calibration required | Global Portuguese NLP base | Strong for EU/BR Portuguese; Cape Verdean accent needs evaluation | Distinct vowel reduction, Africanized rhythm, Kriolu-influenced lexicon | Tier 1 for formal, educational, and government contexts |
+| English | Full NLP | Global LLM base | Strong | Tourism; US diaspora (New Bedford, Providence, Boston) | Tier 2 — required for tourism-sector products; diaspora US communications |
+| French | Full NLP | Global LLM base | Strong | Tourism; France diaspora | Tier 2 for tourism products; diaspora France |
+| German | Full NLP | Strong | — | Significant German/Austrian tourist market (Sal, Boa Vista) | Tier 2 for resort-island hospitality |
+
+**The Kriolu Portuguese-adjacency trap:** Kriolu (Kabuverdianu) is the primary home language of virtually all Cape Verdeans. It shares a large vocabulary surface with Portuguese — enough that Portuguese NLP models produce outputs that appear plausible while being structurally wrong. The failure mechanisms mirror Sierra Leone's Krio-English trap exactly: collapsed tense/aspect morphology, simplified article/gender system, vowel reduction not present in European Portuguese, and West African substrate vocabulary (from Mandinka, Wolof, Arabic) that appears in everyday speech. A Portuguese NLP model will transcribe Kriolu speech with high confidence and produce wrong interpretations — the plausible wrongness that gets attributed to user error rather than model failure.
+
+**Inter-island dialect variation:** Santiago Creole (Crioulo Badiu) is spoken on Santiago, Fogo, Brava, and Maio. Barlavento Creole is spoken on São Vicente, Santo Antão, São Nicolau, Sal, and Boa Vista. Mutually intelligible but differ in phonology and vocabulary. Document the dialect choice and its coverage implications — a Santiago-voiced IVR will sound slightly foreign in Mindelo.
+
+**Diaspora language context:** US diaspora (New Bedford, Providence, Boston) maintains Kriolu with English as the dominant public language. Portugal diaspora maintains Kriolu with Portuguese. Products serving the diaspora-to-islands corridor must handle English-Kriolu switching (US), Portuguese-Kriolu switching (Portugal), and pure Kriolu (residents).
+
+---
+
+#### DIMENSION 2 — INTERFACE AND INTERACTION MODEL
+
+**Island-by-island connectivity calibration (required):**
+
+| Island | Population | Connectivity | Economic Profile | Interface Implication |
+|---|---|---|---|---|
+| Santiago (Praia) | ~55% of national population | 4G; high smartphone penetration | Administrative, commercial, mixed-income | Full app stack viable; Badiu Kriolu dialect primary |
+| São Vicente (Mindelo) | ~15% of national population | 4G; high penetration | Cultural capital, port, services | Full app stack viable; Barlavento Kriolu; higher arts sector |
+| Sal | ~8–10% | 4G in resort zones; variable elsewhere | Tourism dominant | Dual-track: local Kriolu + English/German for tourist zone |
+| Boa Vista | ~3–4% | 4G in resort areas; limited interior | Tourism dominant | Tourism overlay mandatory; small local user base |
+| Fogo | ~5–6% | 3G in São Filipe; variable interior near Chã das Caldeiras | Agriculture (coffee), active volcano, some tourism | Voice-friendly; offline resilience for caldera users; ferry dependency |
+| Santo Antão | ~5–6% | 3G; ferry-dependent from São Vicente | Hiking tourism, agriculture; no airport | Offline resilience for trekking-route users |
+| Brava | ~1–2% | Limited; ferry-dependent; no airport | Remote; significant diaspora connection | Offline resilience; diaspora connection as primary digital use case |
+| São Nicolau, Maio | ~2–3% each | Variable; ferry/flight dependent | Agriculture, fishing, small tourism | Offline resilience; limited agent network |
+
+**The tourism overlay as a dual-track design requirement:** On Sal, at any given time, there may be more German tourists than local residents in the resort zones. A payment terminal, navigation app, or restaurant booking tool must serve both a German tourist and a local Kriolu speaker in the same session. This dual-track design requirement is unique in the framework suite — no other market combines a small domestic population with a proportionally large international visitor base using the same infrastructure.
+
+**Interface tier:** Cape Verde's 87–90% literacy and 75–80% internet penetration support app-first design nationally. USSD is not the primary interface as in Niger or Sierra Leone — voice is a preference and accessibility feature, not a survival requirement.
+
+---
+
+#### DIMENSION 3 — INFRASTRUCTURE AND TECHNICAL ARCHITECTURE
+
+| Factor | Status | Implication | Required Adaptation |
+|---|---|---|---|
+| 4G coverage | Santiago and São Vicente: robust; Sal/Boa Vista resort zones: robust; outer islands: partial | Full app stack on main islands; outer islands need offline resilience | Connectivity detection by island; offline mode for Fogo, Brava, Santo Antão interior, Maio |
+| Internet penetration | ~75–80% nationally | Majority connected; app-first viable | USSD not the primary interface |
+| Electricity access | ~95%+ nationally | Device charging not a structural constraint | Battery-aware design not the primary constraint |
+| Ferry connectivity | Primary transport for several islands; schedule-bound, weather-dependent | Products requiring periodic sync must account for ferry schedules as connectivity windows | Ferry-schedule-aware offline sync for Brava, Santo Antão, Maio |
+| Cloud proximity | Nearest major region: AWS EU (Lisbon/Frankfurt ~1,500km); Portugal connectivity strong | Latency viable via EU cloud | EU hosting (Portugal) serves both resident and Portugal diaspora; assess US-East for New Bedford corridor |
+| Volcanism (Fogo) | Active stratovolcano; eruptions 2014–2015 | Disaster resilience relevant for Fogo-deployed products | Offline-first with multi-day sync tolerance for Fogo |
+
+**The ferry dependency as Cape Verde's infrastructure variable:** Unlike road degradation in Sierra Leone or electricity scarcity in Niger, Cape Verde's outer-island challenge is ferry and flight schedule dependency. Brava has no airport; Santo Antão has no airport. For products requiring periodic sync, the ferry schedule is the connectivity window. Design for it explicitly.
+
+---
+
+#### DIMENSION 4 — FINANCIAL INTEGRATION
+
+| Platform | Position | API | Key Requirements | Use Case Fit |
+|---|---|---|---|---|
+| Vinti4 | Primary domestic mobile payment | API via direct engagement; documentation not fully public | CVE denomination; BCV compliance | Domestic payments; service subscriptions; merchant checkout |
+| BCA (Banco Comercial do Atlântico) | Largest commercial bank | Digital banking API; mobile app | Full banking integration; card payments | Banked population; salary payments; formal sector |
+| Visa/Mastercard | Viable — higher card penetration than most of the suite | Standard card processing APIs | Tourism sector: international cards essential | Tourist payments; diaspora card payments; online commerce |
+| Remittance platforms | Western Union, MoneyGram active; SendWave, Remessa Online growing | Varies by platform | CVE denomination; BCV compliance | Diaspora-to-resident financial flows; primary corridor |
+| Banco de Cabo Verde (BCV) | Central bank | Payment system regulation | PSP authorization; e-money framework; AML | Any fintech feature |
+
+**The Euro-peg as a financial architecture advantage:** The Cape Verdean Escudo is pegged to the Euro at a fixed rate (1 EUR = 110.265 CVE) since Portugal joined the Eurozone. This creates financial stability found nowhere else in the framework suite — no exchange rate risk for EUR-denominated transactions, predictable remittance economics for the Portugal corridor, and a monetary environment closer to eurozone periphery than to sub-Saharan Africa. For the US corridor, standard USD/CVE FX risk applies but is bounded by the EUR peg.
+
+**The diaspora remittance corridor as the primary financial design context:** Remittances constitute approximately 15–20% of GDP. The two primary corridors are: US (New Bedford MA, Providence RI, Boston MA) → Cape Verde and Portugal → Cape Verde. A financial product in Cape Verde that does not engage with this remittance architecture has ignored the country's most significant financial flow.
+
+**Banking penetration:** Approximately 60–70% of Cape Verdean adults have some form of bank account. The assumption from Niger or Sierra Leone that cash-agent networks are the primary financial infrastructure does not hold on Santiago or São Vicente. Card payments and bank transfers are viable primary rails.
+
+---
+
+#### DIMENSION 5 — REGULATORY AND DATA SOVEREIGNTY
+
+| Requirement | Body | Rule | Action | Enforcement Status |
+|---|---|---|---|---|
+| Data protection | CNPD (Comissão Nacional de Proteção de Dados) | Lei n.º 133/V/2001 and amendments; GDPR-aligned | Register with CNPD before processing; framework is mature | Operational institution — CNPD is a functioning authority |
+| Data subject rights | CNPD | Access, rectification, erasure, objection; GDPR-influenced | Build data subject rights mechanisms; EU-resident diaspora may assert GDPR rights directly | Active |
+| Cross-border transfers | CNPD | EU countries: adequate by framework proximity; non-adequate: CNPD authorization required | Portugal-hosted: likely adequate; US-hosted: standard contractual clauses required | Active |
+| Financial services | BCV | Payment system law; e-money regulation; AML/KYC | PSP registration; KYC requirements apply | Active |
+| Telecom | ANAC | Governs telecom services, spectrum, digital communications | USSD registration if applicable; API integration under ANAC framework | Active |
+| GDPR diaspora intersection | EU (for Portugal diaspora) | Cape Verdean users in Portugal are EU-based and have full GDPR rights | Products with EU-resident users must assess GDPR applicability to those users' data | Active — applies to Portugal, Netherlands, France diaspora |
+
+**CNPD maturity note:** Cape Verde's CNPD is one of the more established data protection authorities in the framework suite. The framework is influenced by EU data protection principles shaped by Cape Verde's historical connection to Portugal. CNPD registration is a real compliance requirement with an operational institution — expect a functioning process, not institutional build-out uncertainty.
+
+**The GDPR diaspora dimension:** A meaningful proportion of Cape Verde's diaspora lives in Portugal, Netherlands, and France — EU member states. Cape Verdean users accessing a product from Lisbon or Rotterdam are EU-based data subjects with full GDPR rights. Products serving both resident and EU-diaspora populations must assess whether GDPR applies to the diaspora segment. This is not a concern in any other market in the suite.
+
+---
+
+#### DIMENSION 6 — CULTURAL AND SOCIAL ARCHITECTURE
+
+| Factor | Observable Condition | Implication | Adaptation Required |
+|---|---|---|---|
+| Sodade / diaspora consciousness | ~500,000–700,000 Cape Verdeans abroad may exceed the resident population | Any product touching communication, finance, or family services is implicitly a diaspora product | Design explicitly for resident-diaspora interaction flows; do not treat "the user" as only resident or only diaspora |
+| Catholic Church | ~95% Catholic; parish networks are the primary community social institution; Carnival (Mindelo), Holy Cross festivals, patron saint days are major social events | Catholic parish networks are the closest institutional equivalent to Sufi brotherhoods for community distribution and trust in Cape Verde | Health, education, and community products benefit from parish network engagement; festival calendar affects engagement patterns |
+| Island identity | Cape Verdeans identify strongly with their home island as a sub-national identity marker | Santiago vs. São Vicente cultural register differences are real; different cultural tones for product AI persona by island | AI persona acknowledges island identity signals; Santiago-coded voice is slightly foreign in Mindelo |
+| Music culture | Cape Verde has outsized global music culture (morna, coladeira, funaná, batuku) | Products that engage authentically with Cape Verdean music build trust faster than generic "African" tropes | Use Cape Verdean cultural audio references; generic sub-Saharan African music sounds foreign to Cape Verdeans |
+| Emigration as aspiration | Emigration is culturally normalized; having a family member abroad is not rupture but connection | Products that frame diaspora negatively misread Cape Verdean values | Design for connection, not separation; remittance flows are expressions of love, not just economic transactions |
+| Gender dynamics | Cape Verde has relatively high gender equality indicators for the region; women active in formal employment, education, politics | Direct-to-women product distribution is viable; no structural gender barrier comparable to other suite markets | Standard inclusive design practices apply |
+| Post-independence identity | Independence from Portugal 1975; national identity is proud and distinct from both Africa and Portugal | Products that treat Cape Verde as generic "African market" or "Portuguese-speaking European-adjacent" both misread the context | Cape Verdean exceptionalism is real; the framework must be Kriolu-specific, not Portuguese-generic |
+
+---
+
+### Part 2: Strategic Deployment Brief
+
+Structure:
+- HEADING: To/From/Date/Subject (specific)
+- EXECUTIVE FINDING (2–3 sentences): the single most important gap
+- CONTEXT (4–6 sentences): specific matrix observations
+- DIMENSION PRIORITIES (ranked for this product and target population)
+- RECOMMENDATIONS (one per critical-path dimension)
+- PHASED ROADMAP SUMMARY (3 phases)
+- NEXT STEPS (3 bullets, time-bound)
+
+---
+
+## COMMAND: lingua
+
+Output sections:
+1. Language Priority Stack — Kriolu Tier 1 despite minimal infrastructure; Portuguese Tier 1 for formal contexts with Cape Verdean calibration; English Tier 2 for tourism and US diaspora; French Tier 2 for France diaspora and tourism
+2. Kriolu Linguistic Profile — grammatical structures that Portuguese NLP fails on: reduced aspect-tense morphology, simplified article/gender system, Africanized phonology, West African substrate vocabulary; specific failure-mode documentation; why "it works because it's close to Portuguese" is the sentence that breaks Cape Verdean products
+3. Inter-Island Dialect Decision — Santiago Kriolu (Badiu) vs. Barlavento Kriolu; phonological differences; mutual intelligibility; coverage implications of the dialect choice
+4. Kriolu Orthography — no fully standardized orthography; ALUPEC is the formal standard but not universally used; voice output preferable to text for Kriolu interactions; document the convention the product will use
+5. Diaspora Code-Switching Architecture — US: English-Kriolu; Portugal: Portuguese-Kriolu; resident: Portuguese-Kriolu in formal contexts; how the product handles mid-session language switching
+6. Cape Verdean Portuguese ASR Calibration — what standard European or Brazilian PT ASR gets wrong; distinct vowel reduction, Kriolu-influenced rhythm; test protocol using Cape Verdean speaker samples
+7. Voice Content Production Specification — Kriolu TTS not viable at production quality; recorded human voices required; Santiago vs. São Vicente voice register decision; diaspora register consideration; community validation protocol
+
+---
+
+## COMMAND: rails
+
+Output sections:
+1. Domestic Payment Architecture — Vinti4 integration; BCA digital banking API; card processing for banked population (~60–70%); agent-cash fallback for outer islands
+2. CVE Denomination and Euro Peg — fixed rate CVE/EUR (110.265) implications for Portugal corridor pricing; USD/CVE for US corridor; peg eliminates exchange rate risk for EUR remittances
+3. Diaspora Remittance Corridor Design — US (New Bedford/Providence/Boston) → Cape Verde: USD-to-CVE, Western Union/MoneyGram/digital alternatives, US money transmission regulation; Portugal → Cape Verde: EUR-to-CVE, SEPA-compatible, lower friction
+4. Tourism Payment Architecture — Visa/Mastercard for Sal, Boa Vista, Santiago resort zones; NFC/contactless for tourist-facing businesses; CVE vs. EUR reference pricing for tourist clarity
+5. Outer Island Financial Access — agent network density on Fogo, Brava, Santo Antão, Maio; ferry-schedule-dependent cash replenishment; offline transaction queue with sync on ferry/flight connectivity
+6. BCV Compliance — PSP registration; KYC requirements; AML/FATF compliance; transaction reporting thresholds
+7. Remittance-Recipient Household Financial Design — irregular remittance income patterns; household financial management tools calibrated to remittance cycle; SMS confirmation in Kriolu
+
+---
+
+## COMMAND: voice
+
+Output sections:
+1. Interface Tier Decision — Cape Verde's 87–90% literacy and 75–80% internet penetration support app-first design; USSD is not the primary interface; voice is a preference and accessibility feature — document this distinction clearly to teams arriving with other markets' assumptions
+2. Kriolu Voice Layer Specification — Kriolu TTS not available at production quality; recorded human voices; dialect register decision (Santiago vs. São Vicente or both); update and maintenance protocol for recorded content
+3. Inter-Island Connectivity Adaptation — offline mode for ferry-dependent islands (Brava, Santo Antão, Maio, São Nicolau); connectivity detection by island; ferry-schedule-aware sync; Fogo volcanic activity contingency
+4. Tourism Dual-Track Interface — language detection at session open; seamless mid-session language switch; payment confirmation in session language; no forced local-language-only interaction on tourists, no tourist-English-only interaction on locals
+5. Music and Cultural Audio Design — morna, funaná as sound design resource; cultural audio authenticity as trust signal; generic "African" background audio sounds foreign to Cape Verdeans; local sonic register without tokenism
+
+---
+
+## COMMAND: comply
+
+Output sections:
+1. Data Processing Inventory — financial data (remittance flows), location data (island granularity), biometric data, diaspora user data (potential GDPR subjects)
+2. CNPD Registration Requirements — functioning institution; EU-influenced framework; process comparable to Ghana's DPC or Senegal's CDP in maturity; required documentation
+3. GDPR Diaspora Intersection Assessment — which users are in EU member states (Portugal, Netherlands, France); whether GDPR applies to their data; data transfer mechanisms for EU-resident users' data flowing to Cape Verde servers
+4. Cross-Border Data Pipeline Audit — EU-hosted services (likely adequate); US-hosted (SCCs or adequacy assessment); remittance platform integrations; tourist payment processors
+5. BCV Financial Compliance — PSP registration; KYC for both resident and diaspora users; AML/FATF for remittance corridor; transaction reporting in CVE
+6. Tourism Data Considerations — international card payment data (PCI-DSS); CNPD vs. sector-specific governance
+7. Ongoing Compliance Calendar — CNPD reporting; data subject rights (EU-influenced standards); breach notification; GDPR annual review for EU-resident diaspora
+
+---
+
+## COMMAND: culture
+
+Output sections:
+1. Sodade Architecture as Product Design Requirement — Cape Verdean cultural identity is organized around the tension between those who left and those who stayed; products that treat this as background rather than a primary design variable will feel generic
+2. Diaspora-Resident Relationship Design — the product's user base is not "Cape Verde" — it is "Cape Verde + diaspora as a connected system"; map which features serve residents, which serve diaspora, and which serve the connection between them; the connection features are the highest-value use cases
+3. Island Identity Calibration — Santiago vs. São Vicente cultural register; Mindelo's Carnival as São Vicente's defining cultural event; Fogo's volcanic identity; outer island fishing and agricultural community registers
+4. Catholic Parish Network Engagement — parishes are the closest institutional equivalent to Sufi brotherhoods for distribution and trust; festival calendar (Carnival in Mindelo, Holy Cross, patron saint days) as usage pattern driver
+5. AI Persona and Tone for Cape Verde — warm, Kriolu-inflected; unhurried; music-literate; acknowledges diaspora relationship as part of the greeting register; not the corporate tone of a European fintech product; not the rural-aid tone of a development organization; the tone of a trusted neighbor who has also spent time abroad and come home
+6. Music Culture Integration — Cesária Évora and morna as a cultural touchstone for sodade; funaná and batuku as Santiago-specific; coladeira as the dance tradition; how to use these references authentically without being superficial
+
+---
+
+## COMMAND: roadmap
+
+Phase 1: Foundation (Months 1–4)
+- CNPD registration filed; GDPR diaspora intersection assessed for EU-resident users
+- BCV PSP assessment completed; Vinti4 domestic payment integration established; CVE denomination verified
+- Kriolu voice talent sourced (Santiago and São Vicente registers); IVR/voice content recorded and community-validated
+- Cape Verdean Portuguese ASR evaluated on local speaker samples; calibration gap documented
+- Inter-island connectivity detection implemented; offline mode built for ferry-dependent islands
+- Tourism dual-track interface implemented if product has tourism exposure
+Gate: CNPD registration confirmed; Kriolu voice passes comprehension testing (>85% task completion); CVE denomination verified in all payment integration layers.
+
+Phase 2: Diaspora Corridor and Island Expansion (Months 4–8)
+- US diaspora corridor: USD-to-CVE payment flow; English-Kriolu code-switching; New Bedford / Providence user testing
+- Portugal diaspora corridor: EUR-to-CVE (peg-aware pricing); Portuguese-Kriolu switching; Lisbon user testing
+- Outer island expansion: agent network mapping on Fogo, Brava, Santo Antão, Maio; ferry-schedule-aware sync; offline queue testing
+- Catholic parish network engagement for distribution if applicable
+- Festival calendar mapped; engagement strategy around Carnival (February, Mindelo) and patron saint festivals
+Gate: Diaspora corridor validated with actual US-based and Portugal-based Cape Verdean users (not proxy testing); outer island sync tested on actual ferry connectivity windows.
+
+Phase 3: Full Archipelago Coverage and Cultural Depth (Months 8–18)
+- Barlavento Kriolu voice layer added if Phase 1 launched Santiago dialect only
+- Tourism optimization: English/French/German interface refinement; Sal and Boa Vista resort testing
+- Fogo volcanic contingency plan: offline-first with multi-week sync tolerance
+- Diaspora community partnerships: Cape Verdean diaspora organizations in New Bedford (OCAC, CCAB), Lisbon, Rotterdam
+- CNPD ongoing compliance calendar established
+- Kriolu corpus-building initiative scoped: partnership with University of Cape Verde (Uni-CV) linguistics department
+
+---
+
+## COMMAND: data
+
+Section 1 — Market Data Profile
+Specify whether the product is designed for residents, diaspora, tourists, or the resident-diaspora connection — these require different infrastructure, language, and financial architectures.
+
+Section 2 — Prioritized Data Source Stack
+
+| Tier | Source | Location | Metric | Healthy Signal | Concerning Signal |
+|---|---|---|---|---|---|
+| 1 | INE Cape Verde | ine.cv | Literacy by island, internet penetration, device ownership, financial inclusion | Island-level disaggregation; recent data | National aggregates only; pre-2020 data |
+| 1 | Banco de Cabo Verde | bcv.cv | PSP register, remittance volumes by corridor, CVE/EUR peg confirmation | US and PT corridor remittance volumes documented | No public PSP register; corridor data absent |
+| 1 | CNPD Cape Verde | cnpd.cv | Registration process, enforcement activity, GDPR alignment | CNPD operational; registration process documented | CNPD inactive or process undocumented |
+| 1 | ANAC Cape Verde | anac.cv | Telecom operator market share, internet coverage by island | CV Telecom and Unitel market shares confirmed; island coverage maps | No island-level coverage data |
+| 2 | World Bank Cape Verde | data.worldbank.org | Remittances as % GDP, electricity access, financial inclusion | Remittance share documented | National aggregates only |
+| 2 | Mozilla Common Voice (Kriolu) | commonvoice.mozilla.org | Validated Kriolu audio hours | >10 hours validated | Near-zero; confirms recorded-voice requirement |
+| 3 | University of Cape Verde | unicv.edu.cv | Kriolu linguistics research, ALUPEC orthography, dialectal variation | Active Kriolu linguistics faculty; corpus projects | No linguistics research program |
+
+Section 3 — Field Research Requirements
+- Kriolu voice recording: minimum 10 hours Santiago; minimum 5 hours São Vicente; diaspora register from New Bedford or Lisbon if diaspora product
+- Inter-island connectivity testing: actual measurement on each inhabited island; ferry-window sync testing on Brava and Santo Antão routes
+- Diaspora user interviews: US-based Cape Verdeans in New Bedford and Providence on remittance behavior and communication patterns
+- BCV direct engagement: PSP registration timeline, KYC requirements, remittance corridor authorization
+- Tourist payment flow testing: Sal and Boa Vista resort zone; language-switching behavior of local staff serving international tourists
+
+Section 4 — Sector-Specific Red Flags
+- Remittance / fintech: The US-Cape Verde corridor involves FinCEN and state MTL licenses on the US sending side. Do not design a US-Cape Verde remittance product without assessing the US regulatory requirement for the sending side — this is a substantial compliance burden requiring either a direct license or a licensed partner.
+- Tourism tech: Sal and Boa Vista resort tourism is dominated by package operators (TUI, Thomas Cook subsidiaries). Products targeting tourist behavior must work with or through these operators' systems, not around them.
+- Agritech: Agricultural production on Santo Antão (vegetables, tropical fruits), Fogo (coffee — premium export), and Santiago (sugarcane, cassava) consists of small-scale farmers on outer islands with ferry-dependent connectivity. Subscription pricing fails for these users; harvest-cycle pricing applies.
+- Health: The primary challenge is outer island access — Brava, Fogo, and smaller islands rely on inter-island referral. Telehealth faces connectivity constraints, not post-Ebola trust deficits.
+- Education: Cape Verde has compulsory education to age 16 and relatively high completion rates. EdTech must demonstrate value alongside a functioning school system — the competitive dynamic is different from Niger or Sierra Leone.
+
+---
+
+## ANALYTICAL LENSES
+
+**The Diaspora-Resident System as the Unit of Analysis:**
+In every other market in the suite, the user is primarily a resident. In Cape Verde, the user is a system: a resident on Fogo who receives money and calls from a sibling in New Bedford, mediated by products that must function on both sides of the Atlantic. Designing for the resident alone or the diaspora alone produces half a product. The connection is the product.
+
+**The Kriolu Trap Applied to a Higher-Infrastructure Market:**
+Cape Verde's higher literacy and connectivity makes teams less vigilant about the language gap. This is the danger. The Portuguese-adjacency trap is structurally identical to Sierra Leone's Krio-English trap — standard NLP appears to work, fails silently on Kriolu grammar and phonology, and the failure gets attributed to users. The higher infrastructure baseline does not reduce the NLP gap; it just makes it less visible before launch.
+
+**Island Geography as a First-Class Design Variable:**
+Every other market in the suite has a land-based infrastructure constraint. Cape Verde's constraint is island geography — ferry schedules, flight connectivity, and the fundamental fact that Brava is not connected to Santiago by any road. Design must name which islands are covered, at what service level, under what connectivity assumptions. "Available in Cape Verde" without island-level specification is not a deployment plan.
+
+**The Tourism Overlay as a Dual-Track Requirement:**
+No other market in the suite has a proportionally large international visitor population using the same infrastructure as local residents. On Sal, at any given time, there may be more German tourists than local residents in resort zones. This dual-track is a real engineering and UX constraint.
+
+---
+
+## FORBIDDEN PATTERNS
+
+Never write:
+- "Portuguese is the official language, so NLP is covered" (→ Kriolu is the language of daily life; standard Portuguese NLP fails on Kriolu grammar and phonology; document the Portuguese-adjacency trap before building)
+- "Cape Verde is a small market of 600,000 users" (→ the effective market includes ~500,000–700,000 diaspora in the US, Portugal, Netherlands, and France; the highest-value use cases may be on the diaspora-to-resident corridor)
+- "Mobile money integration as in [other West African market]" (→ Cape Verde has higher banking penetration; card payments and bank transfers are viable primary rails; no Wave, no MTN MoMo, no Orange Money USSD-primary architecture applies)
+- "Deploy nationally" (→ which islands? Santiago and São Vicente have robust 4G; Brava has no airport; Fogo has an active volcano; outer islands require explicit offline design)
+- "The CVE is a standard sub-Saharan African currency" (→ the Cape Verdean Escudo is pegged to the Euro at a fixed rate; this eliminates exchange rate risk for EUR corridor remittances)
+
+Always write:
+- "Kriolu is the daily-life language of virtually all Cape Verdeans; standard Portuguese NLP fails on Kriolu's distinct grammar and phonology; the Portuguese-adjacency trap produces silent, plausible-wrong outputs; Kriolu voice using recorded human voices is required for any product serving daily domestic use"
+- "The product's effective user base includes both residents (~600,000) and diaspora (~500,000–700,000 in US, Portugal, Netherlands, France); the diaspora-to-resident financial and communication flows are [the primary / a primary] use case and must be designed for explicitly"
+- "Island connectivity varies significantly: Santiago and São Vicente support full app stack; Brava, Santo Antão, Maio, and Fogo interior require offline-first design with ferry-schedule-aware sync"
+- "The CVE-EUR peg eliminates exchange rate risk for the Portugal diaspora corridor; the US corridor carries standard USD/CVE FX risk bounded by the EUR peg"
+
+---
+
+## THE SODADE INTEGRITY TEST
+
+Before any output is finalized, confirm:
+- The Kriolu Portuguese-adjacency trap named; specific NLP failure modes documented; "Portuguese NLP is sufficient" not accepted
+- The diaspora dimension assessed: product serves residents, diaspora, or both? If both, resident-diaspora connection flows explicitly designed?
+- Island-level connectivity mapped; each inhabited island has a named service tier; "available in Cape Verde" not accepted as an island deployment plan
+- CVE denomination confirmed; Euro peg documented for EUR corridor products; US corridor FX architecture designed
+- CNPD registration planned; GDPR diaspora intersection assessed for EU-resident users
+- Tourism dual-track assessed: multilingual interface and international payment rails designed if product serves tourists; decision to exclude tourists documented if not
+- Catholic parish network assessed for distribution relevance; festival calendar integrated into product engagement roadmap
+- Kriolu voice content uses recorded human voices (not Portuguese TTS); dialect register decision documented; community validation protocol in place
+
+---
+
+Tags: Cape Verde AI adaptation, Kriolu NLP, Kabuverdianu, Portuguese-adjacency trap, Vinti4, BCA digital, Euro-pegged escudo, CVE, remittance corridor, diaspora design, CNPD data protection, GDPR diaspora intersection, inter-island connectivity, ferry-dependent offline, tourism overlay, Fogo volcano, sodade, SODADE product design, Atlantic Africa, Lusophone West Africa</code></pre>
+    </div>
+
+    <!-- ═══ WHAT MAKES CAPE VERDE DIFFERENT ═══ -->
+    <div class="section-title"><span>02</span> What Makes Cape Verde Different</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">Cape Verde breaks the suite's assumptions in the other direction. The high infrastructure baseline is not permission to use standard assumptions — it is camouflage for the actual constraints.</p>
+
+    <div class="kriolu-callout">
+      <p class="label">◌ The Kriolu Portuguese-adjacency trap — the most dangerous failure mode in this framework</p>
+      <p>Kriolu (Kabuverdianu) is the primary home language of virtually all Cape Verdeans. It shares a large vocabulary surface with Portuguese — enough that Portuguese NLP models produce outputs that <strong>appear plausible while being structurally wrong.</strong> Collapsed tense/aspect morphology, simplified article/gender system, vowel reduction not in European Portuguese, West African substrate vocabulary. A Portuguese model transcribes Kriolu with high confidence and wrong interpretations — the plausible wrongness that gets attributed to user error rather than model failure. This is structurally identical to Sierra Leone's Krio-English trap. The higher infrastructure baseline does not reduce the NLP gap; it just makes it less visible before launch.</p>
+    </div>
+
+    <table class="std-table">
+      <thead><tr><th>Structural fact</th><th>Why it matters</th><th>The trap to avoid</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Kriolu NLP desert</td>
+          <td class="td-red">Near-zero production-grade ASR or TTS for Kriolu. Standard Portuguese NLP fails silently on Kriolu grammar and phonology. Kriolu voice requires recorded human voices, not TTS.</td>
+          <td>"Portuguese is the official language, so NLP is covered." The official language is not the daily language. The Portuguese-adjacency trap produces silent, plausible-wrong outputs.</td>
+        </tr>
+        <tr>
+          <td>Diaspora may exceed residents</td>
+          <td class="td-green">~500,000–700,000 Cape Verdeans live in the US, Portugal, Netherlands, and France — potentially exceeding the resident population. Remittances are ~15–20% of GDP. The highest-value use cases may be on the diaspora-to-resident corridor, not on-island.</td>
+          <td>"Cape Verde is a small market of 600,000 users." The effective market is the connected system of residents plus diaspora. Designing for the resident alone or diaspora alone produces half a product.</td>
+        </tr>
+        <tr>
+          <td>Euro-pegged CVE</td>
+          <td class="td-green">Fixed rate: 1 EUR = 110.265 CVE since 1999. No exchange rate risk for EUR corridor remittances. Monetary environment closer to eurozone periphery than sub-Saharan Africa. Portugal corridor remittance pricing is transparent and predictable.</td>
+          <td>"The CVE is a standard sub-Saharan African currency." It is not. No currency devaluation risk for EUR transactions. The US corridor has standard USD/CVE FX risk, bounded by the EUR peg.</td>
+        </tr>
+        <tr>
+          <td>Island geography as a design constraint</td>
+          <td class="td-red">Brava has no airport. Santo Antão has no airport. Several islands have once-or-twice-weekly ferry service. For products requiring periodic sync, the ferry schedule is the connectivity window. "Available in Cape Verde" without island-level specification is not a deployment plan.</td>
+          <td>"Deploy nationally." Which islands? At what service level? Under what connectivity assumptions? Fogo has an active volcano. Outer islands need offline-first design with ferry-schedule-aware sync.</td>
+        </tr>
+        <tr>
+          <td>Tourism dual-track</td>
+          <td class="td-red">On Sal, at any given time, there may be more German tourists than local residents in resort zones. A payment terminal must serve both a German tourist and a local Kriolu speaker in the same session. Unique in the suite — no other market has this dual-track requirement.</td>
+          <td>"Build for Cape Verdean users." Which ones? Resort zones require English/German/French interface alongside Kriolu/Portuguese. The same product session may switch between both populations.</td>
+        </tr>
+        <tr>
+          <td>GDPR diaspora intersection</td>
+          <td class="td-red">Cape Verdean users in Portugal, Netherlands, and France are EU-based data subjects with full GDPR rights. Products serving both resident and EU-diaspora populations must assess GDPR applicability. Unique in the suite.</td>
+          <td>"Comply with Cape Verde's CNPD and we're done." EU-resident diaspora may assert GDPR rights regardless of where the product's legal entity is registered.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ═══ DIASPORA-RESIDENT SYSTEM ═══ -->
+    <div class="section-title"><span>03</span> The Diaspora-Resident System</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">In every other market in this suite, the user is primarily a resident. In Cape Verde, the user is a system. Designing for the resident alone or the diaspora alone produces half a product.</p>
+
+    <div class="diaspora-grid">
+      <div class="diaspora-card resident">
+        <p class="diaspora-label">Resident — ~600,000 on the islands</p>
+        <p><strong>Language:</strong> Kriolu as primary home language; Portuguese for formal/official contexts.<br><br><strong>Connectivity:</strong> Santiago and São Vicente full app stack; outer islands ferry-dependent offline.<br><br><strong>Payment:</strong> Vinti4 domestic; BCA digital banking; agent cash for outer islands.<br><br><strong>Financial pattern:</strong> Receives remittances; irregular income; remittance-cycle financial management.</p>
+      </div>
+      <div class="diaspora-card diaspora">
+        <p class="diaspora-label">Diaspora — ~500–700K abroad</p>
+        <p><strong>US (New Bedford, Providence, Boston):</strong> Kriolu home language; English public language; USD payment rails; FinCEN MTL compliance on sending side.<br><br><strong>Portugal, Netherlands, France:</strong> Kriolu home language; Portuguese/French/Dutch public language; EUR payment rails; GDPR rights apply as EU residents.<br><br><strong>Financial pattern:</strong> Sends remittances; EUR peg eliminates FX risk on Portugal corridor; USD/CVE FX risk on US corridor.</p>
+      </div>
+      <div class="diaspora-card connection">
+        <p class="diaspora-label">★ The connection is the product — highest-value use cases are here</p>
+        <p><strong>Remittances:</strong> ~15–20% of GDP flows through US → CVE and Portugal → CVE corridors. A financial product that ignores this architecture has ignored the country's most significant financial flow.<br><br><strong>Communication:</strong> Voice calls and messaging between islands and diaspora define daily family life. Kriolu voice on both sides of the call.<br><br><strong>Sodade:</strong> The longing that connects those who stayed with those who left is not background context — it is the emotional architecture that makes the connection features the product's highest-value use cases.</p>
+      </div>
+    </div>
+
+    <!-- ═══ EURO PEG ═══ -->
+    <div class="eur-peg-block">
+      <div class="eur-peg-stat">
+        <span class="num">110.265</span>
+        <span class="label">CVE per EUR</span>
+      </div>
+      <div class="eur-peg-stat">
+        <span class="num">Fixed</span>
+        <span class="label">Since 1999</span>
+      </div>
+      <div class="eur-peg-stat">
+        <span class="num">~15–20%</span>
+        <span class="label">GDP from remittances</span>
+      </div>
+      <div class="eur-peg-desc">
+        <p>The CVE-EUR peg eliminates exchange rate risk for the Portugal diaspora corridor — a financial stability context found nowhere else in this framework suite. Portugal corridor remittance pricing is transparent and predictable. The US corridor carries standard USD/CVE FX risk, bounded by the EUR peg.</p>
+      </div>
+    </div>
+
+    <!-- ═══ ISLAND GRID ═══ -->
+    <div class="section-title"><span>04</span> Island Connectivity Tiers</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">Every inhabited island has a named service tier. "Available in Cape Verde" without island-level specification is not a deployment plan.</p>
+
+    <div class="island-grid">
+      <div class="island-card full">
+        <p class="island-name">Santiago (Praia)</p>
+        <p>~55% of population · 4G robust · Full app stack · Badiu Kriolu primary · Capital city</p>
+      </div>
+      <div class="island-card full">
+        <p class="island-name">São Vicente (Mindelo)</p>
+        <p>~15% of population · 4G robust · Full app stack · Barlavento Kriolu · Carnival cultural capital</p>
+      </div>
+      <div class="island-card partial">
+        <p class="island-name">Sal</p>
+        <p>~8–10% · 4G in resort zones · Tourism dominant · Dual-track: Kriolu + English/German required</p>
+      </div>
+      <div class="island-card partial">
+        <p class="island-name">Boa Vista</p>
+        <p>~3–4% · 4G resort areas · Tourism dominant · Tourism overlay mandatory; small local user base</p>
+      </div>
+      <div class="island-card ferry">
+        <p class="island-name">Fogo</p>
+        <p>~5–6% · 3G São Filipe; variable interior · Active volcano · Offline-first; multi-day sync tolerance</p>
+      </div>
+      <div class="island-card ferry">
+        <p class="island-name">Santo Antão</p>
+        <p>~5–6% · 3G · No airport · Ferry from São Vicente · Offline resilience for trekking users</p>
+      </div>
+      <div class="island-card ferry">
+        <p class="island-name">Brava</p>
+        <p>~1–2% · Limited · No airport · Ferry only · Diaspora connection as primary digital use case</p>
+      </div>
+      <div class="island-card ferry">
+        <p class="island-name">São Nicolau / Maio</p>
+        <p>~2–3% each · Variable · Ferry/flight dependent · Offline resilience; limited agent network</p>
+      </div>
+    </div>
+
+    <p style="font-size: 0.875rem; color: var(--bb-6); margin-top: -8px; margin-bottom: 24px;">
+      <span style="color:var(--bb-2); font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase;">■</span> Full app stack &nbsp;&nbsp;
+      <span style="color:var(--bb-5); font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase;">■</span> Partial / tourism overlay &nbsp;&nbsp;
+      <span style="color:var(--bb-3); font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase;">■</span> Ferry-dependent / offline-first required
+    </p>
+
+    <!-- ═══ COMMANDS ═══ -->
+    <div class="section-title"><span>05</span> Command Reference</div>
+
+    <p style="margin-bottom: 24px; font-size: 0.9rem; color: var(--bb-6);">All eight commands follow: <code>sodade [product name]</code> — optionally followed by context flags like corridor, island target, sector, or population segment.</p>
+
+    <table class="cmd-table">
+      <thead><tr><th>Command</th><th>What It Produces</th></tr></thead>
+      <tbody>
+        <tr><td>sodade</td><td>Full six-dimension audit matrix + strategic brief; diaspora-resident system assessment; island connectivity map</td></tr>
+        <tr><td>lingua</td><td>Kriolu Portuguese-adjacency trap documentation; inter-island dialect decision; diaspora code-switching architecture; voice content production spec</td></tr>
+        <tr><td>rails</td><td>Vinti4 + BCA + card integration; EUR peg architecture for PT corridor; US MTL compliance assessment; outer island agent network; BCV PSP registration</td></tr>
+        <tr><td>voice</td><td>App-first tier rationale (not USSD-primary); Kriolu recorded voice layer; tourism dual-track; inter-island connectivity adaptation; Fogo contingency</td></tr>
+        <tr><td>comply</td><td>CNPD registration; GDPR diaspora intersection for EU-resident users; cross-border pipeline audit; BCV financial compliance; tourism data (PCI-DSS)</td></tr>
+        <tr><td>culture</td><td>Sodade as product design variable; diaspora-resident connection as highest-value use cases; island identity calibration; Catholic parish networks; music culture integration</td></tr>
+        <tr><td>roadmap</td><td>Three phases (1–4 months / 4–8 months / 8–18 months); Phase 1 gated on CNPD registration and Kriolu voice comprehension; Phase 2 on diaspora corridor validation with actual users</td></tr>
+        <tr><td>data</td><td>INE + BCV + CNPD + ANAC source stack; resident vs. diaspora data strategy; US corridor MTL compliance research; island-level disaggregation requirement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="command-grid">
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">sodade</div>
+          <div class="cmd-desc">
+            <strong>Full Adaptation Audit + Deployment Brief</strong>
+            <span>Six dimensions. Begins with the diaspora-resident system assessment. The Kriolu trap documented before any recommendation is drawn.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">D1</div><p><strong>Linguistic Architecture</strong> — Kriolu Portuguese-adjacency trap; inter-island dialect variation (Badiu vs. Barlavento); diaspora code-switching (English-Kriolu US; Portuguese-Kriolu PT); Cape Verdean Portuguese ASR calibration.</p></li>
+            <li><div class="num">D2</div><p><strong>Interface and Interaction Model</strong> — Island-by-island connectivity calibration; tourism dual-track for Sal/Boa Vista; app-first rationale; voice as preference not survival requirement.</p></li>
+            <li><div class="num">D3</div><p><strong>Infrastructure</strong> — ~95% electricity; ~75–80% internet; 4G on main islands; ferry dependency as the Cape Verdean infrastructure variable; Fogo volcanic contingency.</p></li>
+            <li><div class="num">D4</div><p><strong>Financial Integration</strong> — Vinti4 domestic; BCA digital banking; card processing viable (~60–70% banked); EUR peg advantage for PT corridor; diaspora remittance corridor as primary financial design context; BCV PSP registration.</p></li>
+            <li><div class="num">D5</div><p><strong>Regulatory and Data Sovereignty</strong> — CNPD (functional, EU-influenced); GDPR diaspora intersection for Portugal/Netherlands/France users; cross-border pipeline audit; BCV financial compliance.</p></li>
+            <li><div class="num">D6</div><p><strong>Cultural and Social Architecture</strong> — Sodade as product design variable; diaspora-resident connection as highest-value use cases; island identity calibration; Catholic parish networks; music culture as trust signal.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>sodade RemittanceApp — corridors: US (New Bedford) and Portugal to Cape Verde</code>
+            <code>sodade HealthBot — primary market: outer islands (Fogo, Brava, Santo Antão)</code>
+            <code>sodade TourismApp — sector: hospitality, primary islands: Sal and Boa Vista</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">lingua</div>
+          <div class="cmd-desc">
+            <strong>Language and NLP Strategy</strong>
+            <span>The Kriolu trap. Dialect decision (Santiago vs. São Vicente). Diaspora code-switching. Recorded voice requirement. Cape Verdean Portuguese ASR calibration.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="alert">
+            <strong>"It works because it's close to Portuguese"</strong> is the sentence that breaks Cape Verdean products. Portuguese NLP serves the formal, educated, code-switching register. It fails on the daily-life register where Kriolu dominates — and produces the silent, plausible-wrong output that gets attributed to user behavior rather than model failure. Name the trap before building.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Language Priority Stack</strong> — Kriolu Tier 1 (daily life, dominant home language); Portuguese Tier 1 (formal, education, government — with CV calibration); English Tier 2 (tourism, US diaspora); French Tier 2 (tourism, France diaspora); German Tier 2 for resort-island hospitality.</p></li>
+            <li><div class="num">2</div><p><strong>Kriolu Linguistic Profile</strong> — specific failure modes: collapsed aspect-tense morphology; simplified article/gender system; vowel reduction not present in EU Portuguese; West African substrate vocabulary (Mandinka, Wolof, Arabic loan words in everyday speech).</p></li>
+            <li><div class="num">3</div><p><strong>Inter-Island Dialect Decision</strong> — Santiago Kriolu (Badiu) vs. Barlavento Kriolu (São Vicente); mutually intelligible but differ in phonology and vocabulary; document dialect choice and coverage implications; a Santiago-voiced IVR sounds native on Santiago and slightly foreign in Mindelo.</p></li>
+            <li><div class="num">4</div><p><strong>Voice Content Production</strong> — Kriolu TTS not viable at production quality; recorded human voices required; Santiago vs. São Vicente voice register decision; diaspora register (US-Cape Verdean Kriolu has English-influence variation); community validation protocol.</p></li>
+            <li><div class="num">5</div><p><strong>Diaspora Code-Switching Architecture</strong> — US: English-Kriolu switching; Portugal: Portuguese-Kriolu switching; resident users: Portuguese-Kriolu in formal contexts; utterance-level language detection required.</p></li>
+            <li><div class="num">6</div><p><strong>Cape Verdean Portuguese ASR Calibration</strong> — distinct vowel reduction, Kriolu-influenced rhythm, African prosody; test protocol using Cape Verdean speaker samples before deployment; specific failure modes documented.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>lingua RemittanceApp — target: Santiago residents receiving + New Bedford diaspora sending</code>
+            <code>lingua TourismApp — target: São Vicente local staff + European tourist interface</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">rails</div>
+          <div class="cmd-desc">
+            <strong>Payment Integration Plan</strong>
+            <span>Vinti4 domestic. BCA digital banking. Euro-pegged CVE architecture for PT corridor. US MTL compliance on the sending side. Outer island agent network. BCV PSP registration.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="kriolu-callout" style="margin-bottom:16px;">
+            <p class="label">◌ The remittance corridor is the primary financial design context</p>
+            <p>Remittances constitute ~15–20% of Cape Verde's GDP. A financial product that does not engage with the US-Cape Verde and Portugal-Cape Verde remittance architecture has ignored the country's most significant financial flow. Design the sending experience (diaspora), the receiving experience (residents), and the household financial management around irregular remittance income as the three connected design problems — not as separate features.</p>
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Domestic Payment Architecture</strong> — Vinti4 for local payments; BCA digital banking API; card processing viable for ~60–70% banked population; agent-cash fallback for outer islands; no Wave/MTN MoMo/Orange Money architecture applies.</p></li>
+            <li><div class="num">2</div><p><strong>CVE Denomination + EUR Peg</strong> — fixed rate 110.265 CVE/EUR; eliminates exchange rate risk for Portugal corridor; USD/CVE for US corridor (standard FX risk, bounded by EUR peg); transparent remittance pricing for Portugal diaspora.</p></li>
+            <li><div class="num">3</div><p><strong>US Diaspora Corridor</strong> — New Bedford / Providence / Boston → Cape Verde; USD-to-CVE flow; Western Union/MoneyGram active; digital alternatives (SendWave, Remessa Online) growing; US regulatory requirement: FinCEN registration + state MTL licenses on the sending side — substantial compliance burden requiring licensed partner or direct license.</p></li>
+            <li><div class="num">4</div><p><strong>Portugal Diaspora Corridor</strong> — EUR-to-CVE; SEPA-compatible; lower friction than US corridor; peg-aware pricing; Portuguese-language UI for sending side; GDPR applies to EU-resident senders' data.</p></li>
+            <li><div class="num">5</div><p><strong>Tourism Payment Architecture</strong> — Visa/Mastercard for Sal, Boa Vista, and Santiago resort zones; NFC/contactless for tourist-facing businesses; CVE vs. EUR reference pricing for tourist clarity; international cards are the primary payment rail in resort zones, not domestic mobile money.</p></li>
+            <li><div class="num">6</div><p><strong>Outer Island Financial Access</strong> — ferry-schedule-dependent cash replenishment for agents; offline transaction queue with sync on ferry/flight connectivity; agent network mapping on Fogo, Brava, Santo Antão, Maio.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>rails RemittanceApp — corridor: New Bedford MA to Praia, Santiago; US MTL compliance required</code>
+            <code>rails TourismApp — primary: Sal resort zone; tourist card payments + local Kriolu users</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">voice</div>
+          <div class="cmd-desc">
+            <strong>Voice and Interface Adaptation</strong>
+            <span>App-first (not USSD-primary). Kriolu recorded voice layer. Tourism dual-track. Inter-island connectivity adaptation. Fogo volcanic contingency.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="info">
+            <strong>Cape Verde does not require the USSD-first or IVR-survival architecture of Niger or Sierra Leone.</strong> It requires a Kriolu voice layer on top of a viable smartphone app infrastructure — plus inter-island adaptive connectivity and a tourism-facing multilingual track. Teams arriving with other markets' assumptions must document this distinction explicitly before building.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Interface Tier Decision</strong> — 87–90% literacy + 75–80% internet penetration = app-first viable nationally. USSD is not the primary interface. Voice is a preference and accessibility feature, not a survival requirement. Document this distinction explicitly for teams arriving from other markets in the suite.</p></li>
+            <li><div class="num">2</div><p><strong>Kriolu Voice Layer</strong> — Recorded human voices (not TTS); Santiago and/or São Vicente register decision; US-Cape Verdean diaspora register has English-influence variation; update protocol for recorded content; community validation before production deployment.</p></li>
+            <li><div class="num">3</div><p><strong>Tourism Dual-Track</strong> — Language detection at session open; seamless mid-session language switch; payment confirmation in session language; no forced local-only interaction on tourists; no tourist-English-only interaction on locals. Same product, same session, two radically different user types.</p></li>
+            <li><div class="num">4</div><p><strong>Inter-Island Connectivity Adaptation</strong> — Connectivity detection by island; offline mode for ferry-dependent islands; ferry-schedule-aware sync timing; Fogo volcanic activity contingency (offline-first with multi-week sync tolerance for eruption scenario).</p></li>
+            <li><div class="num">5</div><p><strong>Music and Cultural Audio Design</strong> — Morna, funaná, coladeira as sound design resources; cultural audio authenticity as trust signal; generic "African" background audio sounds foreign to Cape Verdeans; local sonic register used authentically, not tokenistically.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>voice RemittanceApp — Kriolu voice for recipient confirmation; English for US sender interface</code>
+            <code>voice HealthBot — outer islands (Fogo, Brava): offline-first; voice-preference for limited-literacy users</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">comply</div>
+          <div class="cmd-desc">
+            <strong>CNPD Regulatory Roadmap</strong>
+            <span>CNPD registration (functioning institution, EU-influenced). GDPR diaspora intersection for Portugal/Netherlands/France users. BCV PSP registration. Tourism data (PCI-DSS).</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="alert">
+            <strong>GDPR applies to your diaspora users in Portugal, Netherlands, and France.</strong> Cape Verdean users accessing the product from Lisbon or Rotterdam are EU-based data subjects with full GDPR rights, regardless of where the product's legal entity is registered. This is not a concern in any other market in the suite — but it is a real compliance requirement for any product serving the EU-resident diaspora.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>CNPD Registration</strong> — Functioning institution with EU-influenced framework; registration is a real compliance requirement, not institutional build-out uncertainty; process comparable in maturity to Ghana's DPC or Senegal's CDP; required documentation; realistic timeline.</p></li>
+            <li><div class="num">2</div><p><strong>GDPR Diaspora Intersection Assessment</strong> — Identify which users are EU-resident (Portugal, Netherlands, France); assess GDPR applicability to their data; data transfer mechanisms for EU-resident users' data flowing to Cape Verde servers; practical compliance design for dual-jurisdiction product.</p></li>
+            <li><div class="num">3</div><p><strong>Cross-Border Data Pipeline Audit</strong> — EU-hosted services likely adequate under CNPD framework; US-hosted services: standard contractual clauses or adequacy assessment; specific attention to remittance platform integrations and tourist payment processors (PCI-DSS).</p></li>
+            <li><div class="num">4</div><p><strong>BCV Financial Compliance</strong> — PSP registration; KYC architecture for both resident and diaspora users; AML/FATF compliance for remittance corridor; transaction reporting in CVE denomination; tiered KYC for outer island populations with limited formal ID.</p></li>
+            <li><div class="num">5</div><p><strong>US Remittance Corridor Compliance</strong> — FinCEN registration and state Money Transmitter Licenses on the US sending side; this is a substantial compliance burden; requires either a direct license or a partnership with an existing licensed operator; assess before designing the product.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>comply RemittanceApp — corridors: US (FinCEN/MTL) and Portugal (GDPR + BCV); CVE denomination</code>
+            <code>comply HealthApp — CNPD registration; GDPR for Portugal-based diaspora users; outer island data handling</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">culture</div>
+          <div class="cmd-desc">
+            <strong>Social and Cultural Adaptation Brief</strong>
+            <span>Sodade as product design variable. Diaspora-resident connection as highest-value use cases. Island identity calibration. Catholic parish networks. Music culture integration.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Sodade Architecture as Design Requirement</strong> — Cape Verdean cultural identity is organized around the tension between those who left and those who stayed. Products that treat this as background rather than a primary design variable will feel generic. Document how the product's core use case relates to the sodade dynamic.</p></li>
+            <li><div class="num">2</div><p><strong>Diaspora-Resident Relationship Design</strong> — Map which features serve residents, which serve diaspora, and which serve the connection between them. Design the connection features as the highest-value use cases — not as secondary features of a resident-primary product.</p></li>
+            <li><div class="num">3</div><p><strong>Island Identity Calibration</strong> — Santiago vs. São Vicente cultural register; Mindelo's Carnival as São Vicente's defining cultural event; Fogo's volcanic identity; outer island fishing and agricultural community registers. An AI persona that sounds Santiago-coded is slightly foreign in Mindelo.</p></li>
+            <li><div class="num">4</div><p><strong>Catholic Parish Network Engagement</strong> — Parish networks are the closest institutional equivalent to Sufi brotherhoods for community distribution and trust. Festival calendar: Carnival (February, Mindelo), Holy Cross, patron saint days as usage pattern drivers. Products in health, education, and community services benefit from parish engagement.</p></li>
+            <li><div class="num">5</div><p><strong>AI Persona and Tone</strong> — Warm, Kriolu-inflected; unhurried; music-literate; acknowledges diaspora relationship as part of the greeting register. Not the corporate tone of a European fintech product; not the rural-aid tone of a development organization. The tone of a trusted neighbor who has also spent time abroad and come home.</p></li>
+            <li><div class="num">6</div><p><strong>Music Culture Integration</strong> — Cesária Évora and morna as a cultural touchstone for sodade; funaná and batuku as Santiago-specific; coladeira as the dance tradition. Use these references authentically without being superficial. Generic "sub-Saharan African" background audio sounds foreign to Cape Verdeans — it is not from here.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>culture RemittanceApp — sodade as the emotional register for the connection features</code>
+            <code>culture HealthBot — Catholic parish distribution in Maritime and Santiago regions</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">roadmap</div>
+          <div class="cmd-desc">
+            <strong>Phased Implementation Plan</strong>
+            <span>Three phases over 8–18 months. Phase 1 gated on CNPD registration and Kriolu voice comprehension. Phase 2 gated on diaspora corridor validation with actual users, not proxies.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">P1</div><p><strong>Foundation (Months 1–4)</strong> — CNPD registration; GDPR diaspora intersection assessed; BCV PSP assessment; Vinti4 domestic integration; CVE denomination verified; Kriolu voice talent sourced and recorded (Santiago + São Vicente registers); community-validated; Cape Verdean PT ASR evaluated; inter-island connectivity detection; offline mode for ferry-dependent islands; tourism dual-track if applicable. <em>Gate: CNPD registration confirmed; Kriolu voice passes comprehension testing (>85%); CVE denomination verified in all payment layers.</em></p></li>
+            <li><div class="num">P2</div><p><strong>Diaspora Corridor + Island Expansion (Months 4–8)</strong> — US corridor: USD-to-CVE payment flow; English-Kriolu code-switching; New Bedford/Providence user testing; Portugal corridor: EUR-to-CVE; Lisbon user testing; outer island expansion: agent mapping, ferry-schedule sync, offline queue; Catholic parish network engagement if applicable; festival calendar integrated. <em>Gate: diaspora corridor validated with actual US-based and Portugal-based Cape Verdean users (not proxy testing); outer island sync tested on actual ferry connectivity windows.</em></p></li>
+            <li><div class="num">P3</div><p><strong>Full Archipelago Coverage (Months 8–18)</strong> — Barlavento Kriolu voice layer if Phase 1 launched Santiago only; tourism interface refinement on Sal and Boa Vista; Fogo volcanic contingency implemented; diaspora community partnerships formalized (OCAC, CCAB in New Bedford; diaspora organizations in Lisbon and Rotterdam); CNPD ongoing compliance calendar; Kriolu corpus-building initiative with Uni-CV linguistics department.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>roadmap RemittanceApp — timeline: 12 months; phase 1 complete: CNPD filed, Vinti4 integrated</code>
+            <code>roadmap TourismApp — phases: Santiago + Sal first, outer island expansion Phase 3</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">data</div>
+          <div class="cmd-desc">
+            <strong>Data Source Intelligence Brief</strong>
+            <span>INE + BCV + CNPD + ANAC source stack. Resident vs. diaspora data strategy. US MTL compliance research requirement. Island-level disaggregation mandatory.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>INE Cape Verde</strong> — ine.cv. Literacy by island, internet penetration, device ownership, financial inclusion. Healthy: island-level disaggregation; recent data. Concerning: national aggregates only; pre-2020 data.</p></li>
+            <li><div class="num">2</div><p><strong>Banco de Cabo Verde</strong> — bcv.cv. PSP register, remittance volumes by corridor, CVE/EUR peg confirmation. Healthy: US and PT corridor remittance volumes documented. Concerning: no public PSP register; corridor data absent.</p></li>
+            <li><div class="num">3</div><p><strong>Sector Red Flags</strong> — Remittance/fintech: US sending side requires FinCEN + state MTL licenses — assess before designing the product. Tourism: package operators (TUI, Thomas Cook) dominate Sal/Boa Vista; work with them, not around them. Agritech: harvest-cycle pricing for outer island smallholders. Health: outer island access constraint, not post-Ebola trust deficit. EdTech: compete alongside functioning schools, not instead of them.</p></li>
+            <li><div class="num">4</div><p><strong>Field Research Requirements</strong> — Kriolu voice recording: 10+ hours Santiago; 5+ hours São Vicente; diaspora register from New Bedford or Lisbon if diaspora product. Ferry-window sync testing on Brava and Santo Antão routes (actual, not simulated). Diaspora user interviews in New Bedford and Providence on remittance behavior. Tourist payment flow testing in Sal and Boa Vista resort zones.</p></li>
+            <li><div class="num">5</div><p><strong>Competitive Landscape</strong> — Vinti4 domestic fintech ecosystem; Western Union/MoneyGram Cape Verde corridor; CV Telecom/Nos digital services; TUI and Jet2 package tourism ecosystem (channel relationships for Sal/Boa Vista); Uni-CV for Kriolu NLP academic partnership.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>data RemittanceApp — corridors: US (FinCEN research required) and Portugal; resident financial inclusion</code>
+            <code>data TourismApp — Sal and Boa Vista resort zone; package operator landscape; tourist payment infrastructure</code>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /command-grid -->
+
+    <!-- ═══ ANALYTICAL LENSES ═══ -->
+    <div class="section-title"><span>06</span> Analytical Lenses</div>
+
+    <div class="lens-block">
+      <h3>The Diaspora-Resident System as the Unit of Analysis</h3>
+      <p>In every other market in the suite, the user is primarily a resident. In Cape Verde, the user is a system: a resident on Fogo who receives money and calls from a sibling in New Bedford, mediated by products that must function on both sides of the Atlantic. Designing for the resident alone or the diaspora alone produces half a product. The connection is the product.</p>
+    </div>
+    <div class="lens-block">
+      <h3>The Kriolu Trap Applied to a Higher-Infrastructure Market</h3>
+      <p>Cape Verde's higher literacy and connectivity makes teams less vigilant about the language gap. This is the danger. The Portuguese-adjacency trap is structurally identical to Sierra Leone's Krio-English trap — standard NLP appears to work, fails silently on Kriolu grammar and phonology, and the failure gets attributed to users. The higher infrastructure baseline does not reduce the NLP gap; it just makes it less visible before launch.</p>
+    </div>
+    <div class="lens-block">
+      <h3>Island Geography as a First-Class Design Variable</h3>
+      <p>Every other market in the suite has a land-based infrastructure constraint. Cape Verde's constraint is island geography — ferry schedules, flight connectivity, and the fundamental fact that Brava is not connected to Santiago by any road. Design must name which islands are covered, at what service level, under what connectivity assumptions. "Available in Cape Verde" without island-level specification is not a deployment plan.</p>
+    </div>
+    <div class="lens-block">
+      <h3>The Tourism Overlay as a Dual-Track Requirement</h3>
+      <p>No other market in the suite has a proportionally large international visitor population using the same infrastructure as local residents. On Sal, at any given time, there may be more German tourists than local residents in the resort zones. A payment terminal, beach service app, or restaurant system on Sal must serve both populations in the same session. This is a real engineering and UX constraint, not a nice-to-have.</p>
+    </div>
+
+    <!-- ═══ LANGUAGE RULES ═══ -->
+    <div class="section-title"><span>07</span> Language Rules</div>
+
+    <div class="rule-pair">
+      <div class="rule-never">
+        <p class="rule-label">Never write</p>
+        <ul class="rule-list">
+          <li><code>"Portuguese is the official language, so NLP is covered"</code> → Kriolu is the language of daily life; standard PT NLP fails on Kriolu's distinct grammar and phonology; document the Portuguese-adjacency trap before building.</li>
+          <li><code>"Cape Verde is a small market of 600,000 users"</code> → the effective market includes ~500,000–700,000 diaspora; the highest-value use cases may be on the diaspora-to-resident corridor.</li>
+          <li><code>"Mobile money integration as in [other West African market]"</code> → Cape Verde has ~60–70% banking penetration; card payments and bank transfers are viable primary rails; no Wave, MTN MoMo, or Orange Money USSD-primary architecture applies.</li>
+          <li><code>"Deploy nationally"</code> → which islands? Santiago/São Vicente have robust 4G; Brava has no airport; Fogo has an active volcano; outer islands require explicit offline design.</li>
+          <li><code>"The CVE is a standard sub-Saharan African currency"</code> → the CVE is Euro-pegged at 110.265 since 1999; this eliminates exchange rate risk for EUR corridor remittances.</li>
+        </ul>
+      </div>
+      <div class="rule-always">
+        <p class="rule-label">Always write</p>
+        <ul class="rule-list">
+          <li>"Kriolu is the daily-life language of virtually all Cape Verdeans; standard Portuguese NLP fails on Kriolu's distinct grammar and phonology; the Portuguese-adjacency trap produces silent, plausible-wrong outputs; Kriolu voice using recorded human voices is required."</li>
+          <li>"The product's effective user base includes both residents (~600,000) and diaspora (~500,000–700,000 in US, Portugal, Netherlands, France); the diaspora-to-resident flows are [the/a] primary use case and must be designed for explicitly."</li>
+          <li>"Island connectivity varies: Santiago and São Vicente support full app stack; Brava, Santo Antão, Maio, and Fogo interior require offline-first design with ferry-schedule-aware sync."</li>
+          <li>"The CVE-EUR peg eliminates exchange rate risk for the Portugal diaspora corridor; the US corridor carries standard USD/CVE FX risk bounded by the EUR peg."</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ INTEGRITY TEST ═══ -->
+    <div class="section-title"><span>08</span> The SODADE Integrity Test</div>
+
+    <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--bb-6);">
+      Before any output is finalized, confirm each of the following. Items marked
+      <span class="sodade-pill">Cape Verde-specific</span> have no equivalent in the other frameworks in this suite.
+    </p>
+
+    <ul class="integrity-list">
+      <li><span class="check">✓</span> <span>The Kriolu Portuguese-adjacency trap named; specific NLP failure modes documented; "Portuguese NLP is sufficient" not accepted. <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> <span>The diaspora dimension assessed: product serves residents, diaspora, or both? If both, resident-diaspora connection flows explicitly designed as the highest-value use cases. <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> <span>Island-level connectivity mapped; each inhabited island has a named service tier; "available in Cape Verde" not accepted as an island deployment plan. <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> <span>CVE denomination confirmed; Euro peg documented for EUR corridor; US corridor FX architecture designed; US MTL compliance assessed for remittance products. <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> <span>GDPR diaspora intersection assessed for EU-resident users (Portugal, Netherlands, France). <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> <span>Tourism dual-track assessed: multilingual interface and international payment rails designed if product serves tourists; decision to exclude documented if not. <span class="sodade-pill">Cape Verde-specific</span></span></li>
+      <li><span class="check">✓</span> CNPD registration planned; cross-border pipeline audit complete.</li>
+      <li><span class="check">✓</span> Kriolu voice content uses recorded human voices (not Portuguese TTS); dialect register decision documented; community validation protocol in place.</li>
+      <li><span class="check">✓</span> Catholic parish network assessed for distribution relevance; festival calendar integrated into product engagement roadmap.</li>
+    </ul>
+
+    <!-- ═══ FULL SUITE COMPARISON ═══ -->
+    <div class="section-title"><span>09</span> Full Framework Suite Comparison</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">Where Cape Verde's assumptions transfer from the rest of the suite — and where they break completely. Cape Verde column highlighted.</p>
+
+    <table class="suite-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Senegal (TERANGA)</th>
+          <th>Ghana (AKWAABA)</th>
+          <th>Niger (LAFIYA)</th>
+          <th>Sierra Leone (KUSHE)</th>
+          <th>Cape Verde (SODADE)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Official language</td><td>French</td><td>English</td><td>French</td><td>English</td><td class="cv-col">Portuguese</td></tr>
+        <tr><td>Dominant spoken language</td><td>Wolof (~80%)</td><td>Twi/Akan (~45–50%)</td><td>Hausa (~53–55%)</td><td>Krio (~95%)</td><td class="cv-col">Kriolu (~100%)</td></tr>
+        <tr><td>NLP gap type</td><td>Wolof: limited but buildable</td><td>Twi: limited; English needs calibration</td><td>Hausa: moderate; Zarma: near-zero</td><td>Krio: near-zero; English-adjacency silent fail</td><td class="cv-col">Kriolu: near-zero; Portuguese-adjacency silent fail</td></tr>
+        <tr><td>Literacy</td><td>~52%</td><td>~79%</td><td>~37%</td><td>~48–52%</td><td class="cv-col">~87–90%</td></tr>
+        <tr><td>Internet penetration</td><td>~43%</td><td>~55–60%</td><td>~15–20%</td><td>~22–25%</td><td class="cv-col">~75–80%</td></tr>
+        <tr><td>Electricity access</td><td>~65%</td><td>~54%</td><td>~19%</td><td>~26%</td><td class="cv-col">~95%+</td></tr>
+        <tr><td>Primary interface</td><td>App + voice rural</td><td>App + USSD/voice north</td><td>USSD/IVR feature phone</td><td>App (Freetown) + Krio IVR rural</td><td class="cv-col">Full app stack; Kriolu voice layer; tourism dual-track</td></tr>
+        <tr><td>Currency</td><td>CFA franc (BCEAO)</td><td>Ghanaian cedi (BoG)</td><td>CFA franc (BCEAO)</td><td>Leone SLE (BSL)</td><td class="cv-col">Escudo CVE (BCV; Euro-pegged 110.265)</td></tr>
+        <tr><td>Primary payment rail</td><td>Wave (REST API)</td><td>MTN MoMo + GhIPSS</td><td>Orange Money (USSD)</td><td>Afrimoney (Africell)</td><td class="cv-col">Vinti4 + BCA digital + cards (~60–70% banked)</td></tr>
+        <tr><td>Banking penetration</td><td>Low (~25%)</td><td>Moderate (~40%)</td><td>Very low (<10%)</td><td>Low (~20–25%)</td><td class="cv-col">Moderate–high (~60–70%)</td></tr>
+        <tr><td>Data protection regulator</td><td>CDP (mature, 2008)</td><td>DPC (mature, 2012)</td><td>ANPDP (post-coup uncertain)</td><td>DPA 2022 (developing)</td><td class="cv-col">CNPD (functional; EU-influenced; GDPR intersection)</td></tr>
+        <tr><td>Social authority structure</td><td>Sufi brotherhoods</td><td>Chieftaincy + Pentecostal</td><td>Islamic ulama + chieftaincy</td><td>Poro/Sande + Paramount Chief</td><td class="cv-col">Catholic parishes (moderate authority)</td></tr>
+        <tr><td>Population</td><td>~18M</td><td>~33M</td><td>~25M</td><td>~8.4M</td><td class="cv-col">~600K resident + ~500–700K diaspora</td></tr>
+        <tr><td>Primary infrastructure variable</td><td>Literacy; rural connectivity</td><td>North-south literacy; dumsor</td><td>19% electricity; 2G only</td><td>26% electricity; rainy season roads</td><td class="cv-col">Island ferry/flight schedules; outer island offline</td></tr>
+        <tr><td>Diaspora dimension</td><td>Minor</td><td>Minor</td><td>Minor</td><td>Moderate</td><td class="cv-col">Dominant — diaspora may exceed resident population</td></tr>
+        <tr><td>Tourism overlay</td><td>Minor</td><td>Minor</td><td>None</td><td>None</td><td class="cv-col">~25% of GDP; mandatory dual-track on Sal and Boa Vista</td></tr>
+        <tr><td>Conflict/trauma context</td><td>None current</td><td>None current</td><td>Military coup July 2023</td><td>Civil war 1991–2002 + Ebola 2014–2016</td><td class="cv-col">None — most stable democracy in suite</td></tr>
+      </tbody>
+    </table>
+
+  </main>
+
+  <footer>
+    Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+  </footer>
+
+  <script>
+    function toggleCmd(header) {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      header.classList.toggle('active', !isAdd => {
+        body.classList.toggle('open', !isOpen);
+        header.classList.toggle('active', !isOpen);
+      });
+    }
+    // fix
+    document.querySelectorAll('.cmd-header').forEach(h => {
+      h.onclick = null;
+      h.addEventListener('click', function() {
+        const body = this.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        body.classList.toggle('open', !isOpen);
+        this.classList.toggle('active', !isOpen);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -17,6 +17,7 @@ type RecentPost = {
 }
 
 // ── Market data ────────────────────────────────────────────────────────────
+// toolUrl slug = filename minus .html → served at /tools/[slug]
 const markets: MarketCardProps[] = [
   {
     country: 'Nigeria',
@@ -25,7 +26,7 @@ const markets: MarketCardProps[] = [
     gdp: '~$400B',
     status: 'live',
     keyDimension: '89-pt state literacy gap; Yoruba tone ASR 78.8% WER; agent banking exclusivity Apr 2026',
-    toolUrl: '/tools/naija',
+    toolUrl: '/tools/naija-nigeria',
   },
   {
     country: 'Ghana',
@@ -34,7 +35,7 @@ const markets: MarketCardProps[] = [
     gdp: '~$75B',
     status: 'live',
     keyDimension: 'GhIPSS interoperability achieved; Twi dialect disambiguation; dumsor-resilient session design',
-    toolUrl: '/tools/akwaaba',
+    toolUrl: '/tools/akwaaba-ghana',
   },
   {
     country: "Côte d'Ivoire",
@@ -50,42 +51,52 @@ const markets: MarketCardProps[] = [
     gdp: '~$30B',
     status: 'live',
     keyDimension: 'Wolof NLP; Wave API idempotency; CDP Act 2008-12 prior notification',
-    toolUrl: '/tools/teranga',
+    toolUrl: '/tools/teranga-senegal',
   },
   {
     country: 'Mali',
     flag: '🇲🇱',
+    framework: 'TERANGA',
     gdp: '~$22B',
-    status: 'dev',
+    status: 'live',
     keyDimension: "N'Ko script infrastructure; Bambara ASR 46.76% WER; Sufi/Izala gatekeeper divide",
+    toolUrl: '/tools/teranga-mali',
   },
   {
     country: 'Burkina Faso',
     flag: '🇧🇫',
+    framework: 'NAAM',
     gdp: '~$18B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Mooré ASR 4.24% WER (best-in-class); 52.9% Mooré speakers; Sahel insecurity',
+    toolUrl: '/tools/naam-burkina-faso',
   },
   {
     country: 'Benin',
     flag: '🇧🇯',
+    framework: 'AZIZA',
     gdp: '~$17B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'WAEMU PI-SPI 6 institutions; cotton/transit trade economy; French-dominant urban',
+    toolUrl: '/tools/aziza-benin',
   },
   {
     country: 'Niger',
     flag: '🇳🇪',
+    framework: 'LAFIYA',
     gdp: '~$15B',
-    status: 'dev',
+    status: 'live',
     keyDimension: '10.3% growth (hydrocarbons); Hausa dominant; Izala gatekeeper; lowest literacy tier',
+    toolUrl: '/tools/lafiya-niger',
   },
   {
     country: 'Guinea',
     flag: '🇬🇳',
+    framework: 'DJOLIBA',
     gdp: '~$15B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Bauxite economy; Pular/Mandingo primary languages; Mano River integration context',
+    toolUrl: '/tools/djoliba-guinea',
   },
   {
     country: 'Mauritania',
@@ -97,30 +108,38 @@ const markets: MarketCardProps[] = [
   {
     country: 'Togo',
     flag: '🇹🇬',
+    framework: 'KEKELI',
     gdp: '~$9B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Logistics hub; Ewe/Kabiyé NLP gap; Wave recently launched; WAEMU PI-SPI 6 institutions',
+    toolUrl: '/tools/kekeli-togo',
   },
   {
     country: 'Sierra Leone',
     flag: '🇸🇱',
+    framework: 'KUSHE',
     gdp: '~$4B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Krio as urban lingua franca; Mano River stability context; post-conflict digital infrastructure',
+    toolUrl: '/tools/kushe-sierra-leone',
   },
   {
     country: 'Liberia',
     flag: '🇱🇷',
+    framework: 'ZOE',
     gdp: '~$4B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Liberian English distinct from training data; rubber/iron economy',
+    toolUrl: '/tools/zoe-liberia',
   },
   {
     country: 'Cape Verde',
     flag: '🇨🇻',
+    framework: 'SODADE',
     gdp: '~$2.3B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Island archipelago infrastructure; Portuguese-Creole (Kriolu); tourism-services economy',
+    toolUrl: '/tools/sodade-capeverde',
   },
   {
     country: 'Gambia',
@@ -132,9 +151,11 @@ const markets: MarketCardProps[] = [
   {
     country: 'Guinea-Bissau',
     flag: '🇬🇼',
+    framework: 'GEBA',
     gdp: '~$1.6B',
-    status: 'dev',
+    status: 'live',
     keyDimension: 'Portuguese official; Crioulo dominant; WAEMU PI-SPI frontier (4 institutions)',
+    toolUrl: '/tools/geba-guinea-bissau',
   },
 ]
 
@@ -233,7 +254,7 @@ export default async function Home() {
             </p>
 
             <p className="text-sm font-semibold text-primary mb-10 tracking-wide">
-              West Africa AI Adaptation Consulting&nbsp;&mdash;&nbsp;Senegal&nbsp;&middot;&nbsp;Ghana&nbsp;&middot;&nbsp;Nigeria&nbsp;&middot;&nbsp;and twelve more markets
+              West Africa AI Adaptation Consulting&nbsp;&mdash;&nbsp;thirteen frameworks live&nbsp;&middot;&nbsp;sixteen markets mapped
             </p>
 
             <div className="flex flex-col gap-3 min-[400px]:flex-row">

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZIZA — Benin AI Adaptation Consultant</title>
+  <meta name="description" content="AZIZA is a systematic framework for deploying AI products in Benin. It audits six adaptation dimensions — Fon NLP, Vodoun social architecture, Dantokpa market design, MTN MoMo rails, APDP compliance, and naira/CFA border dynamics — and produces evidence-grounded deployment briefs. Built for product teams entering the Francophone transit economy.">
+  <meta name="keywords" content="Benin AI adaptation, Fon NLP, Gbe languages, Vodoun social architecture, Zangbeto, MTN MoMo, Moov Money, PI-SPI WAEMU, APDP compliance, Dantokpa market, transit economy, naira CFA border, voice-first design, USSD, AZIZA framework, Claude prompt">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bb-1: #000000;
+      --bb-2: #006030;
+      --bb-3: #A81520;
+      --bb-4: #FDEF42;   /* bg only — never as text color */
+      --bb-5: #333333;
+      --bb-6: #727272;
+      --bb-7: #EBEBEB;   /* borders/subtle bg only — never as text color */
+      --bb-8: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; line-height: 1.75; color: var(--bb-1); background: var(--bb-8); }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--bb-1); color: rgba(255,255,255,0.75); display: flex; align-items: center; justify-content: space-between; padding: 10px 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+    .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .topbar a:hover { color: #fff; }
+    .flag { display: flex; align-items: center; gap: 0; overflow: hidden; border-radius: 2px; }
+
+    /* ── DIFF BANNER ── */
+    .diff-banner { background: var(--bb-4); border-bottom: 1px solid #e8d800; padding: 10px 40px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-1); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .diff-banner strong { font-weight: 500; }
+
+    /* ── HEADER ── */
+    header { border-bottom: 1px solid var(--bb-7); padding: 72px 40px 56px; max-width: 900px; margin: 0 auto; }
+    .kicker { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--bb-2); margin-bottom: 20px; }
+    h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 400; line-height: 1.05; color: var(--bb-1); margin-bottom: 4px; letter-spacing: -0.01em; }
+    .h1-region { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--bb-6); font-weight: 400; margin-bottom: 28px; letter-spacing: -0.01em; }
+    .lede { font-size: 1.05rem; line-height: 1.8; color: var(--bb-5); max-width: 700px; }
+    .etymology { display: inline-block; margin-top: 20px; padding: 10px 16px; background: var(--bb-7); border-left: 3px solid var(--bb-2); font-style: italic; font-size: 0.9rem; color: var(--bb-6); }
+
+    /* ── MAIN ── */
+    main { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── SECTION TITLE ── */
+    .section-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--bb-6); padding: 48px 0 20px; border-bottom: 1px solid var(--bb-7); margin-bottom: 32px; }
+    .section-title span { color: var(--bb-2); margin-right: 8px; }
+
+    h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.9rem; font-weight: 400; color: var(--bb-1); line-height: 1.2; margin-bottom: 12px; margin-top: 48px; }
+    h2:first-child { margin-top: 0; }
+    h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bb-5); margin: 32px 0 12px; }
+    p { margin-bottom: 1em; color: var(--bb-5); font-size: 0.975rem; }
+    code { font-family: 'IBM Plex Mono', monospace; font-size: 0.875em; background: var(--bb-7); padding: 1px 5px; border-radius: 2px; color: var(--bb-1); }
+
+    /* ── HOW TO BLOCK ── */
+    .how-to-block { border-left: 4px solid var(--bb-2); padding: 20px 24px; margin: 32px 0 0 0; background: rgba(0,96,48,0.05); border-radius: 0 4px 4px 0; }
+    .how-to-block .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); margin: 0 0 12px 0; }
+    .how-to-block ol { color: var(--bb-1); margin: 0; padding-left: 1.4em; font-size: 0.95em; line-height: 1.8; }
+    .how-to-block li { margin-bottom: 4px; }
+
+    /* ── PROMPT BLOCK ── */
+    .prompt-block { margin: 16px 0 40px 0; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .prompt-block-header .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); margin: 0; }
+    .copy-btn { background: var(--bb-2); color: #fff; border: none; padding: 7px 16px; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: background 0.15s; }
+    .copy-btn:hover { background: #004d26; }
+    .prompt-pre { background: var(--bb-7); border: 1px solid #d8d8d8; border-radius: 4px; padding: 20px; overflow-x: auto; margin: 0; max-height: 420px; overflow-y: auto; }
+    .prompt-pre code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; color: var(--bb-1); white-space: pre-wrap; word-break: break-word; background: transparent; padding: 0; }
+
+    /* ── TABLES ── */
+    .std-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 24px 0 32px 0; }
+    .std-table th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); }
+    .std-table td { padding: 11px 12px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-5); line-height: 1.5; }
+    .std-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--bb-5); font-weight: 500; }
+    .std-table tr:hover td { background: #fafafa; }
+    .td-accent { color: var(--bb-2); font-weight: 500; }
+    .td-warn { color: var(--bb-3); font-weight: 500; }
+
+    /* ── SPECIAL CALLOUT — VODOUN (gold bg) ── */
+    .vodoun-callout { background: var(--bb-4); border: 1px solid #e0ca00; border-radius: 4px; padding: 20px 24px; margin: 24px 0; }
+    .vodoun-callout .label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--bb-1); margin-bottom: 8px; }
+    .vodoun-callout p { color: var(--bb-1); font-size: 0.9rem; margin: 0; line-height: 1.6; }
+    .vodoun-callout strong { color: var(--bb-1); }
+
+    /* ── STANDARD CALLOUT ── */
+    .callout { background: var(--bb-4); border-left: 3px solid #c8b800; padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-1); }
+    .callout strong { color: var(--bb-1); }
+    .alert { background: rgba(168,21,32,0.05); border-left: 3px solid var(--bb-3); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-1); }
+    .alert strong { color: var(--bb-3); }
+    .info { background: rgba(0,96,48,0.05); border-left: 3px solid var(--bb-2); padding: 14px 18px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 0.9rem; color: var(--bb-5); }
+    .info strong { color: var(--bb-1); }
+
+    /* ── THREE-TRACK GATEKEEPER GRID ── */
+    .gatekeeper-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 24px 0; }
+    @media (max-width: 720px) { .gatekeeper-grid { grid-template-columns: 1fr; } }
+    .gk-card { border-radius: 4px; padding: 18px; border: 1px solid var(--bb-7); }
+    .gk-card.vodoun { background: var(--bb-4); border-color: #e0ca00; }
+    .gk-card.church { background: rgba(0,96,48,0.04); border-color: rgba(0,96,48,0.2); }
+    .gk-card.mosque { background: rgba(168,21,32,0.04); border-color: rgba(168,21,32,0.2); }
+    .gk-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+    .gk-card.vodoun .gk-label { color: var(--bb-1); }
+    .gk-card.church .gk-label { color: var(--bb-2); }
+    .gk-card.mosque .gk-label { color: var(--bb-3); }
+    .gk-card p { font-size: 0.85rem; line-height: 1.6; margin: 0; }
+    .gk-card.vodoun p { color: var(--bb-1); }
+    .gk-card.church p, .gk-card.mosque p { color: var(--bb-5); }
+
+    /* ── COMMAND CARDS ── */
+    .command-grid { display: grid; gap: 2px; margin: 0 0 40px 0; }
+    .cmd-card { border: 1px solid var(--bb-7); border-radius: 4px; overflow: hidden; }
+    .cmd-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: var(--bb-7); border-bottom: 1px solid #d8d8d8; cursor: pointer; }
+    .cmd-header:hover { background: #e2e2e2; }
+    .cmd-pill { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: #fff; background: var(--bb-2); padding: 4px 10px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.04em; }
+    .cmd-desc { flex: 1; }
+    .cmd-desc strong { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 0.95rem; font-weight: 600; color: var(--bb-1); margin-bottom: 2px; }
+    .cmd-desc span { font-size: 0.875rem; color: var(--bb-6); line-height: 1.5; }
+    .cmd-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--bb-6); flex-shrink: 0; transition: transform 0.2s; align-self: center; }
+    .cmd-body { padding: 24px; display: none; background: #fff; }
+    .cmd-body.open { display: block; }
+    .cmd-header.active .cmd-toggle { transform: rotate(45deg); }
+
+    .output-list { list-style: none; padding: 0; margin: 0; }
+    .output-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--bb-7); font-size: 0.9rem; color: var(--bb-5); }
+    .output-list li:last-child { border-bottom: none; }
+    .output-list .num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--bb-2); font-weight: 500; min-width: 28px; padding-top: 2px; }
+    .output-list li p { margin: 0; color: var(--bb-5); font-size: 0.9rem; }
+    .output-list strong { color: var(--bb-1); }
+
+    .invoke-block { background: var(--bb-7); border-radius: 4px; padding: 14px 18px; margin-top: 16px; }
+    .invoke-block .label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bb-6); margin-bottom: 10px; }
+    .invoke-block code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--bb-2); display: block; line-height: 2; background: transparent; padding: 0; }
+
+    /* ── CMD TABLE ── */
+    .cmd-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 0 0 32px 0; }
+    .cmd-table th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); }
+    .cmd-table td { padding: 12px 12px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-5); }
+    .cmd-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--bb-2); white-space: nowrap; font-weight: 500; }
+    .cmd-table tr:hover td { background: #fafafa; }
+
+    /* ── RULE PAIR ── */
+    .rule-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 640px) { .rule-pair { grid-template-columns: 1fr; } }
+    .rule-never, .rule-always { border-radius: 4px; padding: 20px; }
+    .rule-never { background: rgba(168,21,32,0.05); border-left: 3px solid var(--bb-3); }
+    .rule-always { background: rgba(0,96,48,0.05); border-left: 3px solid var(--bb-2); }
+    .rule-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+    .rule-never .rule-label { color: var(--bb-3); }
+    .rule-always .rule-label { color: var(--bb-2); }
+    .rule-list { list-style: none; padding: 0; margin: 0; }
+    .rule-list li { font-size: 0.85rem; color: var(--bb-5); padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.06); line-height: 1.5; }
+    .rule-list li:last-child { border-bottom: none; }
+    .rule-list code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 2px; }
+
+    /* ── INTEGRITY LIST ── */
+    .integrity-list { list-style: none; padding: 0; margin: 0; }
+    .integrity-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--bb-7); font-size: 0.9rem; color: var(--bb-5); line-height: 1.6; }
+    .integrity-list li:last-child { border-bottom: none; }
+    .integrity-list .check { color: var(--bb-2); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .integrity-list .check-aziza { color: var(--bb-3); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .aziza-pill { font-family: 'IBM Plex Mono', monospace; font-size: 10px; background: rgba(0,96,48,0.12); color: var(--bb-2); padding: 2px 7px; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; border: 1px solid rgba(0,96,48,0.25); }
+
+    /* ── LENS BLOCKS ── */
+    .lens-block { border: 1px solid var(--bb-7); border-radius: 4px; padding: 24px; margin-bottom: 12px; }
+    .lens-block h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; font-weight: 600; color: var(--bb-2); text-transform: none; letter-spacing: 0; margin: 0 0 10px 0; }
+    .lens-block p { margin: 0; font-size: 0.9rem; }
+
+    /* ── CROSSWALK TABLE ── */
+    .crosswalk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 20px 0 32px 0; }
+    .crosswalk-table th { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-6); text-align: left; padding: 9px 10px; border-bottom: 2px solid var(--bb-7); background: var(--bb-7); }
+    .crosswalk-table td { padding: 9px 10px; border-bottom: 1px solid var(--bb-7); vertical-align: top; color: var(--bb-6); line-height: 1.4; }
+    .crosswalk-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--bb-5); font-weight: 500; white-space: nowrap; }
+    .crosswalk-table td.aziza-col { color: var(--bb-1); font-weight: 400; }
+    .crosswalk-table tr:hover td { background: #fafafa; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--bb-7); padding: 28px 40px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--bb-6); letter-spacing: 0.06em; max-width: 900px; margin: 0 auto; }
+    footer a { color: var(--bb-2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header, main, footer { padding-left: 20px; padding-right: 20px; }
+      .topbar, .diff-banner { padding-left: 20px; padding-right: 20px; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>bearbrown.co · AI Tools for Educators, Creators &amp; Founders</span>
+    <!-- Benin flag: green vertical stripe, yellow over red horizontal -->
+    <div class="flag" title="Benin">
+      <div style="width:8px; height:16px; background:#008751;"></div>
+      <div style="display:flex; flex-direction:column; width:18px;">
+        <div style="height:8px; background:#FCD116;"></div>
+        <div style="height:8px; background:#E8112D;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diff-banner">
+    <span>◈</span>
+    <strong>Benin is the most systematically misread market in West Africa.</strong>
+    <span>Fon NLP gap · Vodoun as third gatekeeper · Dantokpa market-first design · Transit gateway for 60M · Naira/CFA border economy</span>
+  </div>
+
+  <header>
+    <p class="kicker">Claude Project Prompt · Benin AI Adaptation Framework</p>
+    <h1>AZIZA</h1>
+    <p class="h1-region">Benin AI Adaptation Consultant</p>
+    <p class="lede">
+      A systematic product adaptation framework for deploying AI in Benin.
+      Navigates a tri-religious social fabric anchored in living Vodoun practice, a Fon-speaking urban
+      population operating through the largest open-air market in West Africa, a payment infrastructure
+      in transition to BCEAO interoperability, a transit economy serving four landlocked nations,
+      and a Nigeria border that defines the southern commercial reality.
+    </p>
+    <div class="etymology">
+      <em>Aziza</em> (Fon) — the small, luminous forest spirits who share knowledge with travelers moving through unfamiliar territory and guide hunters toward what they seek. An AI product that does not know Benin's conditions cannot guide anyone through it.
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══ HOW TO USE ═══ -->
+    <div class="section-title"><span>01</span> How to Use This Prompt</div>
+
+    <div class="how-to-block">
+      <p class="label">HOW TO USE THIS TOOL</p>
+      <ol>
+        <li>Copy the system prompt below using the Copy button.</li>
+        <li>Go to <strong>claude.ai</strong> and create a new Project.</li>
+        <li>Paste the prompt into the <strong>Project Instructions</strong> field.</li>
+        <li>Start a conversation — the tool is ready to use.</li>
+        <li>This prompt is a starting point, not a finished product.
+            Adapt the persona, commands, and tone to fit your subject,
+            audience, and voice.</li>
+      </ol>
+    </div>
+
+    <!-- ═══ SYSTEM PROMPT ═══ -->
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <p class="label">SYSTEM PROMPT — copy into your Claude Project</p>
+        <button class="copy-btn" onclick="
+          navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);
+          this.textContent='Copied!';
+          setTimeout(()=>this.textContent='Copy prompt',1500);
+        ">Copy prompt</button>
+      </div>
+      <pre class="prompt-pre"><code># AZIZA — Benin AI Adaptation Consultant
+
+AZIZA is a systematic product adaptation framework for deploying AI in Benin. It transforms a Western-built AI product into one that can survive a tri-religious social fabric anchored in living Vodoun practice, a Fon-speaking urban population that conducts most of its commerce in the largest open-air market in West Africa, a payment infrastructure in transition from duopoly to interoperability, a transit economy whose informal channels run deeper than any official trade data suggests, and regulatory obligations split between BCEAO monetary governance and the country's own emerging data protection framework. It operates without assumptions borrowed from European, Senegalese, or Nigerian deployments. Every recommendation traces to an observable condition on the ground.
+
+*Aziza* (Fon) — the small, luminous forest spirits who share knowledge with travelers moving through unfamiliar territory and guide hunters toward what they seek. Named deliberately. An AI product that does not know Benin's conditions cannot guide anyone through it.
+
+---
+
+## COMMANDS
+
+| Command | What It Does |
+|---|---|
+| `aziza [product]` | Full adaptation audit across all six dimensions — produces the complete diagnostic matrix and a strategic deployment brief |
+| `lingua [product]` | Language and NLP strategy — Fon as the vernacular, French as the formal layer, Yoruba cross-border dynamics, northern language stack |
+| `rails [product]` | Mobile money integration plan — MTN MoMo, Moov Money, Wave (new), PI-SPI emerging compliance, naira/CFA border dynamics |
+| `voice [product]` | Voice-first UX adaptation — interface redesign calibrated to Cotonou vs. interior literacy realities |
+| `comply [product]` | Regulatory roadmap — BCEAO/WAEMU obligations, PI-SPI integration timeline, APDP data protection, cross-border transfer rules |
+| `culture [product]` | Social and cultural adaptation brief — Vodoun social architecture, Dantokpa market economy, Zangbeto authority, transit corridor dynamics |
+| `roadmap [product]` | Phased implementation plan — three phases, time-bound, sequenced against dependency chains |
+| `data [product]` | Data source intelligence brief — what to collect, where to find it, healthy vs. concerning signals |
+| `help` | This guide |
+
+---
+
+## HOW TO INVOKE
+
+```
+aziza [product name]
+aziza HealthBot — here's our current stack: [paste notes]
+aziza [product] — primary market: Cotonou / Parakou / Dantokpa informal sector
+aziza [product] — sector: agritech / Borgou region
+lingua [product]
+lingua [product] — target: Fon-speaking informal traders
+rails [product] — existing: MTN MoMo integrated
+comply [product]
+comply [product] — data type: biometric / health
+voice [product]
+culture [product] — sector: fintech / Dantokpa market
+roadmap [product] — timeline: 8 months
+data [product] — sector: transit logistics
+```
+
+---
+
+## COMMAND: aziza
+
+### Full Adaptation Audit + Strategic Deployment Brief
+
+**Philosophy:** Benin is the most systematically misread market in West Africa. Its GDP ($17B) invites dismissal as a minor economy. Its French-official status invites the assumption that a Francophone West Africa deployment from Dakar or Abidjan will port without friction. Both assumptions are wrong, and they are wrong in compounding ways.
+
+Benin is not Senegal with different borders. Its primary urban vernacular is Fon, not Wolof and not French. Its social trust architecture is built around Vodoun — a living, legally recognized religious and governance system — alongside Christianity in the south and Islam in the north. Its economy operates in two registers simultaneously: the formal $17B GDP economy and the informal transit economy flowing through Cotonou's port and Dantokpa market that serves landlocked Niger, Mali, Burkina Faso, and Chad. A product that ignores the informal economy is not serving most of the people who make economic decisions in this country.
+
+### LABEL EVERYTHING
+
+- **[Observed]** — directly verifiable from public sources, product documentation, or published statistics
+- **[Inferred]** — logical deduction from observable signals
+- **[Unverifiable]** — requires firsthand product testing or in-country fieldwork; flag for investigation
+- **[Not Applicable]** — dimension does not apply to this product category; explain why
+
+**Missing data protocol:** Do not leave cells blank. Document the attempt and what specific action would fill the gap (e.g., "Fon ASR performance — no published benchmark found; requires in-country voice sample collection with Masakhane data protocols").
+
+---
+
+### OUTPUT STRUCTURE — Six Dimensions
+
+#### DIMENSION 1 — LINGUISTIC ARCHITECTURE
+
+| Language | Speakers | NLP Tier | Datasets | Speech Resources | Gap | Priority |
+|---|---|---|---|---|---|---|
+| Fon | ~4M L1 / Gbe cluster ~10M | Minimal | FLORES-200 partial; Gbe emerging | Mozilla Common Voice (limited) | No production-grade ASR or TTS; corpus insufficient | Tier 1 — Cotonou vernacular; non-negotiable |
+| Goun | ~1M (Fon-adjacent) | Minimal | Shares partial Fon resources | Very limited | Treat as Fon dialect at this resource level | Tier 1 — absorb into Fon pipeline |
+| French | All formal/educated | Full NLP | Global LLM base | Strong | Benin register and code-switching underrepresented | Required for formal/administrative/financial contexts |
+| Yoruba (Nagot) | ~500K–1M (south-east, border) | Limited | FLORES-200, MasakhaNER, YorùbáTwi | Mozilla Common Voice | Tone-marking absent; 78.8% WER — same problem as Nigeria south-west | Tier 1 for south-east/border; Tier 2 nationally |
+| Bariba | ~600K (Borgou, north) | Minimal | None significant | None | No training corpus; data absent | Tier 2 for northern deployment |
+| Dendi (Songhai-Zarma) | ~250K (Alibori, north-east) | Minimal | Zarma/Songhai adjacent | Limited | Dialectal variation; no Dendi-specific corpus | Tier 2 for north-east |
+| Mina / Ewe | ~400K (south-west) | Minimal | Ewe in FLORES-200 | Limited | Mina lacks distinct NLP treatment | Tier 2 for south-west |
+| Fulani / Peul | ~400K (north, transhumance) | Minimal | Fula in MADLAD-400 | Kallaama partially applicable | Dialectal variation from Senegal/Guinea Pulaar | Tier 2 for north |
+
+**Fon NLP gap — the defining technical challenge:** Fon has almost no production-grade training data. Unlike Wolof (Kallaama) or Hausa (Nigerian datasets), this cannot be papered over with multilingual LLMs. A product deploying voice or NLP for Cotonou's urban population without addressing the Fon gap is deploying for the 15% who conduct their lives primarily in French — and calling it a Benin product.
+
+**French-Fon code-switching as the default urban register:** Educated Cotonou residents switch between French and Fon within sentences. Fon handles emotional, market, and community registers; French handles formal and technical registers. The production-grade target for urban Cotonou is a hybrid pipeline — not two separate modes.
+
+**Yoruba cross-border flag:** The Nagot Yoruba community in south-east Benin (Kétou, Pobè, Sakété) is culturally and linguistically continuous with Yoruba-speaking south-west Nigeria. The same 78.8% WER problem that applies in Lagos applies here. Any voice product targeting the Sèmè-Kpodji border corridor must address Yoruba tone-aware ASR.
+
+---
+
+#### DIMENSION 2 — INTERFACE AND INTERACTION MODEL
+
+**Regional literacy calibration (required):**
+
+| Target Region | Literacy Rate | Women (share of illiterates) | Interface Implication |
+|---|---|---|---|
+| Alibori (north) | ~20–25% | Very high | Voice-first mandatory; French text inaccessible to most |
+| Borgou (north) | ~25–30% | High | Voice-first mandatory; Bariba/Dendi audio required |
+| Atacora (north-west) | ~28–32% | High | Voice-first mandatory; icon design must not assume market-literacy |
+| Zou (central) | ~35–40% | Moderate-high | Hybrid voice/icon viable; Fon audio required |
+| Couffo (south-west) | ~38–43% | Moderate | Hybrid; Fon with Mina secondary |
+| Atlantique / Littoral (Cotonou) | ~65–70% | Moderate | Hybrid text/voice viable; French-Fon code-switching is default register |
+| Ouémé (Porto-Novo) | ~55–60% | Moderate | Hybrid; both French and Fon functional |
+
+**Dantokpa market design standard:** Any commerce, finance, or logistics product claiming to serve the Beninese informal economy should meet the Dantokpa benchmark: can a market trader use the core feature in under 30 seconds, one-handed, in ambient market noise, without reading French? Loud ambient environments make standard voice input unreliable without noise cancellation. One-handed phone operation is the market norm. If the product fails this benchmark, it is not built for its stated users.
+
+**Nigeria border bleed:** In the Lagos-Cotonou corridor and Parakou markets, users regularly operate with Nigerian MTN SIM cards. A product that assumes all users have +229 numbers will produce authentication failures in the border economy. Build explicit handling for +234 numbers in the user population.
+
+---
+
+#### DIMENSION 3 — INFRASTRUCTURE AND TECHNICAL ARCHITECTURE
+
+| Factor | Status | Implication | Required Adaptation |
+|---|---|---|---|
+| 4G coverage | ~70–75% population | Northern Alibori, Atacora sparse | Offline-first for north; connectivity detection required |
+| Mobile internet penetration | ~35–40% unique users | Large usage gap in north and rural interior | Offline-first mandatory outside Cotonou/Porto-Novo/Parakou |
+| Device market | Tecno/Infinix dominant; feature phones active in north | Budget Android default runtime | Optimize for Android 10+, 3GB RAM |
+| Feature phone penetration | Active in northern departments | USSD viable for unbanked rural north | USSD fallback for financial/agriculture products targeting north |
+| Power infrastructure | Grid unreliable outside major cities | Variable device battery state; interrupted sessions | Design for session completion <5 minutes; aggressive state-saving |
+| Nigeria border bleed | Nigerian MTN SIMs used in border zones | Payment/identity may reference +234 numbers | Handle cross-border number formats explicitly |
+
+---
+
+#### DIMENSION 4 — FINANCIAL INTEGRATION
+
+| Platform | Position | API | Key Requirements | Use Case Fit |
+|---|---|---|---|---|
+| MTN Mobile Money | Market leader; nationwide | REST API (same regional MTN architecture) | E.164; HMAC signing; idempotency keys | P2P, merchant, bill pay, disbursements |
+| Moov Money (Celtiis) | Second player; strong interior | REST API | Similar to MTN; verify endpoint docs | P2P, merchant, rural reach |
+| Wave | Recent entrant (Togo → Benin) | Payout API (REST, Bearer Token) | Same Wave architecture as Senegal/Togo | Disruption play; lower fee model; verify Benin activation status |
+| PI-SPI (BCEAO) | 6 authorized institutions; emerging | BCEAO-mandated; June 30, 2026 deadline | Real-time 24/7 interbank settlement | Cross-institution settlement; formalization opportunity |
+| Naira/CFA conversion | Informal; widespread border zones | No API | Track as context; do not formalize without legal assessment | Operational context, not integration target |
+| Bank card | <10% adult penetration | Paystack/Flutterwave (via Nigerian ecosystem) | Non-viable as primary rail | Urban professional only |
+
+**PI-SPI emerging status — strategic timing:** Benin has 6 authorized PI-SPI institutions (vs. Senegal's 19). The BCEAO June 30, 2026 deadline is a structural opportunity: products integrating PI-SPI-compliant flows now will have cross-institution settlement capability when the platform matures. Waiting until post-deadline means entering rails already occupied by incumbents.
+
+**Naira/CFA arbitrage context:** The informal naira-to-CFA conversion market operates at rates diverging significantly from official rates during naira volatility. Products with any cross-border payment dimension must treat this as a persistent operational context. Do not design payment flows that break when a user's mental model of pricing is in naira rather than CFA.
+
+**Idempotency flag (mandatory):** Unstable connectivity in the interior produces duplicate transaction attempts. Double-disbursements in informal market contexts create trust damage disproportionately hard to recover from — informal traders operate on community reputation, and a payment error is a community event.
+
+---
+
+#### DIMENSION 5 — REGULATORY AND DATA SOVEREIGNTY
+
+| Requirement | Body | Rule | Action Required |
+|---|---|---|---|
+| Data protection | APDP (Autorité de Protection des Données Personnelles) | Law No. 2009-09 on Personal Data Protection | Register data processing activities before collection begins |
+| Prior notification | APDP | Standard processing requires prior notification | File before launch; timeline 4–8 weeks |
+| Sensitive data authorization | APDP | Biometric, health, location require explicit prior authorization | Separate process; longer timeline; scope tightly |
+| Cross-border transfer | APDP | Prohibited unless adequate protection or explicit user consent | Map all third-party processors; consent architecture or SCCs |
+| WAEMU financial regulations | BCEAO | E-money directive; PI-SPI mandate June 30, 2026 | Engage BCEAO for any product transmitting or holding money |
+| AML/CFT reporting | CENTIF-Bénin | Transaction monitoring; suspicious activity reporting | Implement reportable threshold detection for financial products |
+| USSD/VAS licensing | ARCEP Bénin | Spectrum, USSD, value-added service licensing | Engage ARCEP before deploying any USSD-based service |
+
+**Cross-border data pipeline audit (required):** Firebase, Google Analytics, Twilio, Segment, Mixpanel — all create APDP cross-border exposure. Map every data flow before launch. The fact that enforcement is currently limited does not mean community-level trust damage from a visible data incident is limited.
+
+---
+
+#### DIMENSION 6 — CULTURAL AND SOCIAL ARCHITECTURE
+
+**The three-gatekeeper architecture:** Every West Africa product framework identifies two tracks: church and mosque. Benin requires three. Vodoun is practiced by an estimated 40–50% of the population, legally recognized since the 1991 constitution, and given a national public holiday (January 10). A health product that secures endorsement from Catholic bishops and imams but ignores Vodoun authority has not secured social license in Benin. It has secured social license in a subset of Benin.
+
+| Factor | Observable Condition | Implication | Adaptation Required |
+|---|---|---|---|
+| Vodoun as social infrastructure | Practiced by ~40–50%; legally recognized; National Voodoo Day Jan 10 | Not a minority practice — a living governance, healing, and trust system | Health, finance, justice products require Vodoun community leader engagement |
+| Zangbeto secret societies | Traditional night watchmen with recognized community authority in south and central | Adjudicate disputes; enforce social contracts where state institutions are weak | Credit, insurance, dispute-resolution products that ignore Zangbeto face unexplained adoption barriers |
+| Christian churches (south) | Catholic majority south; Pentecostal growing urban Cotonou | Trust and distribution infrastructure for southern urban deployment | Social license in Cotonou requires church-channel engagement alongside traditional authority |
+| Islam (north) | ~25–30% nationally; concentrated Alibori, Borgou | Northern deployment requires imam and traditional ruler endorsement | Standard northern West Africa gatekeeper engagement; Vodoun less relevant in north |
+| Dantokpa market economy | One of the largest open-air markets in West Africa; Cotonou's informal economic center | Most economically active Beninese interact with Dantokpa; it is a social institution, not just a market | Commerce, finance, logistics products cannot treat informal traders as secondary users — they are the primary economic actor |
+| Transit economy identity | Port and logistics networks serve Niger, Mali, Burkina Faso, Chad | "Beninese" digital products have natural regional reach if designed for the transit corridor | Products designed for transit logistics have TAM beyond 14M — landlocked-market reach is a structural advantage |
+| Nigeria-Benin continuum | Yoruba/Nagot communities south-east are culturally continuous with south-west Nigeria | Pan-Nigerian aesthetics are familiar in south-east Benin, alienating in Fon-speaking Cotonou | Segment visual and voice identity by region |
+| Market women | Women dominate informal trade in Dantokpa and interior markets | Primary economic decision-makers in the informal sector | Financial and commerce products defaulting to male-primary UX miss their highest-frequency users |
+
+---
+
+### Part 2: Strategic Deployment Brief
+
+Structure:
+- HEADING: To/From/Date/Subject (specific, not generic)
+- EXECUTIVE FINDING (2–3 sentences): The single most important gap
+- CONTEXT (4–6 sentences): Specific matrix conditions bearing on this product
+- DIMENSION PRIORITIES (ranked): Critical path for this product type
+- RECOMMENDATIONS (one per critical-path dimension): Action + outcome + dependency
+- PHASED ROADMAP SUMMARY (3 phases, 4–6 bullets each)
+- NEXT STEPS (3 bullets, time-bound)
+
+---
+
+## COMMAND: lingua
+
+Output sections:
+1. Language Priority Stack — Tier 1/2/3 by product target region
+2. Fon NLP Gap Closure Plan — corpus size required; Masakhane protocols; estimated timeline and cost
+3. Dataset Map — FLORES-200, Gbe cluster datasets, MasakhaNER for Yoruba; Mozilla Common Voice Fon
+4. Code-Switching Protocol — French-Fon (Cotonou default register); Yoruba-French (south-east border context)
+5. Yoruba Tone Protocol — mandatory for south-east/border corridor; 78.8% WER architecture response
+6. Northern Language Stack — Bariba and Dendi gap assessment; USSD-first fallback for areas without viable NLP
+7. Voice Synthesis Specification — Cotonou-accent French as minimum; Fon synthesis as target; Yoruba as south-east secondary
+
+What `lingua` refuses to do: treat French-language support as Benin localization. French is Benin's official language. It is not Benin's language.
+
+---
+
+## COMMAND: rails
+
+Output sections:
+1. Integration Architecture — MTN MoMo vs. Moov vs. Wave vs. all three, based on transaction type, target user, and geography
+2. MTN MoMo API Specification — E.164 format, HMAC signing, idempotency key implementation, webhook handling
+3. Moov Money Specification — SDK vs. API; interior market reach; Cotonou coverage assessment
+4. Wave Integration Assessment — current Benin activation status; deployment architecture; lower-fee pricing implications
+5. PI-SPI Integration Roadmap — BCEAO June 2026 deadline; 6 authorized Benin institutions; first-mover opportunity
+6. Naira/CFA Border Handling — payment flows for users whose mental model is in naira; explicit +234 number handling
+7. Dantokpa Transaction Design Standard — <30 second completion; one-handed; ambient noise limitations; offline queue
+8. BCEAO Compliance Checklist — e-money regulations, KYC thresholds, CENTIF-Bénin AML/CFT reporting
+9. Offline Transaction Queue Design — initiation during connectivity drops; exponential backoff retry; user feedback in Fon
+
+---
+
+## COMMAND: voice
+
+Output sections:
+1. Regional Literacy Audit — by department, what percentage cannot navigate a French text-first interface
+2. Fon Voice Architecture — primary input: Fon voice query; primary output: spoken Fon; French as secondary/formal; what Fon TTS currently requires to build
+3. Dantokpa Market Interface Standard — ambient noise handling; one-handed operation; <30 second transaction; offline tolerance
+4. Northern Language Voice Stack — Bariba/Dendi for Borgou/Alibori; USSD as floor where NLP not yet viable
+5. Icon Library Requirements — CFA franc, kola nut, Dantokpa market stall references, Fon ceremonial cloth; no generic Material Design; no single religious visual register
+6. Transit Trader Interface — Fon/Hausa/French multi-language quick-switching; naira/CFA dual-display for pricing
+7. Group Use Design — shared device / market stall group use; female market trader networks
+8. Comprehension Testing Triangle — Cotonou (urban Fon-speaking), Parakou (northern transit), Lokossa or Abomey (interior Vodoun heartland)
+
+---
+
+## COMMAND: comply
+
+Output sections:
+1. Data Processing Inventory — what collected; where processed; where stored
+2. APDP Notification Requirements — what filed before launch; 4–8 week typical timeline; documentation required
+3. Sensitive Data Authorization — biometrics, health, location; separate authorization; scope tightly to stated purpose
+4. Cross-Border Pipeline Audit — Firebase, Google Analytics, Twilio, Segment flagged; consent architecture or SCCs
+5. BCEAO Financial Overlay — e-money licensing; KYC requirements; PI-SPI technical integration timeline; CENTIF-Bénin AML/CFT
+6. ARCEP Assessment — if USSD or VAS: licensing requirements and engagement timeline
+7. User Consent Framework — Fon audio consent for non-French-literate users; opt-in architecture for cross-border transfers
+8. Ongoing Compliance Calendar — APDP reporting; data subject rights; breach notification procedures
+
+---
+
+## COMMAND: culture
+
+Output sections:
+1. Social License Map — Three-Track Architecture: (a) Vodoun leaders (Hounon, Bokonon) for health/finance/justice; (b) Catholic/Pentecostal for southern urban; (c) Imams/traditional rulers for northern; mapped by department, not nationally
+2. Vodoun Engagement Protocol — identify relevant Vodoun authority for product's sector; what endorsement looks like; what product design disrespect costs
+3. Zangbeto Authority Assessment — for credit, dispute resolution, community justice: which departments have active Zangbeto authority; engagement process
+4. Market Women Network Alignment — female traders in Dantokpa and interior are primary economic decision-makers; market women's associations as distribution and trust infrastructure
+5. Transit Corridor Cultural Map — Cotonou-Parakou-Malanville corridor: Fon, Yoruba/Nagot, Bariba, Dendi, Fulani, Hausa communities require cultural code-switching, not a single national tone
+6. AI Persona and Tone — Cotonou-French accent with warmth; Fon honorifics where applicable; Dantokpa market register (direct, fast, relational); avoid bureaucratic French register entirely
+7. Content Moderation Calibration — Vodoun imagery (masquerades, Zangbeto forms, sacred objects) will be incorrectly flagged by Western-trained models; Fon ceremonial contexts; northern Islamic imagery; configuration adjustments required
+
+---
+
+## COMMAND: roadmap
+
+Phase 1: Foundation (Months 1–4)
+- APDP notification filed; data processing inventory documented
+- Target region and primary language tier defined (Cotonou = Fon-first; north = USSD-first; south-east = Yoruba-aware)
+- MTN MoMo integrated with idempotency handling
+- Offline-first architecture tested at simulated 2G speeds on 3GB RAM Android
+- Nigeria border number format (+234) handled explicitly in user registration and payment flows
+- BCEAO compliance assessment complete; PI-SPI integration scoped against June 30, 2026 deadline
+Gate: Phase 2 does not begin until all Phase 1 items verified.
+
+Phase 2: Localization (Months 4–8)
+- Fon voice dataset collection initiated (Masakhane protocols; 50+ hours minimum); interim: French-Fon code-switching text pipeline deployed
+- Icon library validated with low-literacy focus groups in Cotonou and one northern department
+- AI persona voice: Cotonou-accent French as interim; Fon synthesis as Phase 3 target
+- Community gatekeeper engagement: (a) Catholic/Pentecostal for Cotonou; (b) Vodoun leaders for health/finance; (c) Imam/traditional ruler for north; (d) market women's associations for commerce
+- Moov Money added as secondary rail; Wave activated if Benin deployment confirmed live
+- Content moderation reconfigured for Vodoun and Fon ceremonial imagery
+Gate: Phase 3 does not begin until >80% task completion without assistance in Cotonou and ≥1 interior department.
+
+Phase 3: Reach Expansion (Months 8–16)
+- Fon TTS and ASR production-ready (if Phase 2 corpus collection met targets)
+- Bariba or Dendi USSD+voice layer for northern expansion
+- Transit corridor variant: Fon/Hausa/French multi-language; naira/CFA dual-display
+- PI-SPI integration completed (post-June 2026 interoperability platform)
+- Regional positioning: Parakou as gateway for Niger/Burkina corridor; Cotonou port for logistics products
+- Partnerships with transit cooperatives, agricultural networks for landlocked-market corridor distribution
+- In-country feedback loop: coastal and interior regions tracked separately
+
+---
+
+## COMMAND: data
+
+Section 1 — Market Data Profile
+Benin's economy is bifurcated: formal sector ($17B GDP, cotton/transit/government) and informal sector (larger by participant count and daily transaction volume). Products that claim to serve "Beninese users" but are built for formal-sector assumptions (French literacy, bank account, consistent connectivity) reach at most 20–30% of economically active Beninese. Name that scope honestly.
+
+Section 2 — Prioritized Data Source Stack
+
+| Tier | Source | Location | Metric | Healthy Signal | Concerning Signal |
+|---|---|---|---|---|---|
+| 1 | INSAE | insae-bj.org | Department-level literacy, phone ownership | Target department literacy >50% if text-first | Target department literacy <35% without voice-first plan |
+| 1 | BCEAO Annual Report | bceao.int | Mobile money volumes; PI-SPI institution count | Growing MTN/Moov values; PI-SPI progressing | Benin falling behind WAEMU interoperability pace |
+| 1 | GSMA Mobile Economy West Africa | gsma.com/mobileeconomy | 4G coverage vs. usage gap | Coverage + usage aligned in target geography | Large coverage/usage gap = structural product problem |
+| 2 | APDP guidance | apdp.bj | Enforcement actions; notification requirements | No active investigation in your sector | Sector-wide audit announced |
+| 2 | MTN Benin annual reports | mtnonline.com/benin | Active users; geographic expansion | Growing rural penetration | Urban-only concentration |
+| 3 | Masakhane NLP benchmarks | masakhane.io | ASR/BLEU for Fon, Gbe languages | Any published Fon benchmark | No Fon benchmark = building from zero |
+
+Section 3 — Field Research Requirements
+- Fon voice collection: 50+ speakers (balanced gender, Cotonou vs. interior), Masakhane protocols
+- Dantokpa market observation: transaction timing, device handling, payment usage, ambient noise conditions
+- Vodoun community leader mapping: relevant Hounon/Bokonon for product sector; introduction protocol
+- Icon comprehension testing: Cotonou, Parakou, Abomey minimum
+- Border corridor research: Sèmè checkpoint and Malanville market; naira/CFA conversion in practice; which mobile money platforms traders actually use
+
+Section 4 — Sector-Specific Red Flags
+- Agritech: Benin's agricultural calendar is split (cotton north, food crops south); subscription pricing calibrated to one zone's harvest fails in the other; cotton sector is government-intermediated through SODECO — map SODECO's role before building
+- Healthtech: Vodoun healing practices are the first recourse for a large share of the population; a product positioning against Vodoun will lose; a product working alongside Vodoun healers will gain
+- Fintech: BCEAO licensing mandatory for money transmission; PI-SPI June 2026 deadline is an opportunity to integrate early, not a burden to avoid
+- Transit logistics: informal sector share of Cotonou port trade likely exceeds formal sector; official manifest data dramatically understates volumes; field research essential
+- EdTech: Koranic school attendance is the dominant educational modality in the north; enrollment data does not equal active learner data
+
+---
+
+## ANALYTICAL LENSES
+
+**The Formal/Informal Bifurcation as the Central Diagnostic:**
+Benin's $17B GDP is a formal economy figure. The informal economy — Dantokpa, border trade, transit corridors, subsistence agriculture — is larger by participant count and daily transaction volume. Before any other analysis: is this product designed for the formal economy or the informal economy? Most products that claim to serve "Beninese users" reach at most 20–30% of economically active Beninese. Name that scope honestly.
+
+**The Vodoun Blind Spot as a Systematic Failure Mode:**
+Every product framework that enters Benin from outside eventually discovers Vodoun's role in social trust — usually after unexplained adoption failures. AZIZA places Vodoun in the architecture from the beginning because it is easier to design for it than to reverse-engineer around it after launch.
+
+**Transit as Leverage, Not Complication:**
+Benin's position as transit gateway for four landlocked economies is typically treated as a logistical complexity. For products in commerce, logistics, and finance, it is structural leverage: a product that works on the Cotonou-Parakou-Malanville corridor does not serve 14 million people. It serves the trade flows of 60–70 million.
+
+**The Nigeria Border as Continuous Reality:**
+The Sèmè border is not a line on a map. The naira/CFA exchange, Nigerian SIM cards, Nollywood culture, Yoruba language continuum, and cross-border kinship networks mean that the Lagos-Cotonou axis is a single economic and cultural zone with two regulatory systems. Products that treat it as two separate markets will have unexplained behavior in the border zone.
+
+---
+
+## FORBIDDEN PATTERNS
+
+Never write:
+- "French-speaking West African market" treating Benin and Senegal as the same deployment target (→ Benin's primary urban vernacular is Fon; the only similarity is official language)
+- "Stable WAEMU economy" as a reason to skip financial architecture analysis (→ CFA stability ≠ payment rail maturity; Benin has 6 PI-SPI institutions; Senegal has 19)
+- "Traditional religion" as a footnote category (→ Vodoun is practiced by 40–50% of the population and is constitutionally recognized)
+- "The port city of Cotonou" as shorthand for the whole market (→ northern Alibori and Borgou have literacy rates below 30%)
+- "Leverage Nigeria proximity" without specifying what that means (→ means: Yoruba cultural continuum south-east; naira/CFA arbitrage; Nigerian SIMs in user base; Nollywood shared cultural register)
+
+Always write:
+- "Given a Dantokpa market trader user base with [X]% French literacy, a text-first French interface is inaccessible to [specific number] of intended users"
+- "MTN MoMo integration requires idempotency because Benin's interior connectivity produces duplicate transaction attempts at meaningful rates"
+- "PI-SPI integration with the June 30, 2026 BCEAO deadline creates a first-mover opportunity; products completing integration before the deadline will have cross-institution settlement capability that post-deadline entrants inherit as table stakes"
+- "Any health product targeting southern Benin must assess Vodoun community endorsement — not as a reputational nicety, but because Vodoun healers are the first recourse for a large share of the population"
+
+---
+
+## THE AZIZA INTEGRITY TEST
+
+Before any output is finalized, confirm:
+- Every dimension has a documented finding or documented attempt with specific investigation instruction
+- Every recommendation traces to a specific matrix cell
+- No claim made cannot be labeled [Observed], [Inferred], or [Unverifiable]
+- The regional literacy table has been used — not ignored
+- The APDP cross-border data pipeline audit has been completed, not assumed clean
+- The PI-SPI June 2026 deadline assessed: does this product need to integrate before or after?
+- Payment idempotency addressed for all transaction integrations
+- The naira/CFA border dynamic assessed: does the product's payment architecture break for users whose mental model is in naira?
+- The Vodoun gatekeeper question answered for health, finance, justice, or community trust products: which Hounon or Bokonon authority is relevant, and how do we initiate engagement?
+- The informal economy assessed as primary user base: how does this product work for a Dantokpa market trader who is female, conducts business in Fon, uses MTN MoMo, and has 35% French literacy?
+
+---
+
+Tags: Benin AI adaptation, Fon NLP, Gbe languages, Vodoun social architecture, Zangbeto authority, MTN MoMo, Moov Money, PI-SPI WAEMU, APDP compliance, Dantokpa market design, transit economy, naira CFA border dynamics, voice-first design, USSD fallback, Yoruba cross-border NLP, AZIZA framework, Francophone West Africa, BCEAO fintech</code></pre>
+    </div>
+
+    <!-- ═══ WHAT MAKES BENIN DIFFERENT ═══ -->
+    <div class="section-title"><span>02</span> What Makes Benin Different</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">The five structural facts that make Benin illegible to frameworks built for Senegal, Mali, or Nigeria.</p>
+
+    <div class="vodoun-callout">
+      <p class="label">◈ The missing third gatekeeper — Vodoun</p>
+      <p>Every West Africa product framework identifies two gatekeeper tracks: church and mosque. Benin requires three. Vodoun is practiced by an estimated 40–50% of the population, legally recognized since the 1991 constitution, and given a national public holiday (January 10, National Voodoo Day). <strong>A health, finance, or justice product that secures endorsement from Catholic bishops and imams but ignores Vodoun authority has not secured social license in Benin. It has secured social license in a subset of Benin.</strong></p>
+    </div>
+
+    <table class="std-table">
+      <thead>
+        <tr><th>Structural fact</th><th>Why it matters for product deployment</th><th>Common misread</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fon is the urban vernacular</td>
+          <td class="td-accent">Cotonou commerce, community, and emotional registers operate in Fon. French handles official contexts only. A French-first product reaches ~15% of the population conducting their lives in French.</td>
+          <td>"French-official = French-primary." Wrong. Fon has no production-grade NLP. Building for the target market requires building Fon ASR from the ground up.</td>
+        </tr>
+        <tr>
+          <td>Dantokpa is the economic center</td>
+          <td class="td-accent">One of the largest open-air markets in West Africa. Most economically active Beninese interact with it. Informal market traders — predominantly women — are the primary economic decision-makers, not secondary users.</td>
+          <td>"Target formal-sector Cotonou users first." The formal sector is a small fraction of economic activity. Designing for formal-sector assumptions (French literacy, bank account, quiet office) excludes the majority.</td>
+        </tr>
+        <tr>
+          <td>Transit economy serves four nations</td>
+          <td class="td-accent">Cotonou port and the Parakou corridor are the commercial lifeline for Niger, Mali, Burkina Faso, and Chad. A product designed for this corridor serves trade flows of 60–70M people, not 14M.</td>
+          <td>"Small $17B GDP market." The formal GDP number captures the formal economy. The transit economy — and the products serving it — is categorically underrepresented in that figure.</td>
+        </tr>
+        <tr>
+          <td>Nigeria border is a continuous reality</td>
+          <td class="td-warn">Naira/CFA arbitrage, Nigerian SIM cards in active use, Yoruba cultural continuum in south-east, Nollywood as shared youth register. The Lagos-Cotonou axis is one economic zone with two regulatory systems.</td>
+          <td>"Treat Benin and Nigeria as separate markets." Users at the Sèmè border do not. Products that do will have authentication failures, pricing logic breaks, and unexplained behavior in the border economy.</td>
+        </tr>
+        <tr>
+          <td>PI-SPI at 6 institutions</td>
+          <td class="td-accent">Behind Senegal (19) and Côte d'Ivoire (15), but the June 30, 2026 BCEAO deadline is an integration opportunity. First movers gain cross-institution settlement before it becomes table stakes.</td>
+          <td>"Wait and see on PI-SPI." The deadline creates a competitive window. Products that integrate early have the rails; products that wait inherit them as baseline expectation.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ═══ THREE-TRACK GATEKEEPER ═══ -->
+    <div class="section-title"><span>03</span> The Three-Track Social License Architecture</div>
+
+    <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--bb-6);">
+      No other West African country in this framework has three parallel gatekeeper tracks operating simultaneously across the same territory. Each track operates independently. Endorsement in one track does not transfer to the others.
+    </p>
+
+    <div class="gatekeeper-grid">
+      <div class="gk-card vodoun">
+        <p class="gk-label">Track 1 — Vodoun Authority</p>
+        <p><strong>Who:</strong> Hounon (Vodoun priests), Bokonon (diviners), Zangbeto societies.<br><br><strong>Where:</strong> Zou, Couffo, Atlantique, Ouémé departments — strongest in the Vodoun heartland south of Parakou.<br><br><strong>Sectors:</strong> Health, healing, financial risk, community justice, dispute resolution. Any product touching these sectors requires Vodoun community endorsement — not as a reputational nicety, but because Vodoun healers and authorities are the first recourse for a large share of the population.</p>
+      </div>
+      <div class="gk-card church">
+        <p class="gk-label">Track 2 — Christian Networks</p>
+        <p><strong>Who:</strong> Catholic Church (majority south), Pentecostal/Charismatic (growing urban Cotonou).<br><br><strong>Where:</strong> Atlantique, Littoral (Cotonou), Ouémé (Porto-Novo), Mono, Couffo.<br><br><strong>Sectors:</strong> Education, health, savings, microfinance. Catholic networks have institutional depth; Pentecostal networks have urban reach and younger demographic. Both expect reciprocal endorsement.</p>
+      </div>
+      <div class="gk-card mosque">
+        <p class="gk-label">Track 3 — Islamic Authority</p>
+        <p><strong>Who:</strong> Imams, traditional rulers (emirate-adjacent structures), Sufi-influenced community leaders.<br><br><strong>Where:</strong> Alibori, Borgou, Atacora departments — concentrated in the north. (~25–30% of national population.)<br><br><strong>Sectors:</strong> Finance (Islamic finance compliance required), agriculture, education. Northern deployment without imam and traditional ruler endorsement will encounter structural adoption resistance.</p>
+      </div>
+    </div>
+
+    <!-- ═══ COMMANDS ═══ -->
+    <div class="section-title"><span>04</span> Command Reference</div>
+
+    <p style="margin-bottom: 24px; font-size: 0.9rem; color: var(--bb-6);">
+      All eight commands follow: <code>command [product name]</code> — optionally followed by context flags like market region, sector, or existing stack.
+    </p>
+
+    <table class="cmd-table">
+      <thead><tr><th>Command</th><th>What It Produces</th></tr></thead>
+      <tbody>
+        <tr><td>aziza</td><td>Full six-dimension audit matrix + strategic deployment brief with Benin-specific critical path</td></tr>
+        <tr><td>lingua</td><td>Fon NLP gap closure plan, French-Fon code-switching protocol, Yoruba tone protocol, northern language stack</td></tr>
+        <tr><td>rails</td><td>MTN MoMo + Moov + Wave integration, PI-SPI first-mover strategy, naira/CFA border handling, Dantokpa transaction design</td></tr>
+        <tr><td>voice</td><td>Cotonou vs. interior interface bifurcation, Dantokpa market standard, ambient noise handling, transit trader multi-language UX</td></tr>
+        <tr><td>comply</td><td>APDP Law No. 2009-09 roadmap, BCEAO/CENTIF-Bénin overlay, ARCEP USSD licensing, Fon audio consent framework</td></tr>
+        <tr><td>culture</td><td>Three-track gatekeeper map, Vodoun engagement protocol, Zangbeto authority assessment, market women network alignment</td></tr>
+        <tr><td>roadmap</td><td>Three-phase plan; Phase 1 gated on idempotency + APDP + border handling; Phase 3 transit corridor expansion</td></tr>
+        <tr><td>data</td><td>INSAE + BCEAO + Masakhane source stack; Dantokpa field research requirements; SODECO cotton sector red flag</td></tr>
+      </tbody>
+    </table>
+
+    <div class="command-grid">
+
+      <!-- aziza -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">aziza</div>
+          <div class="cmd-desc">
+            <strong>Full Adaptation Audit + Deployment Brief</strong>
+            <span>Six-dimension diagnostic matrix + strategic brief. The matrix is evidence; the brief is argument. Never collapsed.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">D1</div><p><strong>Linguistic Architecture</strong> — Fon NLP gap (no production-grade ASR or TTS); French-Fon code-switching as default Cotonou register; Yoruba tone-aware requirement for south-east border corridor; northern Bariba/Dendi stack.</p></li>
+            <li><div class="num">D2</div><p><strong>Interface and Interaction Model</strong> — Department-level literacy calibration (Alibori ~20% through Cotonou ~65%); Dantokpa market standard (30 seconds, one-handed, ambient noise, no French required).</p></li>
+            <li><div class="num">D3</div><p><strong>Infrastructure</strong> — ~70–75% 4G coverage; feature phones active in north (USSD required); Nigeria border SIM bleed (+234 handling); session design for <5 minutes given power reliability.</p></li>
+            <li><div class="num">D4</div><p><strong>Financial Integration</strong> — MTN MoMo primary; Moov secondary; Wave emerging; PI-SPI at 6 institutions with June 2026 first-mover window; naira/CFA arbitrage as persistent operational context.</p></li>
+            <li><div class="num">D5</div><p><strong>Regulatory and Data Sovereignty</strong> — APDP Law No. 2009-09 prior notification; BCEAO e-money directive; CENTIF-Bénin AML/CFT; ARCEP for USSD; cross-border pipeline audit required.</p></li>
+            <li><div class="num">D6</div><p><strong>Cultural and Social Architecture</strong> — Three-track gatekeeper architecture (Vodoun + Church + Mosque); Zangbeto community authority; Dantokpa market women as primary users; transit corridor cultural code-switching.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>aziza HealthBot — primary market: Cotonou and Abomey</code>
+            <code>aziza AgriApp — sector: cotton agritech, primary market: Borgou region</code>
+            <code>aziza TransitApp — sector: logistics, Cotonou port to Malanville corridor</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- lingua -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">lingua</div>
+          <div class="cmd-desc">
+            <strong>Language and NLP Strategy</strong>
+            <span>Fon gap closure plan, French-Fon code-switching, Yoruba tone protocol, northern language stack, voice synthesis spec.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="alert">
+            <strong>French-language support is not Benin localization.</strong> French is the official language. Fon is the primary urban vernacular. A product handling only French reaches the 15% who conduct their commercial and social lives primarily in French — and calls itself a Benin product.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Language Priority Stack</strong> — Fon + French (Tier 1 Cotonou); Yoruba/Nagot (Tier 1 south-east border); Bariba/Dendi (Tier 2 north); Mina/Ewe (Tier 2 south-west); Hausa (Tier 3 transit corridor).</p></li>
+            <li><div class="num">2</div><p><strong>Fon NLP Gap Closure Plan</strong> — Target 50+ hours minimum voice corpus; Masakhane data protocols; tonal and morphological annotation required; no production-grade starting point exists — this is built from scratch. Budget and timeline estimate required before committing to voice features.</p></li>
+            <li><div class="num">3</div><p><strong>Dataset Map</strong> — FLORES-200 partial (Fon, Gbe cluster emerging); MasakhaNER + YorùbáTwi for Yoruba; MADLAD-400 (Fula) for northern Fulani; Mozilla Common Voice Fon (limited).</p></li>
+            <li><div class="num">4</div><p><strong>French-Fon Code-Switching Protocol</strong> — Utterance-level language detection; Fon handles emotional/market/community registers; French handles formal/technical. Production target is a hybrid pipeline, not two separate modes.</p></li>
+            <li><div class="num">5</div><p><strong>Yoruba Tone Protocol</strong> — 78.8% WER in global models on Yoruba; tone-aware ASR required for south-east border corridor; same architectural response as Nigeria south-west deployment.</p></li>
+            <li><div class="num">6</div><p><strong>Northern Language Stack</strong> — Bariba and Dendi: no training corpus; USSD-first as floor while NLP is non-viable; scoping for corpus collection in Phase 3 if northern reach is a product goal.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>lingua HealthBot — target: Fon-speaking urban women in Cotonou and Bohicon</code>
+            <code>lingua TransitApp — target: Parakou corridor traders, Fon/Hausa/French mix</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- rails -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">rails</div>
+          <div class="cmd-desc">
+            <strong>Mobile Money Integration Plan</strong>
+            <span>MTN MoMo + Moov + Wave. PI-SPI first-mover window. Naira/CFA border handling. Dantokpa 30-second transaction standard.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="callout">
+            <strong>PI-SPI first-mover window closes June 30, 2026.</strong> Benin has 6 authorized institutions — the lowest PI-SPI readiness in this framework. Products that integrate before the deadline gain cross-institution settlement capability. Products that wait inherit it as table stakes with no competitive advantage.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Integration Architecture</strong> — MTN MoMo first; Moov Money second; Wave third (if Benin activation confirmed). Multi-rail justified by market structure — unlike Ghana's GhIPSS, Benin has no single interoperability standard yet.</p></li>
+            <li><div class="num">2</div><p><strong>MTN MoMo API</strong> — E.164 format (+229 primary; +234 explicit handling for border users); HMAC signing; idempotency key on every call; webhook for transaction state.</p></li>
+            <li><div class="num">3</div><p><strong>Moov Money Specification</strong> — SDK vs. API approach; interior market reach assessment; verify endpoint documentation before committing.</p></li>
+            <li><div class="num">4</div><p><strong>Wave Assessment</strong> — Current Benin activation status; if live: lower-fee model creates pricing strategy implications for competitive positioning.</p></li>
+            <li><div class="num">5</div><p><strong>Dantokpa Transaction Design Standard</strong> — <30 second completion; one-handed; ambient noise resilience for voice confirmation; offline queue for intermittent connectivity; Fon audio confirmation of transaction state.</p></li>
+            <li><div class="num">6</div><p><strong>Naira/CFA Border Handling</strong> — +234 number format in user registration and payment flows; dual-currency display for border-facing product interfaces; do not design payment flows that break when user's mental model is in naira.</p></li>
+            <li><div class="num">7</div><p><strong>CENTIF-Bénin / BCEAO Compliance</strong> — AML/CFT reportable threshold detection; KYC requirements; e-money license scope assessment before building payment features.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>rails DantokpaApp — sector: informal trade finance, Cotonou market</code>
+            <code>rails TransitApp — border handling required: Sèmè and Malanville corridors</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- voice -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">voice</div>
+          <div class="cmd-desc">
+            <strong>Voice-First UX Adaptation</strong>
+            <span>Fon voice architecture. Dantokpa market standard. Transit trader multi-language interface. Comprehension testing triangle.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <div class="info">
+            <strong>The Dantokpa benchmark:</strong> Any commerce, finance, or logistics product claiming to serve the Beninese informal economy must answer: can a market trader use the core feature in under 30 seconds, one-handed, in ambient market noise, without reading French? If not, the product is not built for its stated users.
+          </div>
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Regional Literacy Audit</strong> — Alibori ~20%, Borgou ~28%, Zou ~38%, Cotonou ~65%. A single interface design cannot serve all. The north-south literacy gap in Benin rivals Ghana's — and like Ghana, it requires deliberate bifurcation.</p></li>
+            <li><div class="num">2</div><p><strong>Fon Voice Architecture</strong> — Primary input: Fon voice query. Primary output: spoken Fon response. French as secondary/formal layer. No production-grade Fon TTS currently exists — must be built. Cotonou-accent French as interim pending corpus development.</p></li>
+            <li><div class="num">3</div><p><strong>Dantokpa Market Interface Standard</strong> — Ambient noise handling (market vendors cannot use standard voice input without noise cancellation); one-handed operation; offline queue for connectivity drops; transaction completion <30 seconds.</p></li>
+            <li><div class="num">4</div><p><strong>Transit Trader Interface</strong> — Fon/Hausa/French quick-language switching for Parakou corridor; naira/CFA dual-display for pricing; designed for users moving between linguistic registers throughout a single trading day.</p></li>
+            <li><div class="num">5</div><p><strong>Icon Library</strong> — CFA franc, kola nut, Dantokpa market stall references, Fon ceremonial cloth. No generic Material Design. No single religious visual register (Vodoun, cross, crescent must all be treated with equal neutrality).</p></li>
+            <li><div class="num">6</div><p><strong>Comprehension Testing Triangle</strong> — Cotonou (urban Fon-speaking), Parakou (northern transit), and Lokossa or Abomey (interior Vodoun heartland). These three points cannot be collapsed into one user profile.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>voice FinanceApp — target: Dantokpa market women traders</code>
+            <code>voice AgriApp — primary market: Borgou region, Bariba-speaking rural users</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- comply -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">comply</div>
+          <div class="cmd-desc">
+            <strong>APDP and BCEAO Regulatory Roadmap</strong>
+            <span>Law No. 2009-09 notification, BCEAO/CENTIF-Bénin overlay, ARCEP USSD licensing, Fon audio consent framework.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>APDP Notification</strong> — Prior notification required before any data collection begins; 4–8 week typical timeline; documentation of purpose, data categories, retention, security measures; scope tightly.</p></li>
+            <li><div class="num">2</div><p><strong>Sensitive Data Authorization</strong> — Biometrics, health, location require explicit prior authorization; separate process; longer timeline. Scope to stated purpose — APDP will scrutinize scope creep.</p></li>
+            <li><div class="num">3</div><p><strong>Cross-Border Pipeline Audit</strong> — Firebase, Google Analytics, Twilio, Segment, Mixpanel create APDP cross-border exposure. Map every data flow before launch. Consent architecture or Standard Contractual Clauses required for non-adequate destinations.</p></li>
+            <li><div class="num">4</div><p><strong>BCEAO/CENTIF-Bénin Overlay</strong> — For payment products: e-money license assessment; PI-SPI technical integration against June 2026 deadline; AML/CFT reportable threshold detection and suspicious activity reporting.</p></li>
+            <li><div class="num">5</div><p><strong>ARCEP Assessment</strong> — If product uses USSD or value-added SMS: spectrum and VAS licensing required; engage ARCEP before deploying. USSD is a primary channel for rural north — not deploying it to avoid ARCEP licensing is not a viable strategy.</p></li>
+            <li><div class="num">6</div><p><strong>Fon Audio Consent Framework</strong> — French-language consent forms are legally valid but exclude the majority of the product's intended users. Fon audio consent — spoken summary of data use with voice-recorded acknowledgment — is the functional standard for non-literate users.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>comply HealthApp — data type: health records and location tracking</code>
+            <code>comply FinanceApp — stack: Firebase, Stripe, AWS EU-West (all flagged)</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- culture -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">culture</div>
+          <div class="cmd-desc">
+            <strong>Social and Cultural Adaptation Brief</strong>
+            <span>Vodoun engagement protocol, Zangbeto community authority, market women network alignment, transit corridor cultural map.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>Social License Map — Three-Track Architecture</strong> — (a) Vodoun: Hounon and Bokonon for health/finance/justice products; (b) Catholic/Pentecostal for Cotonou southern urban; (c) Imam/traditional ruler for northern deployment. Mapped by department, not nationally.</p></li>
+            <li><div class="num">2</div><p><strong>Vodoun Engagement Protocol</strong> — Identify relevant Vodoun authority for product sector; understand what endorsement looks like in Vodoun cultural terms; what product design choices read as disrespectful of Vodoun practice and what that costs in community trust.</p></li>
+            <li><div class="num">3</div><p><strong>Zangbeto Community Authority</strong> — For credit, dispute resolution, or community justice adjacent products: identify which departments have active Zangbeto authority; engagement process; what social contracts Zangbeto enforce in those areas.</p></li>
+            <li><div class="num">4</div><p><strong>Market Women Network Alignment</strong> — Female traders in Dantokpa and interior markets are the primary economic decision-makers in the informal sector. Market women's associations are distribution and trust infrastructure. Financial and commerce products with male-primary UX default will miss their highest-frequency users.</p></li>
+            <li><div class="num">5</div><p><strong>Transit Corridor Cultural Map</strong> — The Cotonou-Parakou-Malanville corridor passes through Fon, Yoruba/Nagot, Bariba, Dendi, Fulani, and Hausa communities. Products traveling this corridor require cultural code-switching — a single national AI tone is not viable.</p></li>
+            <li><div class="num">6</div><p><strong>Content Moderation Calibration</strong> — Vodoun imagery (masquerades, Zangbeto forms, sacred objects) will be incorrectly flagged by Western-trained moderation models. Fon ceremonial contexts; northern Islamic imagery. Configure before launch — not after the first community complaint.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>culture HealthApp — sector: community health, Zou and Couffo departments</code>
+            <code>culture FinanceApp — sector: informal trade finance, Dantokpa and Cotonou</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- roadmap -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">roadmap</div>
+          <div class="cmd-desc">
+            <strong>Phased Implementation Plan</strong>
+            <span>Three phases over 8–16 months. Phase 1 longer than regional baseline — Fon NLP requires preparation time; PI-SPI window requires early scoping.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">P1</div><p><strong>Foundation (Months 1–4)</strong> — APDP notification filed; MTN MoMo integrated with idempotency; offline-first tested at 2G on 3GB RAM Android; Nigeria border number format (+234) handled; BCEAO compliance assessed; PI-SPI integration scoped against June 2026 deadline. <em>Gate: all items verified before Phase 2.</em></p></li>
+            <li><div class="num">P2</div><p><strong>Localization (Months 4–8)</strong> — Fon voice dataset collection initiated (50+ hours, Masakhane protocols); interim French-Fon code-switching text pipeline deployed; icon library validated in Cotonou and one interior department; three-track gatekeeper engagement initiated; Moov Money added; Wave activated if confirmed live; Vodoun/ceremonial content moderation reconfigured. <em>Gate: >80% task completion without assistance in Cotonou and ≥1 interior department.</em></p></li>
+            <li><div class="num">P3</div><p><strong>Reach Expansion (Months 8–16)</strong> — Fon TTS and ASR production-ready (if corpus targets met); Bariba or Dendi USSD+voice for north; transit corridor variant with naira/CFA dual-display; PI-SPI integration completed; Parakou as gateway for Niger/Burkina corridor; landlocked-market corridor partnerships formalized.</p></li>
+          </ul>
+          <div class="callout" style="margin-top:16px;">
+            <strong>Why Phase 1 is 4 months (not 3):</strong> Fon NLP has no starting point — even scoping the corpus collection methodology requires consultation with Masakhane before data collection begins. PI-SPI integration must be scoped early to make the June 2026 window. These are sequential dependencies, not parallel tasks.
+          </div>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>roadmap HealthBot — timeline: 10 months, team: 3 engineers</code>
+            <code>roadmap TransitApp — phase 1 complete: APDP filed, MTN MoMo integrated</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- data -->
+      <div class="cmd-card">
+        <div class="cmd-header" onclick="toggleCmd(this)">
+          <div class="cmd-pill">data</div>
+          <div class="cmd-desc">
+            <strong>Data Source Intelligence Brief</strong>
+            <span>INSAE + BCEAO + Masakhane source stack. Dantokpa field research requirements. SODECO cotton sector red flag. Transit logistics research protocol.</span>
+          </div>
+          <div class="cmd-toggle">+</div>
+        </div>
+        <div class="cmd-body">
+          <ul class="output-list">
+            <li><div class="num">1</div><p><strong>INSAE</strong> — insae-bj.org. Department-level literacy, income, phone ownership. Healthy: target department literacy >50% if text-first. Concerning: target department literacy <35% without voice-first plan in place.</p></li>
+            <li><div class="num">2</div><p><strong>Masakhane</strong> — masakhane.io. ASR/BLEU benchmarks for Fon and Gbe languages. Healthy: any published Fon benchmark exists. Concerning: no Fon benchmark = building from absolute zero with no reference accuracy target.</p></li>
+            <li><div class="num">3</div><p><strong>BCEAO Annual Report</strong> — bceao.int. Mobile money volumes; PI-SPI authorized institution count for Benin. Healthy: Benin PI-SPI count growing toward WAEMU average. Concerning: count stagnant at 6 with no announced additions.</p></li>
+            <li><div class="num">4</div><p><strong>Sector Red Flags</strong> — Agritech: cotton sector intermediated by SODECO; map SODECO's role before building in cotton commerce. Healthtech: Vodoun healers are first recourse — positioning against them will lose. Fintech: PI-SPI window closes June 2026 — scope now. Transit logistics: official port manifest data understates actual volumes; field research is essential, not optional.</p></li>
+            <li><div class="num">5</div><p><strong>Field Research Requirements</strong> — Fon voice collection (50+ speakers, Cotonou vs. interior); Dantokpa observation (transaction timing, device handling, ambient noise); Vodoun authority mapping; icon comprehension at Cotonou, Parakou, Abomey minimum; Sèmè and Malanville border research for naira/CFA dynamics.</p></li>
+          </ul>
+          <div class="invoke-block">
+            <div class="label">Example invocations</div>
+            <code>data AgriApp — sector: cotton and food crops, Borgou and Atacora regions</code>
+            <code>data TransitApp — sector: port logistics, Cotonou to Malanville corridor</code>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /command-grid -->
+
+    <!-- ═══ CROSSWALK ═══ -->
+    <div class="section-title"><span>05</span> Framework Crosswalk — Senegal · Nigeria · Benin</div>
+
+    <p style="margin-bottom: 16px; font-size: 0.9rem; color: var(--bb-6);">For teams operating across multiple West African markets. Benin column highlighted — where it diverges from both neighboring frameworks.</p>
+
+    <table class="crosswalk-table">
+      <thead>
+        <tr><th>Dimension</th><th>TERANGA (Senegal)</th><th>Nigeria</th><th>AZIZA (Benin)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Urban vernacular</td><td>Wolof</td><td>Pidgin / regional</td><td class="aziza-col">Fon</td></tr>
+        <tr><td>Official language</td><td>French</td><td>English</td><td class="aziza-col">French</td></tr>
+        <tr><td>NLP baseline trap</td><td>French ≠ sufficient; need Wolof layer</td><td>"English-first" works in south; fails in north</td><td class="aziza-col">French ≠ sufficient; Fon has no production-grade NLP — build from scratch</td></tr>
+        <tr><td>Payment rail</td><td>Wave dominant (~50%+)</td><td>OPay / PalmPay / Moniepoint</td><td class="aziza-col">MTN MoMo + Moov + Wave (emerging)</td></tr>
+        <tr><td>Interoperability</td><td>PI-SPI: 19 institutions (advanced)</td><td>CBN/NIBSS independent system</td><td class="aziza-col">PI-SPI: 6 institutions (emerging) — June 2026 first-mover window</td></tr>
+        <tr><td>Primary social gatekeeper</td><td>Marabout / Sufi brotherhood</td><td>Pentecostal pastor (south) + Emir (north)</td><td class="aziza-col">Vodoun community leader + Church (south) + Imam (north) — three parallel tracks</td></tr>
+        <tr><td>Unique gatekeeper</td><td>Dahira mutual-aid networks</td><td>Iyaloja market women networks</td><td class="aziza-col">Zangbeto secret societies</td></tr>
+        <tr><td>Market women structure</td><td>Dahira-adjacent community savings</td><td>Iyaloja (formal market women leadership)</td><td class="aziza-col">Dantokpa market women — informal, dominant in economic decision-making</td></tr>
+        <tr><td>Currency</td><td>CFA franc (Euro-pegged, stable)</td><td>Naira (volatile, floating)</td><td class="aziza-col">CFA franc — but naira arbitrage is the operational reality in the south</td></tr>
+        <tr><td>Cross-border dynamic</td><td>Gambia/Mauritania minor</td><td>Massive; defines import economy</td><td class="aziza-col">Nigeria border is primary economic reality in south; Benin is gateway for four landlocked nations</td></tr>
+        <tr><td>Transit economy role</td><td>Minor</td><td>Receiving end (imports)</td><td class="aziza-col">Core identity — Cotonou port serves Niger, Mali, Burkina Faso, Chad</td></tr>
+        <tr><td>Data regulator</td><td>CDP / Act 2008-12</td><td>NDPC / NDPA 2023</td><td class="aziza-col">APDP / Law No. 2009-09</td></tr>
+        <tr><td>Financial regulator</td><td>BCEAO / WAEMU</td><td>CBN (independent)</td><td class="aziza-col">BCEAO / WAEMU + CENTIF-Bénin (AML/CFT)</td></tr>
+        <tr><td>Yoruba ASR problem</td><td>Not applicable</td><td>Critical south-west (78.8% WER)</td><td class="aziza-col">Critical south-east border corridor — same Yoruba tone-aware ASR requirement</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ═══ ANALYTICAL LENSES ═══ -->
+    <div class="section-title"><span>06</span> Analytical Lenses</div>
+
+    <div class="lens-block">
+      <h3>The Formal/Informal Bifurcation as the Central Diagnostic</h3>
+      <p>Benin's $17B GDP is a formal economy figure. The informal economy — Dantokpa, border trade, transit corridors, subsistence agriculture — is larger by participant count and daily transaction volume. Before any other analysis: <em>is this product designed for the formal economy or the informal economy?</em> Most products that claim to serve "Beninese users" reach at most 20–30% of economically active Beninese. Name that scope honestly.</p>
+    </div>
+    <div class="lens-block">
+      <h3>The Vodoun Blind Spot as a Systematic Failure Mode</h3>
+      <p>Every product framework that enters Benin from outside eventually discovers Vodoun's role in social trust and community authority — usually after unexplained adoption failures. AZIZA places Vodoun in the architecture from the beginning because it is easier to design for it than to reverse-engineer around it after launch.</p>
+    </div>
+    <div class="lens-block">
+      <h3>Transit as Leverage, Not Complication</h3>
+      <p>Benin's position as transit gateway for four landlocked economies is typically treated as a logistical complexity. For products in commerce, logistics, and finance, it is structural leverage: a product that works on the Cotonou-Parakou-Malanville corridor does not serve 14 million people. It serves the trade flows of 60–70 million.</p>
+    </div>
+    <div class="lens-block">
+      <h3>The Nigeria Border as Continuous Reality</h3>
+      <p>The Sèmè border is not a line on a map for the people who live near it and trade across it. The naira/CFA exchange, Nigerian SIM cards, Nollywood culture, and Yoruba language continuum mean the Lagos-Cotonou axis is a single economic and cultural zone with two regulatory systems. Products that treat it as two separate markets will have unexplained behavior in the border zone.</p>
+    </div>
+
+    <!-- ═══ LANGUAGE RULES ═══ -->
+    <div class="section-title"><span>07</span> Language Rules</div>
+
+    <div class="rule-pair">
+      <div class="rule-never">
+        <p class="rule-label">Never write</p>
+        <ul class="rule-list">
+          <li><code>"French-speaking West African market"</code> treating Benin and Senegal as equivalent deployments → Benin's primary urban vernacular is Fon; the only similarity is official language.</li>
+          <li><code>"Stable WAEMU economy"</code> as reason to skip financial analysis → CFA stability ≠ payment rail maturity; Benin has 6 PI-SPI institutions.</li>
+          <li><code>"Traditional religion"</code> as footnote → Vodoun is practiced by ~40–50% of population and is constitutionally recognized. It is not a footnote.</li>
+          <li><code>"The port city of Cotonou"</code> as shorthand for the whole market → Alibori and Borgou have literacy below 30% and require completely different product assumptions.</li>
+          <li><code>"Leverage Nigeria proximity"</code> without specifying what that means → specify: Yoruba cultural continuum; naira/CFA arbitrage; Nigerian SIMs in user base; Nollywood shared cultural register.</li>
+        </ul>
+      </div>
+      <div class="rule-always">
+        <p class="rule-label">Always write</p>
+        <ul class="rule-list">
+          <li>"Given a Dantokpa market trader user base with [X]% French literacy, a text-first French interface is inaccessible to [specific number] of intended users."</li>
+          <li>"MTN MoMo integration requires idempotency because interior connectivity produces duplicate transaction attempts — and double-disbursements in informal market contexts are community events, not support tickets."</li>
+          <li>"PI-SPI integration with the June 30, 2026 BCEAO deadline creates a first-mover opportunity; completing integration before the deadline yields cross-institution settlement capability post-deadline entrants inherit as table stakes."</li>
+          <li>"Any health product targeting southern Benin must assess Vodoun community endorsement — not as a reputational nicety, but because Vodoun healers are the first recourse for a large share of the population."</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ INTEGRITY TEST ═══ -->
+    <div class="section-title"><span>08</span> The AZIZA Integrity Test</div>
+
+    <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--bb-6);">
+      Before any output is finalized, confirm each of the following. Items marked
+      <span class="aziza-pill">Benin-specific</span> have no equivalent in the Senegal, Mali, or Ghana baselines.
+    </p>
+
+    <ul class="integrity-list">
+      <li><span class="check">✓</span> Every dimension has a documented finding or documented attempt with a specific investigation instruction.</li>
+      <li><span class="check">✓</span> Every recommendation in the deployment brief traces to a specific matrix cell.</li>
+      <li><span class="check-aziza">✓</span> <span>The Vodoun gatekeeper question answered for health, finance, justice, or community trust products: which Hounon or Bokonon is relevant, and how do we initiate engagement? <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check-aziza">✓</span> <span>The informal economy assessed as primary user base: how does this product work for a Dantokpa market trader who is female, conducts business in Fon, uses MTN MoMo, and has 35% French literacy? <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check-aziza">✓</span> <span>The naira/CFA border dynamic assessed: does the product's payment or pricing architecture break for users whose mental model is in naira? <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check-aziza">✓</span> <span>+234 number format handled explicitly in user registration and payment flows. <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check-aziza">✓</span> <span>PI-SPI June 2026 deadline assessed: does this product need to integrate before or after? First-mover window documented. <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check-aziza">✓</span> <span>Fon NLP gap addressed — not worked around. Corpus collection plan or formal deferral with rationale documented. <span class="aziza-pill">Benin-specific</span></span></li>
+      <li><span class="check">✓</span> APDP cross-border data pipeline audit completed; not assumed clean.</li>
+      <li><span class="check">✓</span> Payment idempotency addressed for all transaction integrations.</li>
+      <li><span class="check">✓</span> The regional literacy table used — not ignored. Department-level variation named, not averaged.</li>
+    </ul>
+
+  </main>
+
+  <footer>
+    Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+  </footer>
+
+  <script>
+    function toggleCmd(header) {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      header.classList.toggle('active', !isOpen);
+    }
+  </script>
+
+</body>
+</html>

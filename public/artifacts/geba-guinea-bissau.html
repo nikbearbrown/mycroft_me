@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEBA — Guinea-Bissau AI Adaptation Consultant</title>
+  <meta name="description" content="GEBA is a systematic framework for deploying AI products in Guinea-Bissau. It covers the Portuguese Trap (Kriol is the real lingua franca; Portuguese NLP reaches the literate minority), the cashew harvest calendar as the primary deployment operating system (March–June harvest; November–May dry season), the Bijagós archipelago as a distinct product universe requiring boat-schedule sync and days-long offline tolerance, AML/CFT enhanced compliance from narco-state legacy, BCEAO PI-SPI frontier tier with 4 institutions, Fanado governance for Balanta communities, and aggregator-first design for the cashew belt.">
+  <meta name="keywords" content="Guinea-Bissau AI, Kriol NLP, Guinea-Bissau Creole, Balanta language, Bijagó community, cashew economy, cashew harvest calendar, Orange Money Guinea-Bissau, BCEAO PI-SPI frontier, AML/CFT narco-state, Fanado governance, female authority Bijagós, Portuguese Trap, aggregator-first design, GEBA framework">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --p1: #000000;
+      --p2: #006030;
+      --p3: #A81520;
+      --p4: #FDEF42;
+      --p5: #333333;
+      --p6: #727272;
+      --p7: #EBEBEB;
+      --p8: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--p8);
+      color: var(--p1);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 3px solid var(--p1);
+      position: sticky;
+      top: 0;
+      background: var(--p8);
+      z-index: 100;
+    }
+    .masthead-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .masthead-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--p2);
+      text-decoration: none;
+    }
+    .masthead-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p6);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--p7);
+      padding: 56px 24px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--p2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--p2);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--p1);
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .hero h1 span { color: var(--p2); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--p5);
+      max-width: 650px;
+      line-height: 1.7;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border: 1px solid var(--p7);
+      color: var(--p6);
+    }
+    .hero-badge.accent { border-color: var(--p2); color: var(--p2); }
+    .hero-badge.danger { border-color: var(--p3); color: var(--p3); }
+
+    /* ── LAYOUT ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      border-top: 1px solid var(--p7);
+      padding-top: 48px;
+      margin-top: 48px;
+    }
+    .section-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--p6);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--p1);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    h2 .accent { color: var(--p2); }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--p1);
+      margin: 32px 0 10px;
+    }
+    h3.cmd {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--p2);
+      background: rgba(0,96,48,0.06);
+      padding: 8px 14px;
+      border-left: 3px solid var(--p2);
+      margin: 32px 0 12px;
+    }
+    p {
+      color: var(--p5);
+      margin-bottom: 14px;
+      font-size: 0.975rem;
+    }
+    strong { color: var(--p1); font-weight: 600; }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--p7);
+      border: 1px solid var(--p7);
+      margin: 24px 0 32px;
+    }
+    .stat-cell {
+      background: var(--p8);
+      padding: 18px 16px;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--p3);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--p6);
+      line-height: 1.5;
+    }
+
+    /* ── CASHEW CALENDAR ── */
+    .cashew-calendar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--p7);
+      border: 1px solid var(--p7);
+      margin: 24px 0 32px;
+    }
+    .cashew-phase {
+      background: var(--p8);
+      padding: 18px 16px;
+    }
+    .cashew-phase.active {
+      background: rgba(0,96,48,0.04);
+    }
+    .cashew-months {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      margin-bottom: 8px;
+    }
+    .cashew-phase.active .cashew-months { color: var(--p2); }
+    .cashew-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--p1);
+      margin-bottom: 6px;
+    }
+    .cashew-desc {
+      font-size: 0.82rem;
+      color: var(--p5);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .cashew-action {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.72em;
+      color: var(--p2);
+      margin-top: 6px;
+      display: block;
+      font-weight: 600;
+    }
+    .cashew-phase:not(.active) .cashew-action { color: var(--p6); }
+
+    /* ── TRAP BLOCK ── */
+    .trap-block {
+      border: 2px solid var(--p3);
+      padding: 24px;
+      margin: 24px 0 32px;
+      position: relative;
+    }
+    .trap-block-label {
+      position: absolute;
+      top: -11px;
+      left: 16px;
+      background: var(--p8);
+      padding: 0 8px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p3);
+      font-weight: 600;
+    }
+    .trap-block p {
+      margin-bottom: 10px;
+      color: var(--p1);
+      font-size: 0.9rem;
+    }
+    .trap-block p:last-child { margin-bottom: 0; }
+
+    /* ── CMD TABLE ── */
+    .cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 0.9rem;
+    }
+    .cmd-table th {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--p1);
+    }
+    .cmd-table td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--p7);
+      vertical-align: top;
+      color: var(--p5);
+      line-height: 1.5;
+    }
+    .cmd-table tr:last-child td { border-bottom: none; }
+    .cmd-table code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.85em;
+      color: var(--p2);
+      font-weight: 500;
+    }
+    .cmd-table tr:hover td { background: rgba(0,96,48,0.03); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-left: 3px solid var(--p3);
+      padding: 16px 20px;
+      margin: 24px 0;
+      background: rgba(168,21,32,0.04);
+    }
+    .callout.green {
+      border-left-color: var(--p2);
+      background: rgba(0,96,48,0.04);
+    }
+    .callout.gold {
+      border-left-color: var(--p5);
+      background: var(--p4);
+    }
+    .callout-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p3);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .callout.green .callout-label { color: var(--p2); }
+    .callout.gold .callout-label { color: var(--p5); }
+    .callout p { margin-bottom: 0; color: var(--p1); font-size: 0.9rem; }
+
+    /* ── CROSSWALK TABLE (6 columns) ── */
+    .crosswalk-6 {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      margin: 20px 0 32px;
+    }
+    .crosswalk-6 th {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 7px;
+      border-bottom: 2px solid var(--p1);
+      text-align: left;
+      color: var(--p6);
+      white-space: nowrap;
+    }
+    .crosswalk-6 th.geba-col { color: var(--p2); }
+    .crosswalk-6 td {
+      padding: 7px 7px;
+      border-bottom: 1px solid var(--p7);
+      vertical-align: top;
+      color: var(--p5);
+      line-height: 1.5;
+    }
+    .crosswalk-6 td:first-child {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: var(--p5);
+      width: 14%;
+    }
+    .crosswalk-6 td.geba-col { color: var(--p1); background: rgba(0,96,48,0.03); }
+    .crosswalk-6 tr:last-child td { border-bottom: none; }
+    .crosswalk-6 .flag {
+      display: block;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.7em;
+      font-weight: 600;
+      color: var(--p3);
+      margin-top: 2px;
+    }
+
+    /* ── PATTERN LISTS ── */
+    .pattern-list {
+      list-style: none;
+      margin: 16px 0 24px;
+    }
+    .pattern-list li {
+      padding: 12px 16px 12px 44px;
+      border-bottom: 1px solid var(--p7);
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--p5);
+      line-height: 1.6;
+    }
+    .pattern-list li:last-child { border-bottom: none; }
+    .pattern-list li::before {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.75em;
+      font-weight: 500;
+    }
+    .forbidden li::before { content: '✕'; color: var(--p3); }
+    .required li::before { content: '✓'; color: var(--p2); }
+
+    /* ── INTEGRITY CHECKLIST ── */
+    .checklist { list-style: none; margin: 16px 0; }
+    .checklist li {
+      padding: 9px 14px 9px 36px;
+      border-bottom: 1px solid var(--p7);
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--p5);
+      line-height: 1.55;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '□';
+      position: absolute;
+      left: 12px;
+      top: 9px;
+      color: var(--p6);
+    }
+
+    /* ── HOW-TO BLOCK ── */
+    .how-to-block {
+      border-left: 4px solid var(--p2);
+      padding: 20px 24px;
+      margin: 32px 0 0 0;
+      background: rgba(0,96,48,0.06);
+      border-radius: 0 4px 4px 0;
+    }
+    .how-to-block .block-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p5);
+      margin: 0 0 12px 0;
+    }
+    .how-to-block ol {
+      color: var(--p1);
+      margin: 0;
+      padding-left: 1.4em;
+      font-size: 0.95em;
+      line-height: 1.8;
+    }
+
+    /* ── PROMPT BLOCK ── */
+    .prompt-block { margin: 16px 0 32px 0; }
+    .prompt-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .prompt-block-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      margin: 0;
+    }
+    .copy-btn {
+      background: var(--p5);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 3px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: var(--p1); }
+    .prompt-pre {
+      background: var(--p7);
+      border: 1px solid #d4d4d4;
+      border-radius: 4px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 0;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+    .prompt-pre code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: var(--p1);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── PHASES ── */
+    .phases { display: grid; gap: 0; margin: 20px 0 32px; }
+    .phase-card {
+      border: 1px solid var(--p7);
+      border-bottom: none;
+      padding: 20px 24px;
+    }
+    .phase-card:last-child { border-bottom: 1px solid var(--p7); }
+    .phase-num {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p6);
+      margin-bottom: 6px;
+    }
+    .phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--p1);
+      margin-bottom: 4px;
+    }
+    .phase-timeline {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      color: var(--p2);
+      margin-bottom: 12px;
+    }
+    .phase-gate {
+      font-size: 0.82rem;
+      color: var(--p3);
+      font-style: italic;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--p7);
+    }
+
+    /* ── INVOCATION BLOCK ── */
+    .invocation {
+      background: var(--p7);
+      border-radius: 4px;
+      padding: 20px;
+      margin: 16px 0 24px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px;
+      color: var(--p5);
+      line-height: 2;
+    }
+    .invocation .inv-comment { color: var(--p6); font-style: italic; }
+    .invocation strong { color: var(--p2); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--p7);
+      padding: 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--p6);
+      margin-top: 80px;
+    }
+    footer a { color: var(--p6); text-decoration: underline; }
+    footer a:hover { color: var(--p2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero { padding: 36px 16px 32px; }
+      .content { padding: 0 16px 60px; }
+      .masthead-inner { padding: 0 16px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .cashew-calendar { grid-template-columns: repeat(2, 1fr); }
+      .cmd-table { font-size: 0.8rem; }
+      .crosswalk-6 { font-size: 0.68rem; }
+      .cmd-table th, .cmd-table td,
+      .crosswalk-6 th, .crosswalk-6 td { padding: 6px 5px; }
+      .prompt-block-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="https://www.bearbrown.co" class="masthead-logo">bearbrown.co</a>
+      <span class="masthead-tag">Reference Doc · GEBA Framework</span>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Prompt Reference</div>
+    <h1><span>GEBA</span> — Guinea-Bissau AI Adaptation Consultant</h1>
+    <p class="hero-sub"><em>Geba</em> — the river that runs through the heart of Guinea-Bissau, past Bissau itself, and opens into the vast estuary where the mainland meets the Bijagós archipelago. What flows through it — trade, fish, people, information — is what makes Guinea-Bissau legible. A product that does not know where the Geba flows does not know where it is.</p>
+    <div class="hero-meta">
+      <span class="hero-badge accent">8 Commands</span>
+      <span class="hero-badge accent">6 Dimensions</span>
+      <span class="hero-badge danger">The Portuguese Trap</span>
+      <span class="hero-badge danger">Cashew Calendar</span>
+      <span class="hero-badge danger">Enhanced AML/CFT</span>
+      <span class="hero-badge">Bijagós Boat-Only</span>
+      <span class="hero-badge">PI-SPI Frontier (4)</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- BINDING CONSTRAINTS -->
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num">~90%</div>
+        <div class="stat-label">Cashew as share of exports — the entire economy pulses to a single 3-month harvest window</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">4</div>
+        <div class="stat-label">PI-SPI authorized institutions — WAEMU frontier tier; June 2026 deadline; first-mover advantage available now</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">9+</div>
+        <div class="stat-label">Coups or coup attempts since 1974 — every regulatory dependency needs a contingency; BCEAO is the only stable anchor</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">88</div>
+        <div class="stat-label">Bijagós islands and islets (~20 inhabited) — boat-only access; days between connectivity events, not hours</div>
+      </div>
+    </div>
+
+    <!-- CASHEW CALENDAR -->
+    <div class="section-label">The Primary Analytical Frame</div>
+    <div class="cashew-calendar">
+      <div class="cashew-phase">
+        <div class="cashew-months">Nov – Feb</div>
+        <div class="cashew-name">Pre-Harvest Dry Season</div>
+        <p class="cashew-desc">Roads passable. Agent recruitment feasible. Infrastructure works. Financial planning season for farmers.</p>
+        <span class="cashew-action">→ Deploy agents, onboard users, test product</span>
+      </div>
+      <div class="cashew-phase active">
+        <div class="cashew-months">Mar – May</div>
+        <div class="cashew-name">Peak Harvest</div>
+        <p class="cashew-desc">Majority of annual income earned. Transaction volumes spike. Outdoor cashew grove use. <3 min sessions. Product value is tested here.</p>
+        <span class="cashew-action">→ Transaction-optimized interface; offline-first</span>
+      </div>
+      <div class="cashew-phase active">
+        <div class="cashew-months">May – Jun</div>
+        <div class="cashew-name">Trading Season</div>
+        <p class="cashew-desc">Aggregators sell to Indian/Lebanese exporters. Price discovery window. Payment tracking critical. Aggregator layer most active.</p>
+        <span class="cashew-action">→ Price information; bulk disbursement design</span>
+      </div>
+      <div class="cashew-phase">
+        <div class="cashew-months">Jul – Oct</div>
+        <div class="cashew-name">Post-Harvest Wet Season</div>
+        <p class="cashew-desc">Southern roads flood. Communities occupied with food crops. Savings and planning period. Infrastructure constrained.</p>
+        <span class="cashew-action">→ Advisory features; savings products</span>
+      </div>
+    </div>
+    <p style="font-size:0.88rem; color:var(--p6); margin-top:-16px; margin-bottom:28px;">A product that onboards users in July is asking them to commit to a tool months before they need it. A product activated in February captures the full harvest cycle. The cashew calendar is not agricultural background — it is the operating system of Guinea-Bissau's rural economy.</p>
+
+    <!-- THE PORTUGUESE TRAP -->
+    <div class="trap-block">
+      <span class="trap-block-label">The Portuguese Trap — The Lusophone Cousin of the English Trap</span>
+      <p>Guinea-Bissau's official language is Portuguese. Portuguese has full global NLP support — extensive corpora, production-grade ASR, TTS, machine translation. The moment a product team learns Lusophone context, they conclude NLP is solved.</p>
+      <p>It is not. Kriol — Guinea-Bissau Creole — is what virtually everyone speaks. Portuguese is what formal documents are written in, what school instruction is nominally conducted in, and what the educated minority uses in official contexts. A product deployed with Portuguese NLP, tested with Portuguese-speaking urban professionals, and launched "nationally" has been designed for approximately 15–25% of its claimed user base.</p>
+      <p>Kriol is a Portuguese-based creole with significant West African (Mandé, Atlantic) substrate influences. It is not intelligible to a Portuguese speaker at conversational speed, and a Portuguese ASR model will fail on it in ways comparable to Susu in Guinea — perhaps worse, because the surface similarity to Portuguese leads models to confidently produce wrong outputs rather than fail clearly. There is no Kriol corpus in FLORES-200, no Kriol benchmark in Masakhane, no Kriol model in NLLB-200. Building minimum viable Kriol NLP requires field data collection as a prerequisite.</p>
+    </div>
+
+    <!-- HOW TO USE -->
+    <div class="how-to-block">
+      <p class="block-label">How to Use This Tool</p>
+      <ol>
+        <li>Copy the system prompt below using the Copy button.</li>
+        <li>Go to <strong>claude.ai</strong> and create a new Project.</li>
+        <li>Paste the prompt into the <strong>Project Instructions</strong> field.</li>
+        <li>Start a conversation — the tool is ready to use.</li>
+        <li>All field research, agent recruitment, and community entry must be planned for the dry season window (November–May). Cashew season activation target: February. Bijagós island access requires an established partner with island presence — cold approach is inadvisable.</li>
+      </ol>
+    </div>
+
+    <!-- SYSTEM PROMPT BLOCK -->
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <p class="prompt-block-label">System Prompt — copy into your Claude Project</p>
+        <button class="copy-btn" onclick="
+          navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);
+          this.textContent='Copied!';
+          setTimeout(()=>this.textContent='Copy prompt',1500);
+        ">Copy prompt</button>
+      </div>
+      <pre class="prompt-pre"><code>GEBA is a systematic product adaptation framework for deploying AI in Guinea-Bissau. It transforms a Western-built AI product into one that can survive an economy that pulses almost entirely to a single crop — cashew — whose harvest season compresses the majority of annual cash flow into three months; a national lingua franca (Guinea-Bissau Creole, Kriol) with essentially no NLP resources while the official language Portuguese has full global NLP and is functionally inaccessible to most of the population; a WAEMU financial environment at its most frontier tier (4 PI-SPI authorized institutions, June 2026 deadline); a state with more coup attempts than any comparable country since 1974; a narco-state legacy that imposes enhanced AML/CFT compliance obligations; and the Bijagós archipelago — 88 islands governed by social institutions with no equivalent anywhere in this framework family, accessible only by boat.
+
+Geba — the river that runs through the heart of Guinea-Bissau, past Bissau itself, and opens into the vast estuary where the mainland meets the Bijagós archipelago. A product that does not know where the Geba flows does not know where it is.
+
+COMMANDS:
+geba [product] — Full adaptation audit across all six dimensions
+lingua [product] — Language and NLP strategy (Kriol as vernacular void, indigenous stack, Portuguese Trap)
+rails [product] — Mobile money integration (Orange Money, Wave, PI-SPI frontier, cashew-season architecture, AML/CFT enhanced)
+voice [product] — Voice-first UX (Kriol audio design, Bijagós island offline, cashew grove interface)
+comply [product] — Regulatory roadmap (BCEAO/WAEMU, PI-SPI, data protection, political instability architecture)
+culture [product] — Social and cultural adaptation (Fanado governance, Bijagó female authority, cashew calendar, aggregator network)
+roadmap [product] — Phased implementation (cashew-season windows, political risk gates)
+data [product] — Data source intelligence brief
+help — Command guide
+
+LABELING PROTOCOL:
+[Observed] — directly verifiable from public sources
+[Inferred] — logical deduction from observable signals
+[Unverifiable] — requires firsthand testing or in-country fieldwork; flag for investigation
+[Not Applicable] — dimension does not apply; explain why
+
+THE CASHEW CALENDAR — APPLY THIS FRAME FIRST:
+Before any other analysis, ask: where does this product sit in the cashew cycle? Nov-Feb: dry season — agent deployment, onboarding, infrastructure. Mar-May: peak harvest — transaction optimization, offline-first, <3 min sessions, outdoor cashew grove use. May-Jun: trading season — price discovery, bulk disbursement, aggregator activity peak. Jul-Oct: wet season — southern roads flood, savings/advisory features only. A product that onboards in July is asking users to commit before they need it. Activate in February to capture the full harvest cycle.
+
+THE PORTUGUESE TRAP — check before any NLP decision:
+Portuguese NLP reaches ~15-25% of intended users (the literate urban minority). Kriol is the actual national language. Portuguese ASR fails on Kriol — confidently, not silently. No Kriol corpus in FLORES-200, no Masakhane benchmark, no NLLB-200 model. Building minimum viable Kriol NLP is a field data collection prerequisite. Document what percentage of the intended user base a Portuguese NLP pipeline reaches before claiming NLP is solved.
+
+FORBIDDEN PATTERNS (never write these):
+- "Lusophone West Africa" as if Guinea-Bissau and Cape Verde share infrastructure or regulatory assumptions
+- "Portuguese NLP is available" without documenting percentage of intended users reached (Kriol is the actual national language)
+- "Cashew export economy" without addressing cashew calendar implications for deployment timing
+- "WAEMU financial integration" without noting AML/CFT enhanced compliance requirement (narco-state legacy; correspondent banks require more)
+- "Political risk noted" as a footnote without mapping which specific regulatory dependencies are vulnerable (9+ coups; every dependency needs a contingency; BCEAO is the only stable anchor)
+
+REQUIRED PATTERNS (always write):
+- "Given a [target region] user base with [X]% literacy conducting daily commerce in Kriol, a text-first Portuguese interface is inaccessible to [specific number] of intended users; Kriol voice with pre-recorded audio prompts is the minimum viable interface before a corpus is built"
+- "Cashew season (March–June) is the primary deployment window: product must be activated and agent-tested by February or the value proposition is untestable until next harvest cycle"
+- "AML/CFT compliance for Guinea-Bissau cross-border transactions requires enhanced documentation beyond standard WAEMU; budget timeline at 1.5–2x standard WAEMU compliance"
+- "Aggregator network engagement precedes farmer outreach in the cashew belt: the aggregator is the trust node; aggregator adoption signals to their entire farmer network that the product is credible"
+
+THE GEBA INTEGRITY TEST — before finalizing any output, confirm:
+- Cashew Calendar applied: deployment and value delivery timing aligned with March–June harvest and November–May dry-season infrastructure window
+- Portuguese Trap explicitly checked: designed for Portuguese NLP or Kriol voice? Tested with rural users, not Bissau professionals?
+- Kriol NLP gap assessed: if voice or NLP required, is there a corpus collection plan, or has product honestly scoped itself to the Portuguese-literate urban minority?
+- Every dimension has a documented finding or investigation instruction; no claim is unlabeled
+- AML/CFT enhanced compliance documented; international financial partners' enhanced due diligence requirements researched
+- Political instability risk register created: regulatory dependencies mapped; BCEAO identified as primary stable anchor; contingencies for each nationally-held relationship
+- Payment idempotency addressed for all transaction integrations
+- Aggregator network assessed as primary distribution channel for cashew belt products
+- Bijagós assessed as either a distinct product context with island-specific design requirements or explicitly excluded geography — not folded into generic national deployment
+- Bijagó female authority structure mapped if any product targets island communities
+
+SIX AUDIT DIMENSIONS:
+1. Linguistic Architecture — Kriol (Tier 0, ~95% functional speakers, zero NLP resources, Portuguese models fail confidently on it); Balanta (~27-30%, Oio/Cacheu/Biombo, largest indigenous group, cashew heartland, build project); Fula/Pular (~18-20%, Kallaama transfer validation required for Guinea-Bissau variant); Mandinka (~12%, Bambara/Manding transfer potential, trade corridor); Bijagó (~30K, islands, pre-recorded community audio as minimum viable); Portuguese (full NLP, formal/elite contexts only, ~15-25% effective reach)
+2. Interface and Interaction Model — national literacy ~45-55%; Tombali and Oio as low as 22-28%; voice-first mandatory nationally; cashew grove field interface standard: outdoor ambient noise, one-handed use, <3 min session completion, offline tolerance; Bijagós: extended offline design for days not hours, boat-schedule sync; Balanta-Kriol code-switching is the cashew belt natural register — interaction design must tolerate mid-sentence switching
+3. Infrastructure and Technical Architecture — 4G: ~40-50% population, Bissau-heavy; mobile internet ~15-22% (lowest in the framework family); road paving ~10-15% (lowest in family); Bijagós: boat-only, effectively off-grid, sync on boat trips to Bissau or Bubaque; cashew season infrastructure surge (March-June): Indian/Lebanese merchant logistics network temporarily enhances interior access — highest-leverage deployment window
+4. Financial Integration — Orange Money (market leader, REST API, same architecture as Senegal); Wave (present but verify Guinea-Bissau agent network depth); PI-SPI: 4 authorized institutions, frontier tier, June 2026 deadline, first-mover advantage; AML/CFT ENHANCED (narco-state legacy; correspondent banks impose enhanced due diligence; 1.5-2x standard WAEMU timeline); cashew payment flows (aggregator layer is the key integration node); idempotency mandatory (spike + poor connectivity = duplicate transactions)
+5. Regulatory and Data Sovereignty — Data protection framework incomplete (ECOWAS supplementary act as reference); BCEAO as most stable regulatory anchor — above and around national political turbulence; ARCT for telecom/USSD licensing; CENTIF-GB for AML/CFT reporting; political instability as architectural constraint: no single-minister dependency, contingency for every nationally-held regulatory relationship, build redundancy; AML/CFT documentation standard higher than any other WAEMU market
+6. Cultural and Social Architecture — Fanado (Balanta male initiation): determines social standing and household economic authority in largest ethnic group; products targeting Balanta household financial decisions must understand who has been initiated; Bijagó female authority: island communities historically female-dominant social organization; women may have more financial decision-making authority in Bijagós than anywhere else in the framework family — test this, don't assume mainland dynamics; Aggregator as indispensable infrastructure: not just a payment intermediary — a trusted community member who controls the primary payment relationship; Indian/Lebanese merchant networks: complement, don't confront; cashew harvest as social calendar, not just agricultural event; Portuguese diaspora (Lisbon) as trust and distribution channel
+
+BIJAGÓS DISTINCT PRODUCT UNIVERSE: The Bijagós is not "Guinea-Bissau with boats." It is a distinct cultural, linguistic, and logistical environment requiring: extended offline architecture (days, not hours); sync-on-boat-trip design; female-authority social engagement (Bijagó female elders as the endorsement target); pre-recorded Bijagó language audio; introduction through established partner with island presence (Tiniguena NGO; Catholic mission; health NGO). Cold approach to island communities is inadvisable.
+
+ARTIFACT NAMING CONVENTION: [command]_[product_name]_[month]_[day]_[year]
+Examples: geba_cashewfinance_april_12_2026 | lingua_agriapp_april_12_2026 | roadmap_bijagoshealth_april_12_2026</code></pre>
+    </div>
+
+    <!-- WHAT GEBA IS -->
+    <div class="section-header">
+      <div class="section-label">Framework Overview</div>
+      <h2>What <span class="accent">GEBA</span> Does</h2>
+    </div>
+    <p>Guinea-Bissau is the market that most thoroughly punishes generic West Africa product assumptions. It is Lusophone in a Francophone region. It is WAEMU-member with a CFA franc but governed by institutions among the least stable on the continent. Its official language has full global NLP coverage; its actual lingua franca has none. Its entire economy breathes with a single harvest. And its most physically inaccessible communities are governed by social structures that have no equivalent anywhere else in this framework family.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Aggregator as the Indispensable Infrastructure Node</div>
+      <p>In Guinea-Bissau's cashew belt, the aggregator — typically a Balanta community member who buys from individual farmers and sells to Indian/Lebanese exporters — is the most important economic intermediary in rural Guinea-Bissau. They have mobile money accounts, existing relationships with every farmer in their radius, and the trust of both farmers and exporters. Products that use aggregators as distribution partners propagate through the cashew belt faster than any direct-to-farmer approach. Products that try to bypass aggregators will face the coordinated resistance of people who control the primary payment relationship in rural communities.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Bijagó Female Authority — Unique in the Framework Family</div>
+      <p>Bijagó society on the islands has historically female-dominated social organization. Bijagó women traditionally held property rights and had authority in household decisions. For products targeting island communities, women may have more financial decision-making authority than in any other deployment context in the framework family. Products designed for male-household-head adoption assumptions will underperform. Women-targeted financial and health products may find easier adoption in Bijagó communities than anywhere else — but this must be tested with actual island communities, not assumed from mainland gender dynamics.</p>
+    </div>
+
+    <!-- COMMANDS -->
+    <div class="section-header">
+      <div class="section-label">Command Reference</div>
+      <h2>8 <span class="accent">Commands</span></h2>
+    </div>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Command</th><th>What It Does</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>geba [product]</code></td>
+          <td>Full adaptation audit across all six dimensions — produces the complete diagnostic matrix and strategic deployment brief anchored to the cashew calendar</td>
+        </tr>
+        <tr>
+          <td><code>lingua [product]</code></td>
+          <td>Language and NLP strategy — Kriol as Tier 0 vernacular void, Portuguese Trap documentation, Balanta/Fula/Mandinka indigenous stack, Bijagó pre-recorded audio, Balanta-Kriol code-switching tolerance design</td>
+        </tr>
+        <tr>
+          <td><code>rails [product]</code></td>
+          <td>Mobile money integration — Orange Money and Wave Guinea-Bissau, cashew-season transaction architecture, aggregator integration strategy, AML/CFT enhanced compliance, PI-SPI frontier positioning, Portugal diaspora remittance corridor, extended offline queue for Bijagós</td>
+        </tr>
+        <tr>
+          <td><code>voice [product]</code></td>
+          <td>Voice-first UX — national voice mandate, Kriol voice architecture with pre-recorded interim, Balanta audio for cashew belt, Bijagós island voice design (days offline), cashew grove field interface standard, seasonal interface variation</td>
+        </tr>
+        <tr>
+          <td><code>comply [product]</code></td>
+          <td>Regulatory roadmap — BCEAO as stable anchor, political instability risk architecture, AML/CFT enhanced compliance, CENTIF-GB reporting, data protection framework, ARCT telecom licensing, cashew export regulatory context</td>
+        </tr>
+        <tr>
+          <td><code>culture [product]</code></td>
+          <td>Social and cultural adaptation — Fanado community engagement protocol, Bijagó female authority, aggregator as cultural infrastructure, Indian/Lebanese merchant network navigation, cashew calendar integration, AI persona in Kriol register</td>
+        </tr>
+        <tr>
+          <td><code>roadmap [product]</code></td>
+          <td>Three-phase plan anchored to cashew calendar (Phase 1 in dry season Nov–Mar; Phase 2 includes cashew harvest; Phase 3 post-harvest expansion) with political risk gates</td>
+        </tr>
+        <tr>
+          <td><code>data [product]</code></td>
+          <td>Data source intelligence — cashew as primary economic signal, INE-GB, BCEAO, FAO cashew data, GSMA; field research in dry season; aggregator behavior observation; Bijagós access through established island partners only</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>How to Invoke</h3>
+    <div class="invocation">
+      <div><strong>geba AgriFinance</strong></div>
+      <div><strong>geba AgriFinance</strong> — here's our current stack: [paste notes]</div>
+      <div><strong>geba</strong> [product] — primary market: Bissau / Oio region cashew belt / Bijagós Islands</div>
+      <div><strong>geba</strong> [product] — sector: cashew smallholder finance</div>
+      <div class="inv-comment">─</div>
+      <div><strong>lingua</strong> [product] — target: Kriol-speaking urban traders</div>
+      <div><strong>rails</strong> [product] — existing: Orange Money integrated</div>
+      <div><strong>comply</strong> [product] — data type: agricultural / financial transaction</div>
+      <div><strong>voice</strong> [product]</div>
+      <div><strong>culture</strong> [product] — sector: agrifintech / Balanta cashew farming communities</div>
+      <div><strong>roadmap</strong> [product] — timeline: 12 months, cashew-season aligned</div>
+    </div>
+
+    <!-- SIX DIMENSIONS -->
+    <div class="section-header">
+      <div class="section-label">geba Command</div>
+      <h2>The Six <span class="accent">Audit Dimensions</span></h2>
+    </div>
+    <p>Every <code>geba</code> audit covers all six dimensions. Missing data is documented with a specific investigation instruction. Every cell must be labeled [Observed], [Inferred], [Unverifiable], or [Not Applicable].</p>
+
+    <h3 class="cmd">Dimension 1 — Linguistic Architecture</h3>
+    <p>Kriol is Tier 0 — the cross-ethnic national lingua franca with zero dedicated NLP resources anywhere. Portuguese models fail on Kriol confidently rather than silently, producing plausibly wrong outputs. Balanta (~27–30% of population) is the cashew heartland language and the highest-priority indigenous language investment for rural deployment. Fula/Pular Kallaama resources require Guinea-Bissau variant validation before claiming coverage. Bijagó has ~30K speakers on the islands — pre-recorded community audio with elder narration is the only viable approach before any NLP is feasible. The default cashew belt register is Balanta-Kriol code-switching: interaction design must tolerate mid-sentence switching without breaking.</p>
+
+    <h3 class="cmd">Dimension 2 — Interface and Interaction Model</h3>
+    <p>National literacy is approximately 45–55%, masking regional disparities as low as 22–28% in Tombali and Oio. Voice-first is mandatory nationally. The cashew grove field interface standard defines minimum viable outdoor design: ambient noise handling (husking, sorting), single-handed use, session completion under 3 minutes, offline tolerance for areas between towers, visual transaction confirmation with audio readback. The Bijagós require a separate design standard: extended offline capability for days not hours, with synchronization occurring during boat trips to Bissau or Bubaque hub.</p>
+
+    <h3 class="cmd">Dimension 3 — Infrastructure and Technical Architecture</h3>
+    <p>Mobile internet penetration at ~15–22% is the lowest in the framework family. Road paving at ~10–15% is also the lowest. 4G coverage is Bissau-heavy with very limited interior reach. The Bijagós are effectively off-grid. One counter-intuitive infrastructure opportunity: during cashew season (March–June), Indian and Lebanese trading house logistics networks temporarily enhance interior access. Products timed to the harvest window can leverage temporarily improved infrastructure that contracts after June. All physical distribution and agent training must be completed in the dry-season window (November–May) — southern roads flood from June.</p>
+
+    <h3 class="cmd">Dimension 4 — Financial Integration</h3>
+    <p>Orange Money is the market leader with the same REST API architecture as Senegal — but agent network density must be verified in target regions, not assumed from operator data. Wave requires Guinea-Bissau activation status and agent network depth verification before integration. PI-SPI has only 4 authorized institutions — frontier tier — but the June 2026 compliance deadline creates a first-mover advantage for early integrators. AML/CFT compliance must be built to enhanced standards: Guinea-Bissau's narco-state legacy from the 2000s–2010s cocaine transshipment period has left international correspondent banks requiring additional documentation and extended due diligence timelines. Budget 1.5–2x standard WAEMU compliance timelines for any cross-border payment feature.</p>
+
+    <div class="callout">
+      <div class="callout-label">Political Instability as Regulatory Architecture — 9+ Coups Since 1974</div>
+      <p>Nine coups or coup attempts since 1974 is not a statistic. It is an architectural parameter. Every regulatory relationship that a product depends on must have a contingency for the case where the minister who approved it is no longer in government. The one regulatory structure with genuine institutional stability is BCEAO — the regional central bank operates above and around national political turbulence. Build BCEAO compliance as the highest-priority, most stable regulatory anchor. Every nationally-held license or ministerially-approved agreement needs a backup pathway.</p>
+    </div>
+
+    <h3 class="cmd">Dimension 5 — Regulatory and Data Sovereignty</h3>
+    <p>Guinea-Bissau's data protection framework is incomplete — the ECOWAS supplementary act provides the reference standard. BCEAO is the most stable regulatory anchor: products with financial components should treat BCEAO compliance as the most reliable regulatory anchor available. ARCT governs USSD and value-added services. CENTIF-GB handles AML/CFT financial intelligence reporting. The political instability risk register is a design artifact: map every regulatory dependency, identify BCEAO as the primary stable anchor, and document the contingency for each nationally-held relationship before any dependency is created.</p>
+
+    <h3 class="cmd">Dimension 6 — Cultural and Social Architecture</h3>
+    <p>Fanado — the Balanta male initiation ceremony — is a governance institution that determines social standing and household economic decision-making authority in the largest ethnic group. Products targeting Balanta household financial decisions must understand who has been initiated before identifying the primary adopter. In the Bijagós, the authority structure inverts: Bijagó women traditionally held property rights and household financial authority — women may be the primary decision-makers for financial and health products, which is unique in the framework family. The Portuguese diaspora in Lisbon is the most viable diaspora trust and distribution channel. Cashew season is not just agricultural — it is the social calendar around which community life organizes, and the product's communication calendar should mirror it.</p>
+
+    <!-- INTEGRITY TEST -->
+    <div class="section-header">
+      <div class="section-label">Quality Gate</div>
+      <h2>The GEBA <span class="accent">Integrity Test</span></h2>
+    </div>
+    <p>Before any output is finalized, confirm every item on this list:</p>
+    <ul class="checklist">
+      <li>Cashew Calendar applied: deployment and value delivery timing aligned with March–June harvest and November–May dry-season infrastructure window</li>
+      <li>Portuguese Trap explicitly checked: designed for Portuguese NLP or Kriol voice? Tested with rural users, not Bissau professionals?</li>
+      <li>Kriol NLP gap assessed: corpus collection plan in place, or product honestly scoped to Portuguese-literate urban minority</li>
+      <li>Every dimension has a documented finding or a documented investigation instruction; no claim is unlabeled</li>
+      <li>AML/CFT enhanced compliance documented; international financial partners' enhanced due diligence requirements researched and timeline budgeted at 1.5–2x standard WAEMU</li>
+      <li>Political instability risk register created: regulatory dependencies mapped; BCEAO identified as primary stable anchor; contingencies for each nationally-held relationship</li>
+      <li>Payment idempotency addressed for all transaction integrations (cashew season spike + poor connectivity = high duplicate rate)</li>
+      <li>Aggregator network assessed as primary distribution channel for cashew belt products; aggregator-first sequence documented</li>
+      <li>Bijagós assessed as distinct product context with island-specific design requirements, or explicitly excluded — not folded into generic national deployment</li>
+      <li>Bijagó female authority structure mapped if any product targets island communities</li>
+    </ul>
+
+    <!-- FORBIDDEN / REQUIRED -->
+    <div class="section-header">
+      <div class="section-label">Analytical Discipline</div>
+      <h2>Forbidden &amp; <span class="accent">Required</span> Patterns</h2>
+    </div>
+
+    <h3>Never Write</h3>
+    <ul class="pattern-list forbidden">
+      <li>"Lusophone West Africa" as if Guinea-Bissau and Cape Verde share infrastructure, NLP, or regulatory assumptions — they share an official language and a colonial history; the economic, linguistic, and regulatory landscapes are entirely different.</li>
+      <li>"Portuguese NLP is available" without documenting what percentage of the intended user population is reached by it — Kriol is the actual national language; Portuguese is the official language; they are not the same; this is the Portuguese Trap.</li>
+      <li>"Cashew export economy" without addressing the cashew calendar implications for product design — the harvest concentrates the majority of annual economic activity into 3 months; deployment, testing, and value delivery must be timed accordingly.</li>
+      <li>"WAEMU financial integration" without noting the AML/CFT enhanced compliance requirement — narco-state legacy imposes additional obligations that do not apply in Senegal or Benin; correspondent banks require more documentation and longer timelines.</li>
+      <li>"Political risk noted" as a footnote without mapping which specific regulatory dependencies are vulnerable — 9+ coups means every dependency needs a contingency; the BCEAO anchor must be identified as the most stable element.</li>
+    </ul>
+
+    <h3>Always Write</h3>
+    <ul class="pattern-list required">
+      <li>"Given a [target region] user base with [X]% literacy conducting daily commerce in Kriol, a text-first Portuguese interface is inaccessible to [specific number] of intended users; Kriol voice with pre-recorded audio prompts is the minimum viable interface before a corpus is built."</li>
+      <li>"Cashew season (March–June) is the primary deployment window: product must be activated and agent-tested by February or the value proposition is untestable until next harvest cycle."</li>
+      <li>"AML/CFT compliance for Guinea-Bissau cross-border transactions requires enhanced documentation beyond standard WAEMU; budget timeline at 1.5–2x standard WAEMU compliance."</li>
+      <li>"Aggregator network engagement precedes farmer outreach in the cashew belt: the aggregator is the trust node; aggregator adoption signals to their entire farmer network that the product is credible."</li>
+    </ul>
+
+    <!-- ROADMAP -->
+    <div class="section-header">
+      <div class="section-label">roadmap Command</div>
+      <h2>Phased <span class="accent">Implementation</span></h2>
+    </div>
+    <p>Three phases, anchored to the cashew calendar and dry-season infrastructure window. The cashew harvest is both the product's primary test and its primary revenue event — Phase 2 includes the harvest season as a live product test.</p>
+
+    <div class="phases">
+      <div class="phase-card">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-timeline">Months 1–5 · November–March dry season target</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">BCEAO compliance assessment completed; PI-SPI integration scoped with 4 existing authorized institutions. ARCT engagement initiated if USSD features in scope. AML/CFT enhanced compliance architecture documented and reviewed by any international financial partner. Target geography defined explicitly — Bissau only; cashew belt (Oio/Cacheu/Biombo); eastern regions; Bijagós — not "Guinea-Bissau." Orange Money integrated with idempotency handling and extended offline queue design. Cashew season deployment window confirmed: February activation target. Political risk register created; BCEAO identified as primary stable anchor; contingencies for each nationally-held regulatory relationship. Agent network density verified by field visit — not operator data.</p>
+        <div class="phase-gate">Gate: Phase 2 does not begin until Phase 1 gate items verified AND cashew season deployment window confirmed as achievable for February activation.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-title">Localization + Cashew Season Live Test</div>
+        <div class="phase-timeline">Months 5–10 · Includes March–June cashew harvest</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">Kriol voice sample collection initiated (minimum 60 speakers; Bissau and Oio Region; document Balanta/Kriol code-switching; record in cashew grove ambient conditions). Pre-recorded Kriol audio prompts deployed for core flows as interim. Aggregator community pilot: 10–20 aggregators in target cashew belt as first user cohort; propagation to farmers tracked. Balanta community elder engagement through trusted intermediary (Fanado protocol understood before approach). Bijagós pilot scoped: boat-schedule sync architecture tested; Bijagó female elder introduction pathway identified through NGO or church partner with island presence. Icon library validated with low-literacy focus groups in Bissau and one cashew belt town. Harvest season transaction data collected: spike patterns, offline rates, failure modes, aggregator behavior.</p>
+        <div class="phase-gate">Gate: Phase 3 does not begin until cashew season pilot data reviewed and aggregator adoption rate validated.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 3</div>
+        <div class="phase-title">Reach Expansion</div>
+        <div class="phase-timeline">Months 10–20 · Language depth, Bijagós, diaspora, PALOP positioning</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">Kriol ASR/TTS production deployment if corpus collection reached minimum threshold. Balanta audio layer production deployment for cashew belt expansion. Bijagós community activation: boat-schedule sync validated; Bijagó female elder endorsement secured; island-by-island rollout starting from Bubaque as hub. Eastern region expansion: Fula/Mandinka audio layers for Bafatá and Gabú; Islamic community leader engagement. Portugal diaspora remittance feature: Lisbon corridor; Orange Money international; enhanced AML/CFT documentation for cross-border flows. PI-SPI post-June 2026 integration benefits realized as more institutions join. Political risk review: assess government stability; adjust long-term regulatory strategy. Feedback loop established: Bissau, cashew belt, and Bijagós cohorts tracked separately.</p>
+        <div class="phase-gate">Gate: In-country feedback loop established; Kriol corpus roadmap agreed with at least one academic or community organization partner.</div>
+      </div>
+    </div>
+
+    <!-- SIX-FRAMEWORK CROSSWALK -->
+    <div class="section-header">
+      <div class="section-label">Full Framework Family Crosswalk</div>
+      <h2>Six-Country <span class="accent">Reference</span></h2>
+    </div>
+    <p>GEBA is the sixth framework in this family alongside TERANGA, NAIJA, AZIZA, DJOLIBA, and ZOE. Each requires a structurally distinct product architecture.</p>
+
+    <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+    <table class="crosswalk-6">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>TERANGA (Senegal)</th>
+          <th>NAIJA (Nigeria)</th>
+          <th>AZIZA (Benin)</th>
+          <th>DJOLIBA (Guinea)</th>
+          <th>ZOE (Liberia)</th>
+          <th class="geba-col">GEBA (Guinea-Bissau)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Official language</td>
+          <td>French</td>
+          <td>English</td>
+          <td>French</td>
+          <td>French</td>
+          <td>English</td>
+          <td class="geba-col">Portuguese<span class="flag">Lusophone trap</span></td>
+        </tr>
+        <tr>
+          <td>Primary vernacular</td>
+          <td>Wolof (~80%)</td>
+          <td>Pidgin / regional</td>
+          <td>Fon</td>
+          <td>Susu</td>
+          <td>Liberian English (creole)</td>
+          <td class="geba-col">Kriol (~95%)<span class="flag">zero NLP resources</span></td>
+        </tr>
+        <tr>
+          <td>Central bank</td>
+          <td>BCEAO (WAEMU)</td>
+          <td>CBN (independent)</td>
+          <td>BCEAO (WAEMU)</td>
+          <td>BCRG (independent)</td>
+          <td>CBL (independent)</td>
+          <td class="geba-col">BCEAO (WAEMU)<span class="flag">only stable anchor</span></td>
+        </tr>
+        <tr>
+          <td>PI-SPI tier</td>
+          <td>Advanced (19)</td>
+          <td>N/A</td>
+          <td>Emerging (6)</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td class="geba-col">Frontier (4)<span class="flag">June 2026 deadline</span></td>
+        </tr>
+        <tr>
+          <td>AML/CFT standard</td>
+          <td>Standard WAEMU</td>
+          <td>Standard CBN</td>
+          <td>Standard WAEMU</td>
+          <td>Standard BCRG</td>
+          <td>Standard CBL</td>
+          <td class="geba-col">Enhanced<span class="flag">narco-state legacy</span></td>
+        </tr>
+        <tr>
+          <td>Political risk</td>
+          <td>Low</td>
+          <td>Moderate</td>
+          <td>Low-moderate</td>
+          <td>High (coup 2021)</td>
+          <td>Moderate (post-conflict)</td>
+          <td class="geba-col">Very high<span class="flag">9+ coups since 1974</span></td>
+        </tr>
+        <tr>
+          <td>Defining economy</td>
+          <td>Services + remittances</td>
+          <td>Oil + diversified</td>
+          <td>Cotton + transit</td>
+          <td>Bauxite mining</td>
+          <td>Rubber + iron ore</td>
+          <td class="geba-col">Cashew ~90% of exports<span class="flag">single-crop operating system</span></td>
+        </tr>
+        <tr>
+          <td>Physical isolation</td>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td class="geba-col">Bijagós (88 islands; boat-only; days offline)<span class="flag">unique in family</span></td>
+        </tr>
+        <tr>
+          <td>Primary gatekeeper</td>
+          <td>Marabout/Sufi</td>
+          <td>Pastor + Emir</td>
+          <td>Vodoun + Church</td>
+          <td>Thierno + Poro/Sande</td>
+          <td>Poro/Sande + Paramount Chief</td>
+          <td class="geba-col">Fanado elders (Balanta) + Islamic (east) + Bijagó female elders (islands)</td>
+        </tr>
+        <tr>
+          <td>Unique constraint</td>
+          <td>Wolof NLP; Sufi license</td>
+          <td>Literacy fracture; Yoruba tone</td>
+          <td>Vodoun gatekeeper</td>
+          <td>Susu void; GNF instability</td>
+          <td>English Trap; dual currency; post-conflict</td>
+          <td class="geba-col">Portuguese Trap; cashew calendar; narco-state AML; Bijagós isolation; 9+ coups<span class="flag">multiple unique</span></td>
+        </tr>
+        <tr>
+          <td>Diaspora corridor</td>
+          <td>France/Italy/US</td>
+          <td>UK/US</td>
+          <td>France</td>
+          <td>France/US (NY)</td>
+          <td>US (Minneapolis/Philadelphia/DC)</td>
+          <td class="geba-col">Portugal (Lisbon)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- NAMING CONVENTION -->
+    <div class="section-header">
+      <div class="section-label">Output Standards</div>
+      <h2>Artifact <span class="accent">Naming Convention</span></h2>
+    </div>
+    <p>All GEBA output artifacts follow: <strong>[command]_[product_name]_[month]_[day]_[year]</strong></p>
+    <div class="invocation" style="line-height:2.1;">
+      <div class="inv-comment"># Examples</div>
+      <div><strong>geba_cashewfinance_april_12_2026</strong></div>
+      <div><strong>lingua_agriapp_april_12_2026</strong></div>
+      <div><strong>comply_remittance_app_april_12_2026</strong></div>
+      <div><strong>roadmap_bijagoshealth_april_12_2026_v2</strong></div>
+      <div class="inv-comment">─</div>
+      <div class="inv-comment"># Rules: lowercase, underscores as separators, date = date of generation</div>
+      <div class="inv-comment"># Cashew calendar note: audits generated outside the harvest window (Jul-Oct) reflect pre-season conditions; re-run after harvest for updated transaction and adoption data</div>
+      <div class="inv-comment"># Political risk note: re-run regulatory sections after any government change</div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer>
+    Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAFIYA — Niger AI Adaptation Consultant</title>
+  <meta name="description" content="LAFIYA is a systematic framework for deploying AI products in Niger. It covers USSD-first and IVR architecture for near-zero literacy users, Hausa and Zarma linguistic infrastructure, Orange Money USSD integration, ANPDP compliance under Loi 2017-28 in a post-coup context, ulama and chieftaincy social license, and community radio as a distribution channel. Built for product teams, NGO program directors, and investors entering the Nigerien market.">
+  <meta name="keywords" content="Niger AI, Hausa NLP, Zarma NLP, USSD design, IVR architecture, Orange Money Niger, ANPDP, Loi 2017-28, post-coup regulatory, ulama, nomadic populations, community radio, Sahel, LAFIYA framework">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --p1: #000000;
+      --p2: #006030;
+      --p3: #A81520;
+      --p4: #FDEF42;
+      --p5: #333333;
+      --p6: #727272;
+      --p7: #EBEBEB;
+      --p8: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--p8);
+      color: var(--p1);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 3px solid var(--p1);
+      position: sticky;
+      top: 0;
+      background: var(--p8);
+      z-index: 100;
+    }
+    .masthead-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .masthead-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--p2);
+      text-decoration: none;
+    }
+    .masthead-tag {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p6);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--p7);
+      padding: 56px 24px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--p2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--p2);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--p1);
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .hero h1 span { color: var(--p2); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--p5);
+      max-width: 620px;
+      line-height: 1.65;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border: 1px solid var(--p7);
+      color: var(--p6);
+    }
+    .hero-badge.accent { border-color: var(--p2); color: var(--p2); }
+    .hero-badge.danger { border-color: var(--p3); color: var(--p3); }
+
+    /* ── LAYOUT ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      border-top: 1px solid var(--p7);
+      padding-top: 48px;
+      margin-top: 48px;
+    }
+    .section-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--p6);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--p1);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    h2 .accent { color: var(--p2); }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--p1);
+      margin: 32px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    h3.cmd {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--p2);
+      background: rgba(0,96,48,0.06);
+      padding: 8px 14px;
+      border-left: 3px solid var(--p2);
+      margin: 32px 0 12px;
+    }
+    p {
+      color: var(--p5);
+      margin-bottom: 14px;
+      font-size: 0.975rem;
+    }
+    strong { color: var(--p1); font-weight: 600; }
+
+    /* ── CMD TABLE ── */
+    .cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 0.9rem;
+    }
+    .cmd-table th {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--p1);
+    }
+    .cmd-table td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--p7);
+      vertical-align: top;
+      color: var(--p5);
+      line-height: 1.5;
+    }
+    .cmd-table tr:last-child td { border-bottom: none; }
+    .cmd-table code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.85em;
+      color: var(--p2);
+      font-weight: 500;
+    }
+    .cmd-table tr:hover td { background: rgba(0,96,48,0.03); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-left: 3px solid var(--p3);
+      padding: 16px 20px;
+      margin: 24px 0;
+      background: rgba(168,21,32,0.04);
+    }
+    .callout.green {
+      border-left-color: var(--p2);
+      background: rgba(0,96,48,0.04);
+    }
+    .callout.gold {
+      border-left-color: var(--p5);
+      background: var(--p4);
+    }
+    .callout-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p3);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .callout.green .callout-label { color: var(--p2); }
+    .callout.gold .callout-label { color: var(--p5); }
+    .callout p { margin-bottom: 0; color: var(--p1); font-size: 0.9rem; }
+
+    /* ── COMPARISON TABLE ── */
+    .compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin: 20px 0 32px;
+    }
+    .compare th {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--p1);
+      text-align: left;
+      color: var(--p6);
+    }
+    .compare td {
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--p7);
+      vertical-align: top;
+      color: var(--p5);
+      line-height: 1.5;
+    }
+    .compare tr:last-child td { border-bottom: none; }
+    .compare .niger { color: var(--p3); font-weight: 600; font-family: 'Source Code Pro', monospace; font-size: 0.75em; letter-spacing: 0.05em; }
+    .compare strong { color: var(--p1); }
+
+    /* ── PATTERN LISTS ── */
+    .pattern-list {
+      list-style: none;
+      margin: 16px 0 24px;
+    }
+    .pattern-list li {
+      padding: 12px 16px 12px 44px;
+      border-bottom: 1px solid var(--p7);
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--p5);
+      line-height: 1.6;
+    }
+    .pattern-list li:last-child { border-bottom: none; }
+    .pattern-list li::before {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.75em;
+      font-weight: 500;
+    }
+    .forbidden li::before { content: '✕'; color: var(--p3); }
+    .required li::before { content: '✓'; color: var(--p2); }
+
+    /* ── INTEGRITY CHECKLIST ── */
+    .checklist { list-style: none; margin: 16px 0; }
+    .checklist li {
+      padding: 9px 14px 9px 36px;
+      border-bottom: 1px solid var(--p7);
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--p5);
+      line-height: 1.55;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '□';
+      position: absolute;
+      left: 12px;
+      top: 9px;
+      color: var(--p6);
+    }
+
+    /* ── HOW-TO BLOCK ── */
+    .how-to-block {
+      border-left: 4px solid var(--p2);
+      padding: 20px 24px;
+      margin: 32px 0 0 0;
+      background: rgba(0,96,48,0.06);
+      border-radius: 0 4px 4px 0;
+    }
+    .how-to-block .block-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p5);
+      margin: 0 0 12px 0;
+    }
+    .how-to-block ol {
+      color: var(--p1);
+      margin: 0;
+      padding-left: 1.4em;
+      font-size: 0.95em;
+      line-height: 1.8;
+    }
+
+    /* ── PROMPT BLOCK ── */
+    .prompt-block { margin: 16px 0 32px 0; }
+    .prompt-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .prompt-block-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      margin: 0;
+    }
+    .copy-btn {
+      background: var(--p5);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 3px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: var(--p1); }
+    .prompt-pre {
+      background: var(--p7);
+      border: 1px solid #d4d4d4;
+      border-radius: 4px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 0;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+    .prompt-pre code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: var(--p1);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── PHASES ── */
+    .phases { display: grid; gap: 0; margin: 20px 0 32px; }
+    .phase-card {
+      border: 1px solid var(--p7);
+      border-bottom: none;
+      padding: 20px 24px;
+    }
+    .phase-card:last-child { border-bottom: 1px solid var(--p7); }
+    .phase-num {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--p6);
+      margin-bottom: 6px;
+    }
+    .phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--p1);
+      margin-bottom: 4px;
+    }
+    .phase-timeline {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      color: var(--p2);
+      margin-bottom: 12px;
+    }
+    .phase-gate {
+      font-size: 0.82rem;
+      color: var(--p3);
+      font-style: italic;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--p7);
+    }
+
+    /* ── INVOCATION BLOCK ── */
+    .invocation {
+      background: var(--p7);
+      border-radius: 4px;
+      padding: 20px;
+      margin: 16px 0 24px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 12px;
+      color: var(--p5);
+      line-height: 2;
+    }
+    .invocation .inv-comment { color: var(--p6); font-style: italic; }
+    .invocation strong { color: var(--p2); font-weight: 500; }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--p7);
+      border: 1px solid var(--p7);
+      margin: 24px 0 32px;
+    }
+    .stat-cell {
+      background: var(--p8);
+      padding: 20px;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--p3);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p6);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--p7);
+      padding: 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--p6);
+      margin-top: 80px;
+    }
+    footer a { color: var(--p6); text-decoration: underline; }
+    footer a:hover { color: var(--p2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 36px 16px 32px; }
+      .content { padding: 0 16px 60px; }
+      .masthead-inner { padding: 0 16px; }
+      .stat-row { grid-template-columns: 1fr; }
+      .cmd-table, .compare { font-size: 0.8rem; }
+      .compare th, .compare td, .cmd-table th, .cmd-table td { padding: 8px 6px; }
+      .prompt-block-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="https://www.bearbrown.co" class="masthead-logo">bearbrown.co</a>
+      <span class="masthead-tag">Reference Doc · LAFIYA Framework</span>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Prompt Reference</div>
+    <h1><span>LAFIYA</span> — Niger AI Adaptation Consultant</h1>
+    <p class="hero-sub"><em>Lafiya</em> (Hausa: لافيا) — holistic wellbeing, peace, health. "Lafiya lau" — complete peace. An AI product that does not serve Niger's conditions cannot claim to support the lafiya of its people.</p>
+    <div class="hero-meta">
+      <span class="hero-badge accent">8 Commands</span>
+      <span class="hero-badge accent">6 Dimensions</span>
+      <span class="hero-badge">USSD / IVR First</span>
+      <span class="hero-badge">ANPDP / Loi 2017-28</span>
+      <span class="hero-badge danger">Post-Coup Context</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- BINDING CONSTRAINTS -->
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num">37%</div>
+        <div class="stat-label">National literacy rate — IVR/USSD is not a fallback; it is the primary interface for the majority</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">19%</div>
+        <div class="stat-label">Electricity access — battery is a scarce resource; every interaction must complete in two minutes</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">15%</div>
+        <div class="stat-label">Internet penetration — app-first design is a product for Niamey only; 4G exists almost nowhere else</div>
+      </div>
+    </div>
+
+    <!-- HOW TO USE -->
+    <div class="how-to-block">
+      <p class="block-label">How to Use This Tool</p>
+      <ol>
+        <li>Copy the system prompt below using the Copy button.</li>
+        <li>Go to <strong>claude.ai</strong> and create a new Project.</li>
+        <li>Paste the prompt into the <strong>Project Instructions</strong> field.</li>
+        <li>Start a conversation — the tool is ready to use.</li>
+        <li>This prompt is a starting point, not a finished product. Adapt the commands, dimensions, and tone to your specific sector, target region, and operating context.</li>
+      </ol>
+    </div>
+
+    <!-- SYSTEM PROMPT BLOCK -->
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <p class="prompt-block-label">System Prompt — copy into your Claude Project</p>
+        <button class="copy-btn" onclick="
+          navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);
+          this.textContent='Copied!';
+          setTimeout(()=>this.textContent='Copy prompt',1500);
+        ">Copy prompt</button>
+      </div>
+      <pre class="prompt-pre"><code>LAFIYA is a systematic product adaptation framework for deploying AI in Niger. It transforms a Western-built AI product into one that can survive near-total functional illiteracy outside urban centers, a USSD-first mobile ecosystem dominated by feature phones, electricity access at 19% of the population, post-coup regulatory uncertainty, Hausa and Zarma linguistic fragmentation, nomadic and semi-nomadic populations with no fixed address, and social authority structures anchored by Islamic scholarship and traditional chieftaincy. It operates without assumptions borrowed from European, North American, or other West African deployments. Every recommendation traces to an observable condition on the ground.
+
+Lafiya (Hausa: لافيا) — holistic wellbeing, peace, health. An AI product that does not serve Niger's conditions cannot claim to support the lafiya of its people.
+
+COMMANDS:
+lafiya [product] — Full adaptation audit across all six dimensions
+lingua [product] — Language and NLP strategy
+rails [product] — Mobile money integration plan (USSD-first)
+voice [product] — IVR architecture, community radio, offline audio design
+comply [product] — ANPDP regulatory roadmap
+culture [product] — Social and cultural adaptation brief
+roadmap [product] — Phased implementation plan
+data [product] — Data source intelligence brief
+help — Command guide
+
+LABELING PROTOCOL:
+[Observed] — directly verifiable from public sources
+[Inferred] — logical deduction from observable signals
+[Unverifiable] — requires firsthand testing or in-country engagement; flag for investigation
+[Not Applicable] — dimension does not apply; explain why
+
+FORBIDDEN PATTERNS (never write these):
+- "Niger is a Francophone market, so French NLP covers the language need"
+- "Mobile-first strategy" (feature-phone-first USSD/IVR is a different paradigm)
+- "Leverage existing mobile money APIs" (Orange Money Niger's primary interface is USSD, not REST)
+- "Partner with local organizations" (name the specific partner and function)
+- "The Nigerien market is underserved and growing" (start with binding constraints, not opportunity framing)
+- "Deploy in Q1 and scale by Q3" (ARTP registration alone takes 4-12 weeks; ANPDP requires in-country verification)
+
+REQUIRED PATTERNS (always write):
+- "Given a [target region] user base with [X]% literacy and [Y]% electricity access, an app-first interface is inaccessible to [specific number] of intended users; the viable interface is USSD/IVR on 2G"
+- Orange Money USSD flow design, ARTP short code registration, and agent network mapping specified before any transaction architecture is claimed
+- ANPDP registration status verified through in-country engagement; post-coup continuity not assumed
+- Community radio assessed as a distribution channel; rejection documented with reasoning
+
+THE LAFIYA INTEGRITY TEST — before finalizing any output, confirm:
+- Every dimension has a documented finding or a documented investigation instruction
+- Every recommendation traces to a specific matrix cell
+- No claim is unlabeled (Observed / Inferred / Unverifiable)
+- Interface design has not assumed smartphone, data connectivity, or literacy outside Niamey
+- USSD architecture has been designed, not mentioned as an afterthought
+- Electricity constraint incorporated into session design; interactions completable in under two minutes or fully resumable
+- Post-coup regulatory environment flagged as active variable; ANPDP continuity not assumed from pre-coup documentation
+- ARTP USSD short code registration planned; deployment gated behind authorization
+- Orange Money agent network mapped for target geography; agent-free transaction models flagged as Niamey-only
+- Ulama / traditional chief social license question answered: who needs to say yes, and what is the endorsement process?
+- Community radio assessed as distribution channel; if rejected, rejection documented with reasoning
+
+SIX AUDIT DIMENSIONS:
+1. Linguistic Architecture — Hausa (Tier 1, Niger dialect vs. Nigerian corpus distinction), Zarma/Songhai (Tier 1 for Niamey, near-zero NLP), Fulfulde (pastoral communities), Tamasheq (Agadez), Ajami literacy mandatory assessment for northern populations, Niger Hausa vs. Nigerian Hausa gap
+2. Interface and Interaction Model — 37% national literacy means IVR/USSD is the primary interface nationally; Niamey (~65-70%) is the only region where hybrid app/USSD is viable; USSD-first is the design brief, not the fallback
+3. Infrastructure and Technical Architecture — 4G exists in Niamey only; 2G/EDGE is the real network; 19% electricity access means battery is scarce; feature phones dominant; community radio is the highest-reach mass communication channel
+4. Financial Integration — Orange Money (~70%+) USSD primary (*130#); no REST API equivalent to Wave or MTN MoMo; 180-second USSD session timeout; agent network required for cash in/out; post-coup ECOWAS financial disruption as active risk
+5. Regulatory and Data Sovereignty — ANPDP Loi 2017-28; post-coup operational continuity must be verified in-country (not assumed); ARTP USSD short code registration mandatory before deployment; BCEAO WAEMU e-money framework
+6. Cultural and Social Architecture — Islamic ulama (~99% Muslim) hold primary social authority; traditional chieftaincy co-governs; Tuareg communities require separate engagement strategy; women's access via ASC network and Groupements Féminins; nomadic populations require SIM-based identity; community radio and Griot oral tradition as UX model
+
+STRATEGIC DEPLOYMENT BRIEF FORMAT:
+To / From / Date / Subject (specific gap identified)
+Executive Finding (2-3 sentences — the one thing that makes the rest irrelevant if not addressed)
+Context (specific matrix-derived conditions, not generic Niger background)
+Dimension Priorities (ranked, with critical path explained)
+Recommendations (one per critical-path dimension: action + outcome + dependency)
+Phased Roadmap Summary (3 phases, 4-6 bullets each)
+Next Steps (3 bullets, time-bound, named owner implied)
+
+CRITICAL FLAGS:
+- USSD-First: Orange Money Niger, Orange Money USSD (*130#) is the primary financial interface. This is not legacy infrastructure — it is the only viable payment interface for the majority of Niger's population.
+- Electricity Constraint: 19% access nationally. Users charge phones at community kiosks. Design for interactions completable in under two minutes. Implement session resumption after charging interruption.
+- Ajami: Hausa Ajami literacy is widespread in Quranic-educated populations who have no Latin-script literacy. AjamiXTranslit is the primary tool. Assess prevalence in target region before finalizing text input design.
+- Zarma NLP Gap: Zarma/Songhai is the primary language of Niamey — the regulatory and commercial hub — and has near-zero NLP infrastructure. A product targeting Niamey that builds only Hausa NLP has covered the national trade language but not the capital's dominant spoken language.
+- Niger Hausa vs. Nigerian Hausa: Most available Hausa NLP training data comes from Nigeria. Niger Hausa has phonological and lexical differences. A model trained on Kano-dialect Hausa will underperform on Niamey or Zinder speakers. Evaluate corpus composition before claiming Hausa coverage.
+- Post-Coup Regulatory: Niger's July 2023 military coup has created regulatory uncertainty with no parallel in Senegal or Ghana. ANPDP operational continuity must be verified through in-country engagement. Do not proceed on pre-coup documentation assumptions.
+- ARTP Short Code: USSD deployment requires ARTP authorization before launch. Budget 4-12 weeks. No ARTP authorization = no USSD deployment.
+- Community Radio: Community radio in Hausa, Zarma, and Fulfulde reaches populations no digital medium can. It is the highest-reach mass communication channel in Niger. Products should assess whether core value can be packaged for radio distribution.
+- Agent Network is the Payment Infrastructure: Orange Money agents are the cash in/out ramp. Map agent density in target geography before designing any payment flow. A mobile money feature in a village with no agent within 20km has not enabled a transaction.
+- IVR Voice Quality: Do not use machine-generated TTS for primary IVR content in Niger. Quality is insufficient for rural accent variation. Native Hausa/Zarma speakers with community validation are required for IVR recordings.
+
+TERANGA / AKWAABA / LAFIYA DISTINCTION:
+Literacy floor: Senegal ~52% | Ghana ~79% | Niger ~37% — LAFIYA is the most extreme low-literacy context
+Interface: Senegal app+voice | Ghana app+USSD for north | Niger USSD/IVR on 2G; app is Niamey-only
+Payment rail: Senegal Wave (REST API) | Ghana MTN MoMo (OAuth+GhIPSS) | Niger Orange Money (USSD primary; limited API) — each requires a completely different integration architecture
+Political stability: Senegal stable | Ghana stable | Niger military junta since July 2023 — active regulatory risk variable unique to LAFIYA
+Electricity: Senegal ~60%+ | Ghana (dumsor but national grid exists) | Niger 19% — binding design constraint unique to LAFIYA
+Community radio: all three frameworks | Niger: radio is the primary distribution channel, not a supplement
+Data center: Senegal Diamniadio | Ghana Rack Centre Accra | Niger no in-country option; Dakar or Lagos nearest with post-coup authorization required
+
+ARTIFACT NAMING CONVENTION: [command]_[product_name]_[month]_[day]_[year]
+Examples: lafiya_healthbot_april_12_2026 | lingua_agriapp_april_12_2026 | comply_fintech_app_april_12_2026</code></pre>
+    </div>
+
+    <!-- WHAT LAFIYA IS -->
+    <div class="section-header">
+      <div class="section-label">Framework Overview</div>
+      <h2>What <span class="accent">LAFIYA</span> Does</h2>
+    </div>
+    <p>LAFIYA transforms a Western-built AI product into one that can survive near-total functional illiteracy outside urban centers, a USSD-first mobile ecosystem dominated by feature phones, electricity access at 19% of the population, post-coup regulatory uncertainty, Hausa and Zarma linguistic fragmentation, nomadic and semi-nomadic populations, and social authority structures anchored by Islamic scholarship and traditional chieftaincy.</p>
+    <p>Niger is not a "frontier market" that needs a lighter version of a product designed for Accra or Dakar. It requires a fundamentally different product architecture.</p>
+
+    <div class="callout">
+      <div class="callout-label">The USSD Imperative</div>
+      <p>App-first design in Niger is not a product strategy for the country. It is a product strategy for Niamey's wealthiest neighborhoods. Before any interface decision: does this require a smartphone, a data connection, or electricity that most users in the target region do not have? If yes, the interface must be redesigned around USSD, IVR, and 2G. This is not a constraint to work around. It is the design brief.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Post-Coup Context — Active Variable, Not Background</div>
+      <p>Niger's July 2023 coup is not background context. It affects regulatory frameworks, institutional continuity, French-language assumptions, and partnership ecosystems. The ANPDP was established under the pre-coup government; its operational continuity, enforcement capacity, and openness to foreign-operated products must be verified through direct in-country engagement. Any audit that treats Niger's regulatory environment as equivalent to pre-coup Francophone West Africa is working from an outdated model.</p>
+    </div>
+
+    <!-- COMMANDS -->
+    <div class="section-header">
+      <div class="section-label">Command Reference</div>
+      <h2>8 <span class="accent">Commands</span></h2>
+    </div>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Command</th><th>What It Does</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>lafiya [product]</code></td>
+          <td>Full adaptation audit across all six dimensions — produces the complete diagnostic matrix and strategic deployment brief</td>
+        </tr>
+        <tr>
+          <td><code>lingua [product]</code></td>
+          <td>Language and NLP strategy — Hausa (Niger vs. Nigerian corpus), Zarma gap assessment, Ajami literacy, USSD text protocol, IVR voice content specification</td>
+        </tr>
+        <tr>
+          <td><code>rails [product]</code></td>
+          <td>Mobile money integration plan — Orange Money USSD flow architecture, agent network dependency mapping, post-coup financial risk assessment, BCEAO compliance</td>
+        </tr>
+        <tr>
+          <td><code>voice [product]</code></td>
+          <td>IVR architecture, community radio integration, offline audio design for near-zero literacy users on 2G feature phones</td>
+        </tr>
+        <tr>
+          <td><code>comply [product]</code></td>
+          <td>ANPDP regulatory roadmap — Loi 2017-28, post-coup continuity assessment, ARTP USSD short code registration, cross-border pipeline audit</td>
+        </tr>
+        <tr>
+          <td><code>culture [product]</code></td>
+          <td>Social and cultural adaptation — ulama authority, chieftaincy engagement, nomadic population design, gender access intermediaries, Lafiya AI tone</td>
+        </tr>
+        <tr>
+          <td><code>roadmap [product]</code></td>
+          <td>Phased implementation plan — three phases, time-bound, sequenced against dependency chains including post-coup regulatory verification</td>
+        </tr>
+        <tr>
+          <td><code>data [product]</code></td>
+          <td>Data source intelligence brief — INS Niger, GSMA, ARTP, BCEAO, FEWS NET, field research requirements by sector</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>How to Invoke</h3>
+    <div class="invocation">
+      <div><strong>lafiya HealthBot</strong></div>
+      <div><strong>lafiya HealthBot</strong> — here's our current stack: [paste notes]</div>
+      <div><strong>lafiya</strong> [product] — primary market: Tahoua region</div>
+      <div><strong>lafiya</strong> [product] — sector: agriculture</div>
+      <div class="inv-comment">─</div>
+      <div><strong>lingua</strong> [product] — target: Hausa-speaking rural users</div>
+      <div><strong>rails</strong> [product] — existing: Orange Money USSD</div>
+      <div><strong>comply</strong> [product] — data type: health / community</div>
+      <div><strong>voice</strong> [product]</div>
+      <div><strong>culture</strong> [product] — sector: agritech</div>
+      <div><strong>roadmap</strong> [product] — timeline: 12 months</div>
+      <div><strong>data</strong> [product]</div>
+    </div>
+
+    <!-- SIX DIMENSIONS -->
+    <div class="section-header">
+      <div class="section-label">lafiya Command</div>
+      <h2>The Six <span class="accent">Audit Dimensions</span></h2>
+    </div>
+    <p>Every <code>lafiya</code> audit covers all six dimensions. Missing data is documented with a specific investigation instruction. Every cell must be labeled [Observed], [Inferred], [Unverifiable], or [Not Applicable].</p>
+
+    <h3 class="cmd">Dimension 1 — Linguistic Architecture</h3>
+    <p>Hausa is Tier 1 — non-negotiable for national reach — but the corpus distinction matters. Most available Hausa NLP training data comes from Nigeria. Niger Hausa has phonological and lexical differences that cause underperformance on Niamey and Zinder speakers. Zarma/Songhai is the primary language of Niamey and has near-zero NLP infrastructure — name this gap explicitly. Hausa Ajami literacy is widespread among Quranic-educated populations who have no Latin-script literacy at all.</p>
+
+    <div class="callout">
+      <div class="callout-label">Ajami Flag — Mandatory for Niger</div>
+      <p>Hausa Ajami — the writing of Hausa in Arabic script — is widely used in Niger among Quranic-educated populations who received Islamic schooling but no formal French-medium education. For many rural Nigeriens, Ajami literacy exceeds Latin-script French or Hausa literacy. A product that treats all Hausa speakers as Latin-script users is ignoring the segment most likely to be excluded by standard NLP pipelines. AjamiXTranslit is the primary available tool.</p>
+    </div>
+
+    <h3 class="cmd">Dimension 2 — Interface and Interaction Model</h3>
+    <p>A 37% national literacy rate means IVR/USSD is the primary interface for the majority of Niger — not a northern-region edge case. Even in Niamey (~65–70% literacy), a significant share of users cannot read. Outside the capital, illiteracy is the majority condition. USSD works on 2G, requires no data plan, works on a Nokia 105, and requires no literacy for numeric menu navigation.</p>
+
+    <table class="cmd-table" style="font-size:0.83rem; margin-top:12px;">
+      <thead>
+        <tr><th>Region</th><th>Literacy (approx.)</th><th>Interface Implication</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Niamey</td><td>~65–70%</td><td>Hybrid app/USSD viable for urban minority; Zarma voice layer required</td></tr>
+        <tr><td>Agadez</td><td>~35–40%</td><td>USSD-first mandatory; Tamasheq and Hausa both present</td></tr>
+        <tr><td>Maradi</td><td>~28–35%</td><td>USSD-first mandatory; Hausa primary; voice callback essential</td></tr>
+        <tr><td>Tahoua</td><td>~25–30%</td><td>Full USSD/IVR mandatory; Hausa and Fulfulde both present</td></tr>
+        <tr><td>Tillabéri</td><td>~25–30%</td><td>Full USSD/IVR mandatory; Zarma primary; nomadic Tuareg present</td></tr>
+        <tr><td>Diffa</td><td>~25–28%</td><td>USSD-first mandatory; security context (Boko Haram proximity); Hausa and Kanuri</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="cmd">Dimension 3 — Infrastructure and Technical Architecture</h3>
+    <p>4G covers ~15–20% of the population — Niamey and major town cores only. 2G/EDGE is the real network for the country. At 19% electricity access, most users charge phones at community kiosks or solar stations. Battery is a scarce resource managed deliberately. Community radio reaches populations that no digital medium can — it is the highest-reach mass communication channel in Niger, not a marketing supplementary channel.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Electricity Constraint as the Binding Design Variable</div>
+      <p>In Senegal, the binding constraint is literacy. In Ghana, it is the north-south divide plus dumsor. In Niger, electricity access at 19% is the deepest structural constraint. Most users in rural Niger have never had reliable electricity. Their phone is charged intermittently. Every interaction must be completable in one charging cycle's worth of battery — or the product must resume from any interruption point without data loss.</p>
+    </div>
+
+    <h3 class="cmd">Dimension 4 — Financial Integration</h3>
+    <p>Orange Money Niger dominates (~70%+) and its <strong>primary interface is USSD, not a REST API</strong>. This is a fundamentally different integration from Wave (Senegal) or MTN MoMo (Ghana). USSD sessions expire in 180 seconds. Menus must be designed in Hausa. Cash-in and cash-out require physical agent presence — the agent network is the payment infrastructure, not a distribution add-on. Post-coup ECOWAS disruptions affect cross-border financial flows and must be treated as an active risk variable.</p>
+
+    <h3 class="cmd">Dimension 5 — Regulatory and Data Sovereignty</h3>
+    <p>ANPDP registration is required under Loi 2017-28 before any data collection begins. The post-coup CNSP junta has disrupted French institutional partnerships and created regulatory uncertainty — ANPDP operational continuity must be verified through in-country engagement, not assumed from pre-coup documentation. ARTP USSD short code authorization is a separate mandatory requirement: no authorization, no USSD deployment. Budget 4–12 weeks. There is no in-country data center — nearest compliant options are Dakar or Lagos, subject to post-coup cross-border authorization requirements.</p>
+
+    <h3 class="cmd">Dimension 6 — Cultural and Social Architecture</h3>
+    <p>Niger is ~99% Muslim. Islamic ulama hold primary social authority in virtually every community. Products perceived as contrary to Islamic values will not be adopted — community engagement must begin with local ulama, not marketing campaigns. Traditional chiefs (chefs de canton, chefs de village) hold formal administrative authority alongside ulama. Tuareg communities in Agadez require a separate engagement strategy from Hausa or Zarma communities. Women's access runs through ASC (Agents de Santé Communautaire) networks and Groupements Féminins — not individual device ownership. Nomadic Fulani communities require SIM-based, location-agnostic identity and offline-capable design.</p>
+
+    <!-- INTEGRITY TEST -->
+    <div class="section-header">
+      <div class="section-label">Quality Gate</div>
+      <h2>The LAFIYA <span class="accent">Integrity Test</span></h2>
+    </div>
+    <p>Before any output is finalized, confirm every item on this list:</p>
+    <ul class="checklist">
+      <li>Every dimension has a documented finding or a documented investigation instruction with specific action required</li>
+      <li>Every recommendation traces to a specific matrix cell</li>
+      <li>No claim is made without a label: [Observed], [Inferred], or [Unverifiable — requires field investigation]</li>
+      <li>Interface design has not assumed smartphone access, data connectivity, or literacy for users outside Niamey</li>
+      <li>USSD architecture has been designed and specified, not mentioned as an afterthought</li>
+      <li>Electricity constraint incorporated into session design; interactions completable in under two minutes or fully resumable from interruption</li>
+      <li>Post-coup regulatory environment flagged as active variable; ANPDP operational continuity not assumed from pre-coup documentation</li>
+      <li>ARTP USSD short code registration has been planned; deployment is gated behind authorization</li>
+      <li>Orange Money agent network has been mapped for target geography; agent-free transaction models flagged as Niamey-only</li>
+      <li>Ulama and traditional chief social license question answered: who needs to say yes, and what is the endorsement process?</li>
+      <li>Community radio assessed as a distribution channel; if rejected, rejection is documented with reasoning</li>
+    </ul>
+
+    <!-- FORBIDDEN / REQUIRED -->
+    <div class="section-header">
+      <div class="section-label">Analytical Discipline</div>
+      <h2>Forbidden &amp; <span class="accent">Required</span> Patterns</h2>
+    </div>
+
+    <h3>Never Write</h3>
+    <ul class="pattern-list forbidden">
+      <li>"Niger is a Francophone market, so French NLP covers the language need" — ~15–20% of the population has functional French literacy; Hausa is the language of the majority; Zarma is the language of the capital's streets.</li>
+      <li>"Mobile-first strategy" — feature-phone-first USSD/IVR strategy. These are different paradigms requiring different engineering, different content formats, and different cost structures.</li>
+      <li>"Leverage existing mobile money APIs" — Orange Money Niger's primary interface is USSD. Which API? Documented where? Tested in-country with the live Orange Money agent network?</li>
+      <li>"Partner with local organizations" — which organizations? Alima? WFP Niamey? Peasant Farmers Federation of Niger (FNEN-Mooriben)? The ulama of Maradi? Name the specific partner and the function they serve.</li>
+      <li>"The Nigerien market is underserved and growing" — at 19% electricity access, 37% literacy, and 15% internet penetration, start with the binding constraints, not the opportunity framing.</li>
+      <li>"Deploy in Q1 and scale by Q3" — ARTP USSD registration takes 4–12 weeks; post-coup ANPDP verification requires in-country engagement; ulama endorsement requires relationship-building that cannot be scheduled in a product roadmap.</li>
+    </ul>
+
+    <h3>Always Write</h3>
+    <ul class="pattern-list required">
+      <li>"Given a [target region] user base with [X]% literacy and [Y]% electricity access, an app-first interface is inaccessible to [specific number] of intended users; the viable interface is USSD/IVR on 2G."</li>
+      <li>"Orange Money Niger's primary interface is USSD; integration requires USSD flow design in Hausa, ARTP short code registration, and agent network mapping before any transaction can be completed."</li>
+      <li>"ANPDP registration requires [specific documentation]; post-coup operational continuity must be verified through in-country engagement; product launch must be gated behind this confirmation."</li>
+      <li>"Community radio partnership with [specific station] enables audio content distribution to [estimated population reach] without requiring device ownership, data connection, or literacy."</li>
+    </ul>
+
+    <!-- ROADMAP -->
+    <div class="section-header">
+      <div class="section-label">roadmap Command</div>
+      <h2>Phased <span class="accent">Implementation</span></h2>
+    </div>
+    <p>Three phases, dependency-mapped. Timeline is longer than Senegal or Ghana because regulatory verification in a post-coup environment requires in-country engagement that cannot be compressed.</p>
+
+    <div class="phases">
+      <div class="phase-card">
+        <div class="phase-num">Phase 1</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-timeline">Months 1–6 · Regulatory verification, infrastructure baseline, minimum viable language layer</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">Post-coup ANPDP operational status verified through in-country engagement — cannot be assumed from documentation. ARTP USSD short code registration filed; IVR service license initiated. Orange Money Niger business partnership established; USSD flow architecture documented. Hausa IVR script written, recorded with native speakers, and community-validated in at least two target regions. BCEAO Niger delegation engaged if product involves financial transactions. Offline-first architecture implemented and tested on 2G connection and feature phone hardware.</p>
+        <div class="phase-gate">Gate: Phase 2 does not begin until ARTP short code is authorized, ANPDP status is verified, and Hausa IVR content passes community comprehension testing (&gt;80% task completion in target user group).</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 2</div>
+        <div class="phase-title">Localization and Community Entry</div>
+        <div class="phase-timeline">Months 6–12 · Community engagement, agent network activation, secondary language layer</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">Community engagement initiated: ulama and traditional chief outreach in each target region; endorsement process documented. ASC (Agent de Santé Communautaire) or agricultural extension agent partnership established for women and rural user access. Zarma IVR layer initiated for Niamey and western Niger deployment. Orange Money agent network mapped in target geography; agent-mediated transaction flow piloted. Community radio pilot: AI-generated audio content packaged for regional station broadcast in Hausa. Solar kiosk and community charging point partnership explored for device management in rural areas.</p>
+        <div class="phase-gate">Gate: Phase 3 does not begin until Phase 2 community endorsement is secured in at least one pilot region and IVR adoption exceeds threshold in pilot cohort.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 3</div>
+        <div class="phase-title">Reach Expansion</div>
+        <div class="phase-timeline">Months 12–24 · Pastoral communities, nomadic populations, humanitarian system integration</div>
+        <p style="font-size:0.88rem; color:var(--p5); margin-bottom:0;">Fulfulde IVR layer added for pastoral community reach in Tahoua and Tillabéri. Nomadic population design implemented: SIM-based identity, location-agnostic service, seasonal-migration-aware scheduling. Ajami input support assessed and scoped if target population warrants. Integration with humanitarian operating system (WFP, UNICEF, MSF) if product operates in food security or health sector. In-country community agents collecting ongoing IVR quality and comprehension data. Post-coup political situation reassessed: ECOWAS relationship, ANPDP enforcement trajectory, ARTP stability.</p>
+        <div class="phase-gate">Gate: In-country feedback loop established; IVR quality pipeline operational across at least two regions.</div>
+      </div>
+    </div>
+
+    <!-- THREE-FRAMEWORK COMPARISON -->
+    <div class="section-header">
+      <div class="section-label">Cross-Framework Reference</div>
+      <h2>TERANGA / AKWAABA / <span class="accent">LAFIYA</span></h2>
+    </div>
+    <p>Find-and-replace between these frameworks is not adaptation. It is negligence. The structural differences below require distinct product architectures in each country.</p>
+
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Senegal (TERANGA)</th>
+          <th>Ghana (AKWAABA)</th>
+          <th>Niger (LAFIYA)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Official language</strong></td>
+          <td>French (second language for 99%+)</td>
+          <td>English (genuinely spoken by urban majority)</td>
+          <td>French (~15–20% functional literacy) <span class="niger">politically fraught</span></td>
+        </tr>
+        <tr>
+          <td><strong>Literacy baseline</strong></td>
+          <td>~52% national</td>
+          <td>~79% national; gap in 3 northern regions</td>
+          <td>~37% national <span class="niger">severe nationally</span></td>
+        </tr>
+        <tr>
+          <td><strong>Primary interface</strong></td>
+          <td>Smartphone app + voice-first for rural</td>
+          <td>App + USSD/voice for north</td>
+          <td>USSD/IVR on 2G; app is Niamey-only <span class="niger">different paradigm</span></td>
+        </tr>
+        <tr>
+          <td><strong>Primary payment rail</strong></td>
+          <td>Wave (REST API)</td>
+          <td>MTN MoMo (OAuth 2.0 + GhIPSS)</td>
+          <td>Orange Money Niger (USSD primary) <span class="niger">no REST equivalent</span></td>
+        </tr>
+        <tr>
+          <td><strong>Payment interoperability</strong></td>
+          <td>None; Wave dominant</td>
+          <td>GhIPSS cross-network achieved</td>
+          <td>None; agent cash in/out required <span class="niger">agent is the infrastructure</span></td>
+        </tr>
+        <tr>
+          <td><strong>Data regulator</strong></td>
+          <td>CDP / Act 2008-12 (notification)</td>
+          <td>DPC / Act 843 (approval, 4–16 weeks)</td>
+          <td>ANPDP / Loi 2017-28 <span class="niger">post-coup continuity unverified</span></td>
+        </tr>
+        <tr>
+          <td><strong>Political stability</strong></td>
+          <td>Stable democracy</td>
+          <td>Stable democracy</td>
+          <td>Military junta since July 2023 <span class="niger">active risk variable</span></td>
+        </tr>
+        <tr>
+          <td><strong>Trust structure</strong></td>
+          <td>Sufi brotherhoods (national scale)</td>
+          <td>Chieftaincy + church (south) + Islamic (north)</td>
+          <td>Islamic ulama (near-universal) + chieftaincy <span class="niger">no single national gatekeeper</span></td>
+        </tr>
+        <tr>
+          <td><strong>Electricity</strong></td>
+          <td>~60%+ access</td>
+          <td>Grid exists; dumsor disrupts</td>
+          <td>19% access <span class="niger">binding design constraint</span></td>
+        </tr>
+        <tr>
+          <td><strong>Community radio</strong></td>
+          <td>Present; supplementary</td>
+          <td>Northern Ghana distribution channel</td>
+          <td>Highest-reach mass communication <span class="niger">primary distribution infrastructure</span></td>
+        </tr>
+        <tr>
+          <td><strong>Data center</strong></td>
+          <td>Diamniadio National Data Centre</td>
+          <td>Rack Centre Accra</td>
+          <td>No in-country option <span class="niger">Dakar or Lagos with post-coup authorization</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- NAMING CONVENTION -->
+    <div class="section-header">
+      <div class="section-label">Output Standards</div>
+      <h2>Artifact <span class="accent">Naming Convention</span></h2>
+    </div>
+    <p>All LAFIYA output artifacts follow: <strong>[command]_[product_name]_[month]_[day]_[year]</strong></p>
+    <div class="invocation" style="line-height:2.1;">
+      <div class="inv-comment"># Examples</div>
+      <div><strong>lafiya_healthbot_april_12_2026</strong></div>
+      <div><strong>lingua_agriapp_april_12_2026</strong></div>
+      <div><strong>comply_fintech_app_april_12_2026</strong></div>
+      <div><strong>roadmap_healthbot_april_12_2026_v2</strong></div>
+      <div class="inv-comment">─</div>
+      <div class="inv-comment"># Rules: lowercase, underscores as separators, date = date of generation</div>
+      <div class="inv-comment"># Revisions same session: append _v2, _v3</div>
+      <div class="inv-comment"># Revisions on a different date: update the date rather than append a version</div>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer>
+    Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+  </footer>
+
+</body>
+</html>
