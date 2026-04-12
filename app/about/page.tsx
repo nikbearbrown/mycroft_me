@@ -27,8 +27,8 @@ export default function AboutPage() {
           <h2>Get in touch</h2>
           <p>
             You can reach me at{' '}
-            <a href="mailto:moctar@moctardatt.com" className="text-primary hover:underline">
-              moctar@moctardatt.com
+            <a href="mailto:moctardatt@hotmail.com" className="text-primary hover:underline">
+              moctardatt@hotmail.com
             </a>
             {' '}or find me on{' '}
             <a href="https://github.com/moctardatt" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">

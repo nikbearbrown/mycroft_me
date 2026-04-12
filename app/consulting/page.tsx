@@ -53,7 +53,7 @@ export default function ConsultingPage() {
               Interested in working together? Reach out to discuss your project.
             </p>
             <a
-              href="mailto:moctar@moctardatt.com"
+              href="mailto:moctardatt@hotmail.com"
               className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
             >
               Contact Me
