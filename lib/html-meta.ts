@@ -15,9 +15,12 @@ export interface GroupedHtmlDocs {
   docs: HtmlDocMeta[]
 }
 
-function extractTag(html: string, pattern: RegExp): string | null {
-  const match = html.match(pattern)
-  return match ? match[1].trim() : null
+function extractTag(html: string, ...patterns: RegExp[]): string | null {
+  for (const pattern of patterns) {
+    const match = html.match(pattern)
+    if (match) return match[1].trim()
+  }
+  return null
 }
 
 function titleCase(slug: string): string {
@@ -45,11 +48,21 @@ export function scanHtmlDir(dir: string): HtmlDocMeta[] {
       const html = readFileSync(join(dir, filename), 'utf-8')
       const t = extractTag(html, /<title[^>]*>([^<]+)<\/title>/i)
       if (t) title = t
-      const d = extractTag(html, /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)
-        ?? extractTag(html, /<meta\s+content=["']([^"']+)["']\s+name=["']description["']/i)
+      const d = extractTag(
+        html,
+        /<meta\s+name="description"\s+content="([^"]+)"/i,
+        /<meta\s+content="([^"]+)"\s+name="description"/i,
+        /<meta\s+name='description'\s+content='([^']+)'/i,
+        /<meta\s+content='([^']+)'\s+name='description'/i,
+      )
       if (d) description = d
-      const k = extractTag(html, /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i)
-        ?? extractTag(html, /<meta\s+content=["']([^"']+)["']\s+name=["']keywords["']/i)
+      const k = extractTag(
+        html,
+        /<meta\s+name="keywords"\s+content="([^"]+)"/i,
+        /<meta\s+content="([^"]+)"\s+name="keywords"/i,
+        /<meta\s+name='keywords'\s+content='([^']+)'/i,
+        /<meta\s+content='([^']+)'\s+name='keywords'/i,
+      )
       if (k) tags = k.split(',').map(t => t.trim()).filter(Boolean)
     } catch {}
 
