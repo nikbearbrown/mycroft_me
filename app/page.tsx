@@ -1,129 +1,374 @@
-import PrimaryButton from "@/components/ui/primary-button"
-import SecondaryButton from "@/components/ui/secondary-button"
-import { BookOpen, Wrench, Code, Mail } from "lucide-react"
-import Link from "next/link"
+import Link from 'next/link'
+import { sql } from '@/lib/db'
+import PrimaryButton from '@/components/ui/primary-button'
+import SecondaryButton from '@/components/ui/secondary-button'
+import MarketCard, { type MarketCardProps } from '@/components/MarketCard'
 
-export default function Home() {
+export const dynamic = 'force-dynamic'
+
+// ── Types ──────────────────────────────────────────────────────────────────
+type RecentPost = {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  tags: string[] | null
+  published_at: string | null
+}
+
+// ── Market data ────────────────────────────────────────────────────────────
+const markets: MarketCardProps[] = [
+  {
+    country: 'Nigeria',
+    flag: '🇳🇬',
+    framework: 'NAIJA',
+    gdp: '~$400B',
+    status: 'live',
+    keyDimension: '89-pt state literacy gap; Yoruba tone ASR 78.8% WER; agent banking exclusivity Apr 2026',
+    toolUrl: '/tools/naija',
+  },
+  {
+    country: 'Ghana',
+    flag: '🇬🇭',
+    framework: 'AKWAABA',
+    gdp: '~$75B',
+    status: 'live',
+    keyDimension: 'GhIPSS interoperability achieved; Twi dialect disambiguation; dumsor-resilient session design',
+    toolUrl: '/tools/akwaaba',
+  },
+  {
+    country: "Côte d'Ivoire",
+    flag: '🇨🇮',
+    gdp: '~$70B',
+    status: 'dev',
+    keyDimension: "WAEMU PI-SPI 15 institutions; N'Ko script in Manding north; Wave > Orange in Abidjan",
+  },
+  {
+    country: 'Senegal',
+    flag: '🇸🇳',
+    framework: 'TERANGA',
+    gdp: '~$30B',
+    status: 'live',
+    keyDimension: 'Wolof NLP; Wave API idempotency; CDP Act 2008-12 prior notification',
+    toolUrl: '/tools/teranga',
+  },
+  {
+    country: 'Mali',
+    flag: '🇲🇱',
+    gdp: '~$22B',
+    status: 'dev',
+    keyDimension: "N'Ko script infrastructure; Bambara ASR 46.76% WER; Sufi/Izala gatekeeper divide",
+  },
+  {
+    country: 'Burkina Faso',
+    flag: '🇧🇫',
+    gdp: '~$18B',
+    status: 'dev',
+    keyDimension: 'Mooré ASR 4.24% WER (best-in-class); 52.9% Mooré speakers; Sahel insecurity',
+  },
+  {
+    country: 'Benin',
+    flag: '🇧🇯',
+    gdp: '~$17B',
+    status: 'dev',
+    keyDimension: 'WAEMU PI-SPI 6 institutions; cotton/transit trade economy; French-dominant urban',
+  },
+  {
+    country: 'Niger',
+    flag: '🇳🇪',
+    gdp: '~$15B',
+    status: 'dev',
+    keyDimension: '10.3% growth (hydrocarbons); Hausa dominant; Izala gatekeeper; lowest literacy tier',
+  },
+  {
+    country: 'Guinea',
+    flag: '🇬🇳',
+    gdp: '~$15B',
+    status: 'dev',
+    keyDimension: 'Bauxite economy; Pular/Mandingo primary languages; Mano River integration context',
+  },
+  {
+    country: 'Mauritania',
+    flag: '🇲🇷',
+    gdp: '~$10B',
+    status: 'dev',
+    keyDimension: 'Hassaniya Arabic ASR 12% WER; Arabic-script primary; WAEMU-adjacent',
+  },
+  {
+    country: 'Togo',
+    flag: '🇹🇬',
+    gdp: '~$9B',
+    status: 'dev',
+    keyDimension: 'Logistics hub; Ewe/Kabiyé NLP gap; Wave recently launched; WAEMU PI-SPI 6 institutions',
+  },
+  {
+    country: 'Sierra Leone',
+    flag: '🇸🇱',
+    gdp: '~$4B',
+    status: 'dev',
+    keyDimension: 'Krio as urban lingua franca; Mano River stability context; post-conflict digital infrastructure',
+  },
+  {
+    country: 'Liberia',
+    flag: '🇱🇷',
+    gdp: '~$4B',
+    status: 'dev',
+    keyDimension: 'Liberian English distinct from training data; rubber/iron economy',
+  },
+  {
+    country: 'Cape Verde',
+    flag: '🇨🇻',
+    gdp: '~$2.3B',
+    status: 'dev',
+    keyDimension: 'Island archipelago infrastructure; Portuguese-Creole (Kriolu); tourism-services economy',
+  },
+  {
+    country: 'Gambia',
+    flag: '🇬🇲',
+    gdp: '~$2.1B',
+    status: 'dev',
+    keyDimension: 'Wave recently launched; Mandinka/Wolof primary; landlocked within Senegal',
+  },
+  {
+    country: 'Guinea-Bissau',
+    flag: '🇬🇼',
+    gdp: '~$1.6B',
+    status: 'dev',
+    keyDimension: 'Portuguese official; Crioulo dominant; WAEMU PI-SPI frontier (4 institutions)',
+  },
+]
+
+// ── Six dimensions ─────────────────────────────────────────────────────────
+const dimensions = [
+  {
+    num: '01',
+    name: 'Linguistic Architecture',
+    body: '"English-first" is not a strategy in a region with 2,000 languages and a 78.8% ASR failure rate for Yoruba in global models. Which languages, which NLP tier, which datasets, which gaps.',
+  },
+  {
+    num: '02',
+    name: 'Interface & Interaction Model',
+    body: "Text-first or voice-first, and for which users. The literacy gap between Nigeria's highest and lowest states is 89 percentage points.",
+  },
+  {
+    num: '03',
+    name: 'Infrastructure & Technical Architecture',
+    body: "Offline-first design, device constraints, connectivity realities. 64% of West Africans live within mobile coverage but don't use mobile internet.",
+  },
+  {
+    num: '04',
+    name: 'Financial Integration',
+    body: 'Which payment rail, in which market, with which compliance requirements. The WAEMU zone and Anglophone markets have entirely different architectures.',
+  },
+  {
+    num: '05',
+    name: 'Regulatory & Data Sovereignty',
+    body: 'CDP, DPC, NDPC — prior notification vs. registration vs. enforcement. "We\'ll handle compliance later" costs more than the compliance did.',
+  },
+  {
+    num: '06',
+    name: 'Cultural & Social Architecture',
+    body: 'Who needs to say yes before a product can scale: Sufi brotherhood, Pentecostal network, emirate council, iyaloja network. Trust in West Africa does not route through institutions.',
+  },
+]
+
+// ── Consulting engagements ─────────────────────────────────────────────────
+const engagements = [
+  {
+    name: 'Adaptation Audit',
+    description:
+      'Full six-dimension diagnostic against one market framework. Produces a findings matrix and a strategic deployment brief.',
+    subtext:
+      'For AI companies evaluating whether their product can work in a specific market before they build anything.',
+  },
+  {
+    name: 'Build Review',
+    description:
+      'Technical review of an in-progress deployment against the relevant market framework. Identifies the gaps before they become production incidents.',
+    subtext:
+      'The wrong payment rail, the missing NLP layer, the unregistered data pipeline, the interface that excludes 60% of the target region.',
+  },
+  {
+    name: 'Advisory',
+    description:
+      'Ongoing engagement for teams building in West Africa over a sustained period. Access to the frameworks as they develop, direct input on architecture decisions.',
+    subtext:
+      'A standing relationship with someone who has mapped these markets systematically.',
+  },
+]
+
+// ── Page ───────────────────────────────────────────────────────────────────
+export default async function Home() {
+  // Same query pattern as app/blog/page.tsx
+  let recentPosts: RecentPost[] = []
+  try {
+    recentPosts = await sql`
+      SELECT id, title, slug, excerpt, tags, published_at
+      FROM blog_posts
+      WHERE published = true
+      ORDER BY published_at DESC
+      LIMIT 3
+    `
+  } catch {
+    // DB unavailable at build time — render without posts
+  }
+
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section */}
-      <section className="w-full py-12 md:py-20 lg:py-28">
+
+      {/* ══ SECTION 1 — HERO ══════════════════════════════════════════════ */}
+      <section className="w-full py-16 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 mx-auto">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
-              Moctar Datt
+          <div className="max-w-3xl">
+            <div className="w-16 h-1.5 bg-highlight mb-8" />
+
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-6 leading-tight">
+              Most AI products built for West Africa are built for a West Africa that doesn&rsquo;t exist.
             </h1>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              I write about AI and technology, build tools, and share ideas. This site is home base.
+
+            <p className="text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
+              The right language isn&rsquo;t there. The payment rail doesn&rsquo;t reach where the users are.
+              The data pipeline violates sovereignty law. I&rsquo;ve mapped the conditions in all fifteen
+              markets. The frameworks are here.
             </p>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <PrimaryButton href="/blog">Read My Writing</PrimaryButton>
-              <SecondaryButton href="/tools">Explore Tools</SecondaryButton>
+
+            <p className="text-sm font-semibold text-primary mb-10 tracking-wide">
+              West Africa AI Adaptation Consulting&nbsp;&mdash;&nbsp;Senegal&nbsp;&middot;&nbsp;Ghana&nbsp;&middot;&nbsp;Nigeria&nbsp;&middot;&nbsp;and twelve more markets
+            </p>
+
+            <div className="flex flex-col gap-3 min-[400px]:flex-row">
+              <PrimaryButton href="/contact">Start with a conversation</PrimaryButton>
+              <SecondaryButton href="/tools">See the frameworks</SecondaryButton>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Where I Create */}
-      <section className="w-full py-12 md:py-20 bg-muted">
+      {/* ══ SECTION 2 — FIFTEEN MARKETS ═══════════════════════════════════ */}
+      <section className="w-full py-16 md:py-24 border-y bg-muted/40">
         <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Where I Create</h2>
-              <p className="text-muted-foreground max-w-[600px]">
-                These are the places where I publish, build, and collaborate.
-              </p>
-            </div>
+          <div className="mb-10">
+            <div className="w-10 h-1 bg-highlight mb-5" />
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-3">
+              Fifteen Markets. One Methodology.
+            </h2>
+            <p className="text-muted-foreground max-w-xl">
+              The TERANGA framework &mdash; six dimensions, applied systematically to every West African market.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {/* Writing */}
-            <div className="border p-8 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="mb-4">
-                <BookOpen className="h-10 w-10" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            {markets.map((m) => (
+              <MarketCard key={m.country} {...m} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SECTION 3 — SIX DIMENSIONS ════════════════════════════════════ */}
+      <section className="w-full py-16 md:py-24">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="mb-10">
+            <div className="w-10 h-1 bg-highlight mb-5" />
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-3">
+              The Six Dimensions
+            </h2>
+            <p className="text-muted-foreground max-w-xl">
+              Every market audit covers the same six areas. Systematically. In sequence.
+              Because skipping a dimension is how products fail.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dimensions.map((d) => (
+              <div key={d.num} className="border-l-2 border-primary pl-5">
+                <div className="text-xs font-mono text-muted-foreground mb-2 tracking-widest">
+                  {d.num}
+                </div>
+                <h3 className="font-semibold text-base mb-2">{d.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{d.body}</p>
               </div>
-              <h3 className="text-xl font-bold mb-2">Writing</h3>
-              <p className="text-muted-foreground mb-4">
-                Essays and articles on AI, technology, and ideas. Exploring how AI is changing
-                how we learn, create, and build.
-              </p>
-              <Link href="/blog" className="text-sm font-medium underline underline-offset-4 hover:text-foreground">
-                Read the blog →
-              </Link>
-              <div className="mt-2">
-                <Link href="/substack" className="text-xs text-muted-foreground hover:text-primary">
-                  (Browse newsletter archives)
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SECTION 4 — CONSULTING OFFER ══════════════════════════════════ */}
+      <section className="w-full py-16 md:py-24 border-y bg-muted/40">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="mb-10">
+            <div className="w-10 h-1 bg-highlight mb-5" />
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-3">
+              Work with Moctar
+            </h2>
+            <p className="text-muted-foreground max-w-xl">
+              Three ways to engage, depending on where you are.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {engagements.map((e) => (
+              <div key={e.name} className="bg-card border rounded-lg p-6 flex flex-col gap-3">
+                <h3 className="text-lg font-bold">{e.name}</h3>
+                <p className="text-sm leading-relaxed">{e.description}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed flex-1">{e.subtext}</p>
+                <Link
+                  href="/contact"
+                  className="text-sm font-semibold text-primary hover:underline mt-auto"
+                >
+                  Get in touch &rarr;
                 </Link>
               </div>
-            </div>
-
-            {/* AI Tools */}
-            <div className="border p-8 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="mb-4">
-                <Wrench className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">AI Tools</h3>
-              <p className="text-muted-foreground mb-4">
-                A curated collection of interactive AI tools and utilities for learning,
-                experimentation, and practical use.
-              </p>
-              <Link href="/tools" className="text-sm font-medium underline underline-offset-4 hover:text-foreground">
-                Browse tools →
-              </Link>
-            </div>
-
-            {/* Consulting */}
-            <div className="border p-8 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="mb-4">
-                <Code className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Consulting</h3>
-              <p className="text-muted-foreground mb-4">
-                Advisory and consulting on AI strategy, implementation, and technology projects.
-                Helping organizations navigate the AI landscape.
-              </p>
-              <Link href="/consulting" className="text-sm font-medium underline underline-offset-4 hover:text-foreground">
-                Learn more →
-              </Link>
-            </div>
-
-            {/* Newsletter */}
-            <div className="border p-8 rounded-lg bg-card hover:shadow-lg transition-shadow">
-              <div className="mb-4">
-                <Mail className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Newsletter</h3>
-              <p className="text-muted-foreground mb-4">
-                Writing on AI and technology delivered to your inbox. Explore the archives
-                or subscribe to stay updated.
-              </p>
-              <Link href="/substack" className="text-sm font-medium underline underline-offset-4 hover:text-foreground">
-                Browse archives →
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Connect Section */}
-      <section className="w-full py-12 md:py-20 bg-muted">
+      {/* ══ SECTION 5 — RECENT WRITING ════════════════════════════════════ */}
+      <section className="w-full py-16 md:py-24">
         <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
-            <div className="mb-4 text-sm font-medium">CONNECT</div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-6">Let's Collaborate</h2>
-            <p className="text-muted-foreground mb-8">
-              Interested in AI, writing, or consulting? I'm always open to connecting
-              with like-minded individuals and organizations.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <PrimaryButton href="/blog">Read the Blog</PrimaryButton>
-              <SecondaryButton href="/tools">Explore Tools</SecondaryButton>
-              <SecondaryButton href="/consulting">Consulting</SecondaryButton>
-              <SecondaryButton href="/contact">Get in Touch</SecondaryButton>
+          <div className="flex items-end justify-between gap-4 mb-10">
+            <div>
+              <div className="w-10 h-1 bg-highlight mb-5" />
+              <h2 className="text-3xl font-bold tracking-tighter">Recent Writing</h2>
             </div>
+            <Link href="/blog" className="text-sm font-semibold text-primary hover:underline shrink-0">
+              All posts &rarr;
+            </Link>
           </div>
+
+          {recentPosts.length > 0 ? (
+            <div className="divide-y divide-border max-w-2xl">
+              {recentPosts.map((post) => (
+                <article key={post.id} className="py-6 first:pt-0 last:pb-0">
+                  <Link href={`/blog/${post.slug}`} className="group block">
+                    <h3 className="font-semibold text-base group-hover:text-primary transition-colors mb-1">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    {post.published_at && (
+                      <time className="text-xs text-muted-foreground">
+                        {new Date(post.published_at).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                    )}
+                  </Link>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">Writing coming soon.</p>
+          )}
         </div>
       </section>
+
     </div>
   )
 }
