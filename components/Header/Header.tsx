@@ -30,6 +30,7 @@ export default function Header() {
     { name: "Home", href: "/", external: false },
     { name: "Blog", href: "/blog", external: false },
     { name: "Tools", href: "/tools", external: false },
+    { name: "Analysis", href: "/analysis", external: false },
     { name: "Newsletter", href: "/substack", external: false },
     { name: "Projects", href: "/projects", external: false },
     { name: "Consulting", href: "/consulting", external: false },
