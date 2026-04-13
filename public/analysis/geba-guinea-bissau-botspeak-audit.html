@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEBA × Botspeak — Guinea-Bissau AI Literacy Adaptation Audit</title>
+<meta name="description" content="A six-dimension adaptation audit applying the GEBA framework to Botspeak × Claude deployment in Guinea-Bissau. Fictional research document covering Kriol NLP gaps, cashew-season timing, aggregator trust networks, and Bijagós female-elder authority structures.">
+<meta name="keywords" content="GEBA, Guinea-Bissau, Botspeak, Claude, Kriol, cashew, Bijagós, AI literacy, adaptation audit, voice-first AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #000000;
+    --p2: #006030;
+    --p3: #A81520;
+    --p4: #FDEF42;
+    --p5: #333333;
+    --p6: #727272;
+    --p7: #EBEBEB;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--p1);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 80px 32px 40px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--p2);
+    margin: 0 0 20px 0;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px 0;
+  }
+  .subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--p5);
+    margin: 0 0 48px 0;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--p6);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .meta-strip strong { color: var(--p1); font-weight: 500; }
+  h2 {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--p2);
+    margin: 72px 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--p2);
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 56px 0 16px 0;
+  }
+  h4 { font-size: 18px; font-weight: 600; margin: 36px 0 12px 0; }
+  p { margin: 0 0 20px 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  a { color: var(--p2); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--p3); }
+  blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--p3);
+    background: var(--p7);
+    font-size: 15px;
+    color: var(--p5);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  blockquote strong { color: var(--p3); }
+  .disclaimer {
+    border-left: 3px solid var(--p3);
+    border-top: 1px solid var(--p7);
+    border-right: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    padding: 20px 24px;
+    margin: 0 0 56px 0;
+    font-size: 14px;
+    color: var(--p5);
+  }
+  .disclaimer strong { color: var(--p3); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--p1);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  td {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--p7);
+    vertical-align: top;
+    color: var(--p5);
+  }
+  td:first-child { color: var(--p1); font-weight: 500; }
+  .label-obs, .label-inf, .label-unv {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .label-obs { background: var(--p2); color: #fff; }
+  .label-inf { background: var(--p4); color: var(--p1); }
+  .label-unv { background: var(--p3); color: #fff; }
+  ul, ol { padding-left: 22px; margin: 0 0 24px 0; }
+  li { margin-bottom: 8px; color: var(--p5); }
+  li strong { color: var(--p1); }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding-left: 28px; position: relative; color: var(--p1); }
+  .checklist li::before {
+    content: "✓"; position: absolute; left: 0;
+    color: var(--p2); font-weight: 700;
+  }
+  .checklist li.warn::before { content: "⚠"; color: var(--p3); }
+  .case-study {
+    border: 1px solid var(--p7);
+    padding: 32px 36px;
+    margin: 32px 0;
+    background: #fafafa;
+  }
+  .case-study h3 { margin-top: 0; color: var(--p2); }
+  .highlight { background: var(--p4); padding: 1px 4px; }
+  .prompt-kriol {
+    font-style: italic;
+    padding: 16px 20px;
+    border-left: 2px solid var(--p2);
+    background: var(--p7);
+    margin: 16px 0;
+    color: var(--p1);
+  }
+  .prompt-kriol .translation {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    color: var(--p6);
+    font-size: 14px;
+  }
+  footer {
+    max-width: 760px;
+    margin: 80px auto 0;
+    padding: 32px;
+    border-top: 1px solid var(--p7);
+    color: var(--p6);
+    font-size: 13px;
+    text-align: center;
+  }
+  footer a { color: var(--p2); }
+  @media (max-width: 640px) {
+    .wrap { padding: 48px 20px 24px; }
+    h1 { font-size: 32px; }
+    .subtitle { font-size: 17px; }
+    table { font-size: 12px; }
+    th, td { padding: 10px 8px; }
+    .case-study { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">GEBA Framework · Full Adaptation Audit</p>
+  <h1>Guinea-Bissau AI Literacy Adaptation Audit</h1>
+  <p class="subtitle">Botspeak × Claude analyzed across six dimensions — with the Kriol NLP gap, the cashew calendar, and aggregator/female-elder trust networks as the defining deployment constraints.</p>
+
+  <div class="meta-strip">
+    <span><strong>Framework:</strong> GEBA</span>
+    <span><strong>Product:</strong> Botspeak × Claude</span>
+    <span><strong>Date:</strong> April 12, 2026</span>
+  </div>
+
+  <div class="disclaimer">
+    <strong>DISCLAIMER — FICTIONAL RESEARCH DOCUMENT.</strong> This report is a speculative adaptation study produced as an example of what a structured market adaptation audit looks like when applied to AI literacy tool deployment in Guinea-Bissau. It was not commissioned by, requested by, or produced in collaboration with Anthropic, Claude, or Irreducibly Human. All case study profiles are fictional. All deployment recommendations are illustrative.
+  </div>
+
+  <h2>Country Context Summary</h2>
+  <p>The single most important condition shaping Botspeak × Claude deployment in Guinea-Bissau is that <span class="highlight">the national lingua franca — Guinea-Bissau Kriol — is a Tier 0 NLP language with effectively no corpus, no production ASR, and no presence in FLORES-200, NLLB-200, or Masakhane benchmarks</span>, while the official language Portuguese — for which full NLP exists — reaches only an estimated 15–25% of the intended user base, concentrated in urban Bissau. Botspeak assumes the user can read the AI's output; in rural Oio, Tombali, Bafatá, and the Bijagós, functional literacy falls to 22–35%, and daily commerce, kinship, and governance run in Kriol or Balanta-Kriol code-switching. A text-first Portuguese Botspeak deployment is not a product for Guinea-Bissau; it is a product for a few thousand Bissau professionals who already have cheaper alternatives.</p>
+  <p>The primary risk if this condition is ignored: <strong>the product will be confidently wrong in the field.</strong> Portuguese ASR does not fail silently on Kriol — it fails by returning plausible Portuguese sentences that mean something different from what the speaker said. A cashew aggregator dictating farmer payment records in Kriol will receive a Portuguese transcript that passes Botspeak's "plausibility check" visually but misreports village names, weights, and CFA amounts. In a market where the aggregator is the trust node for an entire farmer network, one wrong ledger destroys distribution for a season — and the cashew season only comes once a year.</p>
+
+  <h2>Six-Dimension Matrix</h2>
+  <table>
+    <thead><tr><th>Dimension</th><th>Finding</th><th>Implication</th></tr></thead>
+    <tbody>
+      <tr><td>1. Linguistic</td><td>Kriol (~95%) has zero production ASR; Portuguese ASR reaches 15–25%; Balanta-Kriol code-switching is the cashew-belt register; Bijagó languages require pre-recorded audio only. <span class="label-obs">Observed</span></td><td>Voice-first Kriol with pre-recorded scaffolding is minimum viable; text-first Portuguese serves urban elite only.</td></tr>
+      <tr><td>2. Interface</td><td>National literacy 45–55%; Tombali/Oio 22–28%; cashew-grove sessions demand &lt;3 min, one-handed, offline-capable; Bijagós needs days-long offline sync-on-boat. <span class="label-obs">Observed</span></td><td>Botspeak's iterative refinement loop must compress to 2–3 turns max; group-listening validation replaces individual read-through.</td></tr>
+      <tr><td>3. Infrastructure</td><td>Mobile internet 15–22% (lowest in framework family); 4G Bissau-heavy; roads 10–15% paved; Bijagós boat-only; cashew season Mar–Jun is only reliable rural deployment window. <span class="label-obs">Observed</span></td><td>Deploy agents Nov–Feb; activate Feb; harvest Mar–Jun; switch to savings/advisory Jul–Oct.</td></tr>
+      <tr><td>4. Financial</td><td>Orange Money dominant; Wave agent depth unverified; PI-SPI 4 institutions, June 2026 deadline; AML/CFT enhanced (narco-state legacy). <span class="label-unv">Unverifiable (Wave)</span></td><td>Any paid tier or NGO disbursement inherits enhanced-AML stack. 1.5–2× standard WAEMU compliance timeline.</td></tr>
+      <tr><td>5. Regulatory</td><td>No mature data protection law; BCEAO is the only supra-political anchor; 9+ coups since 1974 — no single-minister dependency survives a cycle; CENTIF-GB for AML reporting. <span class="label-inf">Inferred fragility</span></td><td>Anchor data residency via BCEAO-regulated partner, not ministry MoU. Every national relationship needs a contingency.</td></tr>
+      <tr><td>6. Cultural</td><td>Fanado (Balanta male initiation) gates cashew-belt household authority; Bijagó female authority inverts mainland assumptions; aggregator is trust node; Lisbon diaspora as formal-correspondence channel. <span class="label-obs">Observed</span></td><td>Aggregator-first, female-elder-first on Bijagós, Lisbon-diaspora channel for pensions/land/family reunification.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Integrity test</h4>
+  <ul class="checklist">
+    <li>Cashew Calendar applied — deployment timed to Nov–Feb build, Feb activation, Mar–Jun peak</li>
+    <li>Portuguese Trap checked — product explicitly scoped as Kriol-voice, not Portuguese-text</li>
+    <li>Kriol NLP gap assessed — corpus collection named as Phase 0 prerequisite</li>
+    <li>AML/CFT enhanced flagged — relevant to any monetized or disbursement-linked deployment</li>
+    <li>Political instability register — BCEAO named as anchor; ministry dependencies flagged</li>
+    <li class="warn">Payment idempotency — not applicable to pure literacy tool; flagged if Botspeak is bundled with cashew-payment workflow</li>
+    <li>Aggregator network assessed as primary distribution channel</li>
+    <li>Bijagós treated as distinct product universe</li>
+    <li>Bijagó female authority mapped (Case Study 2)</li>
+  </ul>
+
+  <h2>Research Objectives</h2>
+
+  <h3>Objective 1 — Voice-First AI Collaboration Design</h3>
+  <p><strong>Viable interaction model.</strong> Given 15–22% mobile internet and 10–15% road paving, cloud-dependent native audio-to-audio models are infeasible outside Bissau and Bafatá town centers for most of the year. The viable stack is a <strong>hybrid cascaded pipeline</strong>: (a) on-device Kriol wake-word and pre-recorded prompt scaffold, (b) opportunistic audio upload when signal is available, (c) Claude generation server-side, (d) TTS read-back in Kriol via pre-recorded phoneme concatenation for a fixed vocabulary (numbers, village names, cashew weights, CFA amounts) plus Portuguese TTS for the formal-output layer. The cashew-season merchant surge (Mar–Jun) materially improves interior 4G reach and is the only window where full cloud roundtrips are reliable in Oio/Bafatá.</p>
+  <p><strong>ASR failure modes specific to Guinea-Bissau.</strong> Portuguese Whisper and Azure models applied to Kriol exhibit: (1) <strong>lexical substitution</strong> — Kriol <em>bai</em> ("go") → Portuguese <em>vai</em>, collapsing an aspect distinction; (2) <strong>phantom conjugation</strong> — Kriol is largely uninflected, Portuguese ASR will invent tense agreement that was never spoken; (3) <strong>village-name destruction</strong> — Balanta and Manjaco toponyms mapped to nearest Portuguese phonetic neighbors; (4) <strong>code-switch collapse</strong> — mid-sentence Balanta→Kriol→Portuguese flattened to monolingual Portuguese with ~40%+ semantic drift. None of these are visible to a non-Portuguese-reader — they pass plausibility checks. This is the confidently-wrong failure surface that Botspeak's "critical evaluation" pillar must be redesigned around.</p>
+  <p><strong>Well-formed Kriol oral prompt</strong> (Task-Context-Constraint adapted for Kriol's serial-verb structure):</p>
+  <div class="prompt-kriol">
+    "Claude, kura: N'misti pa bu skribi un papil di pagamentu. N'kunpra tres saku di kastanha na tabanka di Bissorã, preço mil e kinyentus kada saku. Bota data di aos. Skribi-l kurtu, pa nha xefe entendi."
+    <span class="translation">(Claude, listen: I want you to write a payment paper. I bought three bags of cashew in Bissorã village, price 1500 each. Put today's date. Write it short, so my boss understands.)</span>
+  </div>
+  <p>The Kriol <em>kura</em> ("listen") as wake-marker is more reliable than imported English/Portuguese wake-words; it is already the discourse-opening particle speakers use when dictating to a literate intermediary.</p>
+
+  <h3>Objective 2 — Simultaneous Literacy Acquisition</h3>
+  <p><strong>Language-of-instruction choice.</strong> Guinea-Bissau's adult literacy infrastructure is thin; historical programs have run through Catholic missions (Cacheu, Bafatá), Tiniguena, and Fundação Fé e Cooperação — most default to Portuguese primers, which reproduces the Portuguese Trap at the curriculum level. Any Botspeak literacy scaffold must choose between Kriol orthography (contested, non-standardized) or Portuguese (accessible to fewer learners but institutionally recognized). The honest answer is bilingual output with Kriol audio read-back and Portuguese written form, letting the learner build visual-phonetic associations toward Portuguese literacy while operating conversationally in Kriol.</p>
+  <p><strong>Oral-to-written translation role.</strong> This is Claude's strongest contribution. Kriol oral traditions — Balanta <em>djidius</em> (storytellers), Manjaco histories, Bijagó female-elder oral records — have no standardized written corpus. Claude as "digital scribe" producing Portuguese transcriptions of Kriol oral input is a genuinely new capability, but only if the Kriol ASR layer works. <strong>This is the prerequisite investment, not the product.</strong></p>
+  <p>Adjacent evidence from Cape Verdean Kriolu orthography work suggests creole literacy programs succeed when anchored in a single domain (health, commerce) rather than general education. Botspeak × Claude should scope to <strong>cashew-transaction literacy</strong> as the first domain, not "writing" as such.</p>
+
+  <h3>Objective 3 — NLP Gaps and Interim Architectures</h3>
+  <table>
+    <thead><tr><th>Language</th><th>Speakers</th><th>NLP Status</th><th>Interim Architecture</th></tr></thead>
+    <tbody>
+      <tr><td>Kriol</td><td>~95% functional</td><td>Minimal; not in FLORES-200/NLLB-200/Masakhane</td><td>Pre-recorded Kriol audio prompt scaffold + constrained-vocabulary TTS. Corpus collection via Tiniguena/Catholic mission partnerships in Phase 0.</td></tr>
+      <tr><td>Balanta</td><td>~27–30%</td><td>Effectively zero; no transfer candidate</td><td>Pre-recorded community audio only. No ASR for Phase 1–2.</td></tr>
+      <tr><td>Fula/Pular (GB)</td><td>~18–20%</td><td>Kallaama (Senegal Pulaar) transfer candidate; GB divergence unverified</td><td>Kallaama warm-start; budget 500+ hours GB Pulaar fine-tuning.</td></tr>
+      <tr><td>Mandinka</td><td>~12%</td><td>Bambara/Manding transfer potential</td><td>Warm-start from Bambara Whisper fine-tunes; target cashew trade lexicon.</td></tr>
+      <tr><td>Bijagó languages</td><td>~30K</td><td>Zero NLP</td><td>Pre-recorded audio only. Not a target for ASR in 24-month horizon.</td></tr>
+      <tr><td>Portuguese</td><td>~15–25% reach</td><td>Full global NLP</td><td>Output layer only — formal letters, official documents. Never the input layer.</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Minimum viable Kriol voice interface today:</strong> a constrained-domain IVR-plus-LLM hybrid. The user speaks Kriol into a fixed-intent frame ("I want to write X about Y for Z"); a small on-device classifier routes to one of ~20 Botspeak templates; Claude fills the template in Portuguese; Kriol TTS reads back the key fields (who, what, how much, when) using pre-recorded phonemes. Open-ended Kriol-to-Portuguese dictation is a Phase 3 capability, gated on corpus collection.</p>
+
+  <h3>Objective 4 — Community and Group Models</h3>
+  <p><strong>Shared-device interaction.</strong> Individual smartphone ownership in rural Oio/Tombali is below 25%; group use via the cashew aggregator's device is the realistic access model. Botspeak must support <strong>multi-speaker sessions</strong> — the aggregator holds the device, farmers dictate their own entries, the aggregator validates orally in front of the group. This is closer to a public-notary workflow than to a private writing assistant.</p>
+  <p><strong>Literate intermediaries.</strong> In the cashew belt, the aggregator (<em>djumbai</em> organizer, often Balanta or Manjaco, sometimes Lebanese/Indian merchant intermediary) is the de facto literate intermediary. On the Bijagós, the Tiniguena NGO field agent and the Catholic mission catechist fill this role. In Bafatá/Gabú, Fula religious teachers (Qur'anic schools) are the trust-gatekeepers. Botspeak's "human supervisor of the AI" role maps onto this intermediary, not onto the end-user directly — at least in Phase 1.</p>
+  <p><strong>Oral community validation.</strong> Group listening sessions where Claude's output is read aloud to a farmer cohort and validated collectively map directly onto the existing <em>djumbai</em> cashew-sale ceremony, where prices and weights are already announced publicly for witness. This is the correct substitute for individual critical reading — and it is culturally native, not imported.</p>
+  <p><strong>Trust architecture.</strong> Guinea-Bissau carries (1) narco-state legacy distrust of any tool that records transactions — farmers and aggregators both have reasons to fear CENTIF-GB scrutiny; (2) post-coup distrust of state-adjacent tools — 9+ coups mean any product that looks government-endorsed is politically volatile; (3) on the Bijagós, a specific distrust of mainland institutions including Bissau itself. The trust framing must be <strong>explicitly non-state, explicitly non-surveillance, explicitly aggregator-endorsed in the cashew belt and female-elder-endorsed in the Bijagós</strong>. Anchoring the tool in BCEAO-regulated rails for any financial flows — and in NGO partnerships (Tiniguena, Catholic mission) for literacy flows — is the only credible path.</p>
+
+  <h3>Objective 5 — Writing Pedagogy Tension</h3>
+  <p><strong>Scaffold vs. substitute.</strong> The tension is less acute in Guinea-Bissau than in post-literacy Northern contexts because the realistic user is not trying to become a Portuguese writer — they are trying to produce a single class of documents (payment records, formal letters, health petitions) they currently cannot produce at all. The substitute risk is lower when the baseline is "no document exists" rather than "document exists, user wrote it themselves."</p>
+  <p><strong>Productive struggle threshold.</strong> The friction should sit in the <strong>evaluation</strong> step, not the generation step. The learner should struggle over: did Claude get the village name right? Did Claude get the weight right? Is the tone respectful for a letter to a regional governor? These are judgment tasks the learner can perform orally, against their own mental model, without needing to read Portuguese. This is the actual skill Botspeak teaches, and it is the skill that transfers.</p>
+  <p><strong>Oral-composition bridges.</strong> Guinea-Bissau has rich oral traditions — Balanta <em>kumba</em> ceremonial speech, Manjaco ancestral invocations, Kriol storytelling on state radio. Using Claude as "apprentice storyteller" works better here than as "apprentice writer": the user dictates a story, Claude produces a Portuguese transcription, the user validates orally against the community. The written artifact is a byproduct.</p>
+
+  <h2>Case Studies</h2>
+
+  <div class="case-study">
+    <h3>Case Study 1 — Malam Ntchala, Oio cashew aggregator</h3>
+    <p><strong>Profile.</strong> 44, male, Farim (Oio region, cashew heartland). Kriol primary, Balanta native, basic Portuguese comprehension, non-literate in Portuguese. Cashew aggregator buying from ~60 smallholder farmers across four <em>tabankas</em> during Mar–Jun harvest; sells to a Lebanese exporter in Bissau.</p>
+    <p><strong>Device and use.</strong> Personal Android smartphone (TECNO Spark, 2GB RAM), used for Orange Money and WhatsApp; 4G intermittent outside Farim town. Claude produces farmer-by-farmer payment records (village, weight, CFA amount, date), end-of-week rollup for the exporter, and occasional formal Portuguese letters when a farmer disputes a weight.</p>
+    <div class="prompt-kriol">
+      "Claude, kura: N'paga Fatumata Mané, tabanka di Bissorã, sinku saku, setenta kilu kada saku, preço mil e kinyentus pa kilu. Data di aos, dose di abril. Bota tudu na un papil, skribi nomi di tabanka dretu."
+      <span class="translation">(Claude, listen: I'm paying Fatumata Mané, Bissorã village, five bags, seventy kilos each, price 1500 per kilo. Today's date, April 12. Put it all on one paper, write the village name correctly.)</span>
+    </div>
+    <p><strong>Output format.</strong> Portuguese-text receipt with bolded numeric fields, village name in original Kriol spelling (not lusophonized), and a Kriol audio read-back that explicitly speaks back the village name, weight, and total CFA amount for Malam to validate against his own memory before sending.</p>
+    <p><strong>Literacy dimension.</strong> Malam builds visual recognition of Portuguese numerals and the four village names he uses most. Productive struggle sits in catching ASR errors on Balanta village names — Claude will want to write "Bissorão" for <em>Bissorã</em>; Malam must learn to hear this in the read-back and force correction. Progress indicator: reduction in his redictate-from-scratch rate, increase in targeted correction rate ("no, not Bissorão, Bissorã"), eventual willingness to send receipts without calling his literate nephew to verify.</p>
+    <p><strong>Gatekeeper.</strong> Malam's Lebanese exporter in Bissau is the pragmatic gatekeeper — if the exporter accepts Claude-generated receipts as valid trade documents, Malam uses them. The endorsement ceremony is commercial, not traditional. Secondary endorsement: the Balanta council of elders in Bissorã must understand what the tool records and why, or farmers will refuse to be "written down." This requires a Fanado-aware explanation. Reciprocal obligation: once introduced, the tool becomes part of how Malam's farmer network expects to be paid. Withdrawing it mid-season is not an option. <strong>Deploy in February or not at all this cycle.</strong></p>
+  </div>
+
+  <div class="case-study">
+    <h3>Case Study 2 — N'Bessene Okanga, Bijagós female elder</h3>
+    <p><strong>Profile.</strong> 58, female, Canhabaque island. Bijagó primary, Kriol fluent second language, no Portuguese. <em>Okinka</em> (female elder with ceremonial and economic authority); coordinates a women's oyster-harvesting collective; de facto financial decision-maker for ~30 households.</p>
+    <p><strong>Device and use.</strong> Tiniguena-provided shared tablet (Samsung A-series, 4G when in Bubaque, offline on Canhabaque); boat trip to Bubaque every 8–12 days. Claude produces oyster-harvest weight and price records, plus formal letters to the regional government in Bissau requesting dike repairs against saltwater intrusion into the rice fields.</p>
+    <div class="prompt-kriol">
+      "Claude, skuta: Mininus di nha tabanka pega dus mil kilu di ostra na luna pasadu. Bindi na Bubaque, preço tres santus franku pa kilu. Skribi tudu na papil pa nha mostra na reuniãu di mindjeris. Dipus, skribi un karta pa governador, pa el manda konserta diki — awa salgadu ta mata arus."
+      <span class="translation">(Claude, listen: The women of my village harvested two thousand kilos of oysters last month. Sold in Bubaque, price 300 francs per kilo. Write it all on paper so I can show the women's meeting. After that, write a letter to the governor, so he sends someone to repair the dike — the saltwater is killing the rice.)</span>
+    </div>
+    <p><strong>Output format.</strong> Offline-capable — the tablet caches Claude's Portuguese output locally and syncs when N'Bessene reaches Bubaque. A Kriol audio summary plays immediately for validation in the village meeting; the Portuguese letter is read aloud by the Tiniguena field agent only after N'Bessene has approved the Kriol version. <strong>Extended offline architecture is mandatory — days, not hours.</strong></p>
+    <p><strong>Literacy dimension.</strong> N'Bessene is not the target literacy learner — her authority does not depend on reading Portuguese. The literacy beneficiary is the younger Tiniguena-trained facilitator, who learns to supervise Claude's output against N'Bessene's validation. Productive struggle: N'Bessene's critical evaluation is oral and cultural — is this letter <em>respectful enough</em> for a regional governor? Does it name the right saints and ancestors? This is a supervision skill Botspeak explicitly teaches, applied at the highest available register.</p>
+    <p><strong>Gatekeeper.</strong> Bijagó female authority is the entry point, not an afterthought. Cold approach to Canhabaque is inadvisable; introduction must run through Tiniguena's existing mangrove-conservation partnership, which already has N'Bessene's trust. Endorsement ceremony: formal presentation to the island's female council, in Bijagó (translated from Kriol), with explicit explanation of what the tablet records, who sees it, and what happens to the audio. The council will ask who owns the data. The answer must be credible and non-state. Reciprocal obligation: Tiniguena inherits responsibility for tool continuity. If Claude becomes unavailable or Tiniguena loses funding, the women's collective loses a governance tool that the island's rice-field survival may depend on. This should not be taken on without a multi-year commitment.</p>
+  </div>
+
+  <h2>Strategic Deployment Brief</h2>
+  <p><strong>Executive finding.</strong> Botspeak × Claude in Guinea-Bissau is not a translation of the Western framework — it is a different product sharing the same conceptual backbone. The supervision skills Botspeak teaches (specify, delegate, evaluate, judge) map well onto Kriol oral culture and the aggregator/female-elder authority structures that already validate information orally. The generation layer does not: Kriol has no production ASR, Portuguese ASR fails confidently on Kriol, and literacy rates in the cashew belt and Bijagós make text-first interaction a non-starter. The product that ships in Guinea-Bissau is a <strong>Kriol-voice supervisory frame for Claude's Portuguese output</strong>, scoped initially to cashew-transaction documentation (Oio/Bafatá) and mangrove/rice advocacy correspondence (Bijagós).</p>
+
+  <h4>Dimension priorities (ranked by deployment risk)</h4>
+  <ol>
+    <li><strong>Linguistic architecture</strong> — Kriol ASR/TTS stack is the single largest investment and the gating prerequisite</li>
+    <li><strong>Cultural architecture</strong> — aggregator-first in the cashew belt, female-elder-first in the Bijagós, non-state trust framing everywhere</li>
+    <li><strong>Infrastructure</strong> — cashew-season deployment window is non-negotiable; miss February and wait a year</li>
+    <li><strong>Regulatory</strong> — BCEAO anchor, CENTIF-GB awareness, no ministry-dependent architecture</li>
+    <li><strong>Interface</strong> — group-listening validation as the core interaction, not individual read-through</li>
+    <li><strong>Financial</strong> — only relevant if Botspeak is bundled with payment; if so, enhanced AML/CFT applies</li>
+  </ol>
+
+  <h4>Phased roadmap</h4>
+  <table>
+    <thead><tr><th>Phase</th><th>Window</th><th>Activity</th></tr></thead>
+    <tbody>
+      <tr><td>Phase 0 — Corpus</td><td>May–Oct 2026</td><td>Kriol audio corpus collection; template library co-design with Farim aggregators and Canhabaque female council (wet season, Tiniguena + Catholic mission partnerships)</td></tr>
+      <tr><td>Phase 1 — Dry-season build</td><td>Nov 2026 – Jan 2027</td><td>Constrained-vocabulary Kriol TTS; template-based Claude pipeline; aggregator onboarding in Oio/Bafatá; tablet provisioning with Tiniguena on Bijagós</td></tr>
+      <tr><td>Phase 2 — Harvest pilot</td><td>Feb–Jun 2027</td><td>Cashew-season live deployment in Farim, Bissorã, and one Canhabaque women's collective; group-listening validation; plausibility-audit training</td></tr>
+      <tr><td>Phase 3 — Evaluation</td><td>Jul–Oct 2027</td><td>Error-surface analysis; Kriol corpus expansion from Phase 2 transcripts; decision gate on Phase 4</td></tr>
+      <tr><td>Phase 4 — Scale</td><td>Nov 2027+</td><td>Contingent on Phase 3 evaluation and political stability at BCEAO anchor level</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Political risk gates.</strong> Every phase after Phase 0 is gated on (a) BCEAO regulatory continuity, (b) Tiniguena partnership continuity on the Bijagós, (c) no coup cycle disrupting the November–February build window. If (c) happens, phases slide by a full cashew cycle — one year.</p>
+
+  <h4>Next steps</h4>
+  <ol>
+    <li>Commission a 90-day field scoping trip: Farim + Bissorã (cashew belt) and Bubaque + Canhabaque (Bijagós), in partnership with Tiniguena and a Catholic mission contact in Bafatá</li>
+    <li>Kriol corpus RFP — scoped to 500+ hours, domain-bounded to cashew transactions and formal correspondence</li>
+    <li>Legal review of CENTIF-GB reporting obligations for any voice recordings containing transaction data</li>
+    <li>BCEAO briefing on the data residency architecture before any deployment begins</li>
+  </ol>
+
+  <blockquote>
+    <strong>About this report.</strong> This is a fictional adaptation study produced as a demonstration of the GEBA methodology applied to AI literacy tool deployment. It was produced by GEBA's AI adaptation framework, not by Anthropic or Claude. The Botspeak framework is developed by Irreducibly Human. Claude is a product of Anthropic. Neither organization commissioned, reviewed, or endorsed this report. All case study profiles are fictional. For the full framework methodology and other market audits: <a href="https://MoctarDatt.com">MoctarDatt.com</a>
+  </blockquote>
+
+</div>
+
+<footer>
+  Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+</footer>
+
+</body>
+</html>

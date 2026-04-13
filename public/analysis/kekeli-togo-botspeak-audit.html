@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEKELI × Botspeak — Togo AI Literacy Adaptation Audit</title>
+<meta name="description" content="A six-dimension adaptation audit applying the KEKELI framework to Botspeak × Claude deployment in Togo. Fictional research document covering Ewe and Kabiyé NLP gaps, north-south bifurcation, IPDCP regulatory context, and voice-first supervisory literacy design.">
+<meta name="keywords" content="KEKELI, Togo, Botspeak, Claude, Ewe, Kabiyé, IPDCP, Novissi, AI literacy, adaptation audit, voice-first AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #000000;
+    --p2: #006030;
+    --p3: #A81520;
+    --p4: #FDEF42;
+    --p5: #333333;
+    --p6: #727272;
+    --p7: #EBEBEB;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--p1);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 80px 32px 40px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--p2);
+    margin: 0 0 20px 0;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px 0;
+  }
+  .subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--p5);
+    margin: 0 0 48px 0;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--p6);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .meta-strip strong { color: var(--p1); font-weight: 500; }
+  h2 {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--p2);
+    margin: 72px 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--p2);
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 56px 0 16px 0;
+  }
+  h4 { font-size: 18px; font-weight: 600; margin: 36px 0 12px 0; }
+  p { margin: 0 0 20px 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  a { color: var(--p2); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--p3); }
+  blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--p3);
+    background: var(--p7);
+    font-size: 15px;
+    color: var(--p5);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  blockquote strong { color: var(--p3); }
+  .disclaimer {
+    border-left: 3px solid var(--p3);
+    border-top: 1px solid var(--p7);
+    border-right: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    padding: 20px 24px;
+    margin: 0 0 56px 0;
+    font-size: 14px;
+    color: var(--p5);
+  }
+  .disclaimer strong { color: var(--p3); }
+  .warning-box {
+    border-left: 3px solid var(--p3);
+    background: #fff;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .warning-box h4 { margin-top: 0; color: var(--p3); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px 0;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 12px;
+    border-bottom: 2px solid var(--p1);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--p7);
+    vertical-align: top;
+    color: var(--p5);
+  }
+  td:first-child { color: var(--p1); font-weight: 500; }
+  .label-obs, .label-inf, .label-unv, .label-ns {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .label-obs { background: var(--p2); color: #fff; }
+  .label-inf { background: var(--p4); color: var(--p1); }
+  .label-unv { background: var(--p3); color: #fff; }
+  .label-ns { background: var(--p1); color: #fff; }
+  ul, ol { padding-left: 22px; margin: 0 0 24px 0; }
+  li { margin-bottom: 8px; color: var(--p5); }
+  li strong { color: var(--p1); }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding-left: 28px; position: relative; color: var(--p1); }
+  .checklist li::before {
+    content: "✓"; position: absolute; left: 0;
+    color: var(--p2); font-weight: 700;
+  }
+  .case-study {
+    border: 1px solid var(--p7);
+    padding: 32px 36px;
+    margin: 32px 0;
+    background: #fafafa;
+  }
+  .case-study h3 { margin-top: 0; color: var(--p2); }
+  .highlight { background: var(--p4); padding: 1px 4px; }
+  .prompt {
+    font-style: italic;
+    padding: 16px 20px;
+    border-left: 2px solid var(--p2);
+    background: var(--p7);
+    margin: 16px 0;
+    color: var(--p1);
+    font-size: 15px;
+  }
+  .prompt .translation {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    color: var(--p6);
+    font-size: 13px;
+  }
+  .labels-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 32px 0;
+    padding: 16px 20px;
+    background: #fafafa;
+    border: 1px solid var(--p7);
+    font-size: 12px;
+  }
+  .labels-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--p5);
+  }
+  footer {
+    max-width: 780px;
+    margin: 80px auto 0;
+    padding: 32px;
+    border-top: 1px solid var(--p7);
+    color: var(--p6);
+    font-size: 13px;
+    text-align: center;
+  }
+  footer a { color: var(--p2); }
+  @media (max-width: 640px) {
+    .wrap { padding: 48px 20px 24px; }
+    h1 { font-size: 32px; }
+    .subtitle { font-size: 17px; }
+    table { font-size: 11px; }
+    th, td { padding: 8px 6px; }
+    .case-study { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">KEKELI Framework · Full Diagnostic</p>
+  <h1>Togo AI Literacy Adaptation Audit</h1>
+  <p class="subtitle">Botspeak × Claude analyzed across six dimensions — with the Ewe voice pipeline, the Kabiyé NLP build, IPDCP enforcement, and the structural north-south bifurcation as the defining deployment constraints.</p>
+
+  <div class="meta-strip">
+    <span><strong>Framework:</strong> KEKELI</span>
+    <span><strong>Product:</strong> Botspeak × Claude</span>
+    <span><strong>Date:</strong> April 2026</span>
+  </div>
+
+  <div class="disclaimer">
+    <strong>DISCLAIMER — FICTIONAL RESEARCH DOCUMENT.</strong> This is a speculative adaptation study produced as a demonstration of the KEKELI methodology applied to AI literacy tool deployment. It was not commissioned by, requested by, or produced in collaboration with Anthropic, Claude, or Irreducibly Human. All case study profiles are fictional. All deployment recommendations are illustrative.
+  </div>
+
+  <div class="labels-legend">
+    <span><span class="label-obs">Observed</span> directly verifiable</span>
+    <span><span class="label-inf">Inferred</span> logical deduction</span>
+    <span><span class="label-unv">Unverifiable</span> field check required</span>
+    <span><span class="label-ns">North-South</span> differential — do not aggregate</span>
+  </div>
+
+  <h2>Prefatory Warning — The Headline Gap</h2>
+  <p>Togo's official statistics describe a digital leader. The 2026 DataReportal headline figure — 37% internet penetration, leading West Africa in mobile internet speed, 21% mobile money subscriber growth YoY — describes a real trend. <span class="highlight">It describes Lomé. It describes the top two income quintiles of the urban south. It does not describe the country.</span></p>
+  <p>The structural reality: 40% of the Togolese mobile base consists of 2G phones that cannot run app interfaces. 63% of the population remains offline. Women's literacy in the Savanes region falls below 40%. The north and south are, for practical product deployment purposes, two different markets with different languages, different device profiles, different cultural authority structures, and — since March 2025 — a newly active data protection authority watching the first movers.</p>
+  <p>Botspeak's standard deployment assumes a post-literate user who can read Claude's output, type prompts, and exercise supervisory competencies over text. Every one of those assumptions requires revision for a significant share of Togolese users. That revision is what follows.</p>
+
+  <h2>Dimension 1 — Linguistic Architecture</h2>
+
+  <h4>Language tier table</h4>
+  <table>
+    <thead><tr><th>Language</th><th>Speakers</th><th>NLP Status</th><th>Botspeak Voice Viability</th></tr></thead>
+    <tbody>
+      <tr><td>Ewe</td><td>~44% first+second</td><td>Low-resource; no production Togolese ASR; WER estimated &gt;40% <span class="label-inf">Inferred</span></td><td>Feasible only with native fine-tuning; not production-ready off-shelf</td></tr>
+      <tr><td>Kabiyé</td><td>~27%</td><td>Near-zero; no ASR/TTS corpus exists <span class="label-obs">Observed — absence</span></td><td>Requires 14–20 month build project; no shortcut</td></tr>
+      <tr><td>Mina/Gen</td><td>~10%</td><td>Partial Ewe transfer possible; untested <span class="label-inf">Inferred</span></td><td>Tier 2 only; test transfer before deployment</td></tr>
+      <tr><td>French</td><td>~10–15% daily</td><td>Full NLP; Claude native</td><td>Viable for urban educated segment only</td></tr>
+      <tr><td>Tem/Kotokoli</td><td>~5%</td><td>Absent</td><td>Out of scope Phase 1–2</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Ewe ASR viability.</strong> Ewe belongs to the Gbe family alongside Fon/Benin. Fon ASR/TTS research from Masakhane and University of Abomey-Calavi offers a transfer starting point. However, Togolese Ewe has distinct tonal patterns and a coastal Lomé urban accent layer that Ghanaian Ewe or Beninese Fon corpora do not capture. Minimum viable Botspeak voice workflow requires: (a) Fon-transfer baseline model, (b) fine-tuning on ≥20 hours Togolese Ewe utterances collected from Lomé and maritime rural sites, (c) tonal accuracy validation with native speakers. <span class="highlight">A WER above ~25% breaks the Botspeak supervisory loop</span> — the user cannot reliably evaluate output generated from a corrupted input transcription.</p>
+
+  <p><strong>Kabiyé ASR non-viability.</strong> There is no shortcut. Kabiyé is a Gur language, a distinct family from Gbe; transfer from Ewe or Fon is linguistically inappropriate. Kabiyé voice input requires ground-up data collection: community speaker recruitment in Kara and Savanes, ≥50 hours annotated audio, tonal marking in transcription (Kabiyé has four tones), iterative model training. Estimated timeline to minimum viable ASR: 14–20 months from project initiation.</p>
+
+  <p><strong>Tonal architecture — non-negotiable.</strong> Both Ewe and Kabiyé are tonal. Standard global ASR pipelines misclassify tone-bearing syllables, producing semantic errors that are not random noise but systematic meaning reversals. This is not a fine-tuning issue — it is an architectural constraint requiring tone-aware training from corpus design through model architecture. The Mooré precedent (4.24% WER achieved through community-curated 88,000-utterance corpus with tonal annotation) demonstrates what is achievable; it also demonstrates the investment required.</p>
+
+  <p><strong>Code-switching layer.</strong> Urban Lomé users code-switch between Ewe and French within single utterances; Ewe-French blending is not aberrant speech but standard register. Production ASR must handle this; a model trained on monolingual Ewe will fail on the most commercially accessible urban user segment.</p>
+
+  <h2>Dimension 2 — Interface and Interaction Model</h2>
+
+  <table>
+    <thead><tr><th>Region</th><th>Adult Literacy</th><th>Women's Literacy</th><th>Interface Implication</th></tr></thead>
+    <tbody>
+      <tr><td>Lomé (urban south)</td><td>~80%+</td><td>~70%+</td><td>Hybrid voice + text; full Botspeak in French</td></tr>
+      <tr><td>Maritime / Plateaux rural</td><td>~55–65%</td><td>~45–55%</td><td>Voice-primary; limited text</td></tr>
+      <tr><td>Kara (urban north)</td><td>~45–55%</td><td>~35–45%</td><td>Voice-first with limited French text layer</td></tr>
+      <tr><td>Savanes (rural north)</td><td>~30–40%</td><td>&lt;30%</td><td>Voice-only; USSD fallback</td></tr>
+    </tbody>
+  </table>
+
+  <p><span class="label-ns">North-South</span> The literacy gap between Lomé and Savanes is not a gradient — it is a structural discontinuity. A Botspeak product designed for the Lomé user exercises all five supervisory competencies through a text-augmented voice interface. The same product reaches a Savanes rural woman as an IVR call with no text component, exercising one or two competencies through an intermediary. <strong>These are not the same product.</strong></p>
+
+  <h4>Well-formed oral Botspeak prompt in Ewe</h4>
+  <p>The Task-Context-Constraint (TCC) structure translates to Ewe with cultural adaptation: Ewe oral communication conventionally opens with a contextualizing social frame before the task specification. Structure: <strong>Social Frame → Task → Context → Constraint.</strong></p>
+  <div class="prompt">
+    "Claude, metso ŋu kpe ɖe wo ŋu. Ŋlɔ ɖe papé ŋu be Akosua le kadodo euro ɖeɖe ŋu. Eyɔ Yawa le euro aduɖeka ŋu. Gbɔna newu ablɔɖuɖu."
+    <span class="translation">(Claude, I greet you [social frame]. Write on paper that Akosua owes me forty euros. And Yawa owes me ten euros [task + context]. Make it short [constraint].)</span>
+  </div>
+  <p>The social frame is present (omission signals disrespect in Ewe registers), the task is explicit, the constraint is stated, and numeric values are in the user's own frame of reference.</p>
+
+  <h4>The voice-first supervisory loop</h4>
+  <p>When the user cannot read output, the loop runs entirely in audio: (1) Problem Formulation via oral statement of need; (2) Strategic Delegation via oral instruction to Claude; (3) Critical Evaluation via audio read-back, identifying errors by ear; (4) Iterative Refinement via oral correction directive; (5) Interpretive Judgment via confirming output appropriateness for the intended recipient.</p>
+  <p><strong>Critical Evaluation without text reading is the most structurally fragile competency.</strong> A user cannot scan a document for errors — they must hold the entire audio output in working memory and identify anomalies. Mitigation: Claude's read-back must be chunked into short segments (8–10 words maximum per segment) with confirmation prompts between segments.</p>
+
+  <h2>Dimension 3 — Infrastructure and Technical Architecture</h2>
+
+  <table>
+    <thead><tr><th>Factor</th><th>Lomé</th><th>Rural South</th><th>Rural North / 2G</th></tr></thead>
+    <tbody>
+      <tr><td>4G coverage</td><td>Available; 5G emerging</td><td>Partial</td><td>Limited / none</td></tr>
+      <tr><td>Device RAM</td><td>Budget Android (Tecno/Infinix)</td><td>Mixed; older feature phones</td><td>Feature phones dominant</td></tr>
+      <tr><td>Electricity</td><td>Moderate; CEET outages</td><td>Irregular</td><td>Irregular</td></tr>
+      <tr><td>School connectivity</td><td colspan="3">&lt;1% nationally — EdTech Botspeak via schools not viable</td></tr>
+      <tr><td>Cloud proximity</td><td colspan="3">Nearest data centers in Côte d'Ivoire or Ghana; 300–600ms rural latency penalty</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <h4>Session interruption flag — critical for Botspeak</h4>
+    <p>The Botspeak iterative refinement loop — where a user directs, evaluates, and redirects Claude across multiple turns to produce a single final document — is uniquely vulnerable to session interruption. A market woman mid-way through refining a credit record who loses power or connectivity loses the document <em>and</em> her train of specification.</p>
+    <p>Required: (a) server-side session state preservation with resume capability; (b) periodic auto-save to device SMS storage or on-device text file; (c) session resume prompt — "Your credit record was not finished. Do you want to continue?" — delivered in Ewe or Kabiyé audio on reconnect.</p>
+  </div>
+
+  <p><strong>On-device vs. server-side.</strong> On-device (viable on budget Android): language ID, keyword detection for command words, offline caching. Server-side (required): Claude inference, Ewe/Kabiyé ASR, TTS read-back, session state. Any latency above 3 seconds on the read-back loop degrades Critical Evaluation — users lose the thread of what they asked for.</p>
+
+  <p><strong>USSD architecture.</strong> ARCEP licenses USSD short codes in Togo. Any Botspeak deployment using USSD as a primary channel for 2G device users requires ARCEP authorization before launch. Typical timeline: 2–4 months. Must be initiated in Phase 1 if USSD is in the critical path.</p>
+
+  <h2>Dimension 4 — Financial Integration</h2>
+
+  <p>Botspeak is an AI literacy framework, not a fintech product. However, at-scale deployment requires a monetization model, and standard SaaS subscription pricing fails for the primary target demographic in Togo: monthly flat fees require bank accounts, annual subscriptions require planning horizons that do not map to daily cash-flow informal businesses, and per-session pricing via app store requires Google Play billing — excluding 40%+ of the device base.</p>
+
+  <table>
+    <thead><tr><th>Model</th><th>Rail</th><th>Key Constraint</th></tr></thead>
+    <tbody>
+      <tr><td>Per-document micro-payment</td><td>T-Money or Flooz USSD</td><td>Minimum transaction sizes; idempotency required</td></tr>
+      <tr><td>Airtime bundle</td><td>Togocom or Moov Africa</td><td>Requires telecom partnership negotiation</td></tr>
+      <tr><td>Cooperative group subscription</td><td>T-Money group wallet / tontine-linked</td><td>Requires social structure mapping</td></tr>
+      <tr><td>NGO/institutional subsidy</td><td>Novissi rails</td><td>Requires government partnership; Novissi positioning decision</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Group payment — the tontine/cooperative structure.</strong> The tontine is a functioning financial institution in both Ewe and Kabiyé community contexts. A cooperative Botspeak subscription — where a women's market association pays a shared monthly fee from collective savings and accesses Botspeak on a shared device — maps directly to this existing structure. This is not an accessibility workaround; <span class="highlight">it is the dominant financial organization model for the primary target demographic.</span></p>
+
+  <h2>Dimension 5 — Regulatory and Data Sovereignty</h2>
+
+  <table>
+    <thead><tr><th>Requirement</th><th>Body</th><th>Action</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Personal data processing registration</td><td>IPDCP</td><td>Register before any data collection under Law 2019-014</td><td>Active — launched March 28, 2025</td></tr>
+      <tr><td>Voice data classification</td><td>IPDCP</td><td>Obtain clarification on biometric classification before launch <span class="label-unv">Unverifiable</span></td><td>Guidance pending</td></tr>
+      <tr><td>Consent architecture</td><td>IPDCP</td><td>Informed, freely given, specific, multi-language — audio consent in Ewe/Kabiyé</td><td>Active</td></tr>
+      <tr><td>Cross-border transfers</td><td>IPDCP</td><td>Consent is NOT a valid transfer mechanism; authorization required</td><td>Stricter than Senegal</td></tr>
+      <tr><td>USSD services</td><td>ARCEP</td><td>Short code licensing; 2–4 month timeline</td><td>Active</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <h4>Cross-border transfer — the Claude API problem</h4>
+    <p>Botspeak uses Claude (Anthropic). Anthropic processes data in the United States. Every prompt sent to Claude and every response received constitutes a cross-border data transfer. Under Law 2019-014, this requires <strong>IPDCP authorization — consent alone is not sufficient.</strong></p>
+    <p>This is not a theoretical risk. The IPDCP is active, its enforcement norms are being established now, and being the first product to test this boundary without authorization is disproportionately costly. Required: (a) file cross-border transfer authorization application with IPDCP before any user data is processed through Claude API; (b) document data minimization measures applied to prompts before transmission; (c) implement prompt design that minimizes personal data inclusion.</p>
+  </div>
+
+  <p><strong>Literacy-appropriate consent.</strong> A significant share of target users cannot read a consent form in any language. French-only consent is legally invalid for non-French-literate users — the IPDCP is unlikely to consider consent freely given when the user cannot understand what they consented to. Minimum viable: audio consent recording in Ewe or Kabiyé (spoken explanation of what data is collected, how it is used, how to withdraw); voice response confirmation; recording of consent act stored with session data.</p>
+
+  <p><strong>IPDCP first-mover opportunity.</strong> The enforcement norms of a new data protection authority are shaped by its first cases and first relationships. Botspeak, as a literacy tool with clear public benefit orientation, is a favorable first-mover case. Proactive registration, transparent data documentation, and construction of the audio consent architecture signal good faith. This is a time-limited window.</p>
+
+  <h2>Dimension 6 — Cultural and Social Architecture</h2>
+
+  <table>
+    <thead><tr><th>Region / Context</th><th>Trust Gatekeeper</th><th>Reciprocal Obligation</th></tr></thead>
+    <tbody>
+      <tr><td>Lomé / urban south</td><td>Urban NGO networks; women's market associations; church leaders</td><td>Must not undercut human secretaries/letter-writers who currently earn from document production</td></tr>
+      <tr><td>Maritime rural</td><td>Ewe community chiefs (Fiaga/Dufia); local health workers; teachers</td><td>Chief endorsement at community meeting; Ewe language support</td></tr>
+      <tr><td>Kara / urban north</td><td>District officials; mosque imams; age-grade society representatives</td><td>Kabiyé language timeline commitment — explicit, not vague</td></tr>
+      <tr><td>Savanes rural</td><td>Village chiefs; Kabiyé age-grade elders; women's group leaders</td><td>Kabiyé-first communication of any community offering</td></tr>
+      <tr><td>Vodu context (all regions)</td><td>Bokono (Vodu priests) for health, community, family records</td><td>Vodu imagery and references must not be filtered; Bokono treated as legitimate authority</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Oral tradition as pedagogical asset</h4>
+  <p><strong>Ewe halo and adzogbo.</strong> The halo (song) and adzogbo (war poetry / praise tradition) oral composition practices involve precise specification of audience, occasion, and effect — the speaker must know exactly who they are addressing and what response they intend. This maps directly onto Botspeak's Problem Formulation and Interpretive Judgment competencies. A facilitator who frames the AI prompt as "composing for your specific audience, as a halo is composed for a specific occasion" offers a culturally coherent pedagogical bridge.</p>
+  <p><strong>Kabiyé dikr and evala.</strong> The Kabiyé dikr (Islamic recitation) and the ritual oral histories of the evala initiation societies are practices of precise, formalized oral transmission where slight variation in wording carries significant meaning. This precision maps onto Critical Evaluation: the user who has internalized precision in oral tradition will recognize when Claude's output has altered meaning through imprecise language.</p>
+
+  <div class="warning-box">
+    <h4>Vodu content moderation — mandatory reconfiguration</h4>
+    <p>Vodun is a recognized, legitimate religious and cultural tradition practiced by a significant percentage of the Togolese population (estimates: ~30% in the south, with Vodu practice embedded in many nominally Christian households). Standard AI content moderation trained on Western datasets systematically misclassifies Vodu imagery, ritual references, and Vodu-related document content as occult content, misinformation, or policy violations.</p>
+    <p>If Botspeak is used to produce documents related to community ceremonies, Bokono consultation, or family ritual records — which it will be, in the south — then Claude's content moderation must be reconfigured. A product that flags a user's request to document a traditional healing consultation as prohibited content has failed that user and will not recover community trust.</p>
+  </div>
+
+  <h2>Research Synthesis</h2>
+
+  <h3>Objective 1 — Voice-First AI Collaboration</h3>
+
+  <h4>Viable interaction models for Togo</h4>
+  <table>
+    <thead><tr><th>Model</th><th>Infrastructure Viability</th><th>Supervisory Loop</th></tr></thead>
+    <tbody>
+      <tr><td>Native audio-to-audio (Claude)</td><td>Lomé 4G only; marginal rural south</td><td>Highest fidelity; eliminates transcription-error compounding</td></tr>
+      <tr><td>Cascaded pipeline (ASR→Claude→TTS)</td><td>Urban 3G+; problematic rural</td><td>Moderate; tonal ASR errors propagate</td></tr>
+      <tr><td>IVR / telephony (USSD)</td><td>Reaches all device tiers including 2G</td><td>Limited; menus constrain Iterative Refinement</td></tr>
+      <tr><td>Mediated community app</td><td>Wherever NGO/government field officers operate</td><td>Full loop with intermediary; user builds competencies over time</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Phasing.</strong> Phase 1 (Lomé/urban south): cascaded or native audio-to-audio. Phase 2 (rural south and Kara): mediated community app with Ewe voice + intermediary. Phase 2–3 (Savanes): IVR with Kabiyé once build is complete; mediated app as bridge.</p>
+
+  <h4>ASR failure modes specific to Togo</h4>
+  <ul>
+    <li><strong>Tonal collapse</strong> (Ewe, Kabiyé) — standard ASR ignores tone markers; homophone confusion generates wrong words. Mitigation: tone-aware acoustic model; user confirmation after each sentence.</li>
+    <li><strong>Lomé accent mismatch</strong> (Ewe) — available corpora are Ghanaian; Togolese Ewe has distinct vowel and tone patterns. Mitigation: Togolese native speaker fine-tuning, ≥20 hours.</li>
+    <li><strong>Ewe-French code-switch misclassification</strong> (urban Ewe) — model assigns French words in Ewe utterance to wrong language channel. Mitigation: code-switch-aware language ID layer trained on actual Lomé speech.</li>
+    <li><strong>Kabiyé total absence</strong> — no production ASR exists; all input routes to error. Interim: numeric IVR + intermediary until build complete.</li>
+    <li><strong>Rural acoustic environments</strong> — background noise (market, field, generator) degrades accuracy. Mitigation: noise-robust modeling; push-to-talk rather than continuous listening.</li>
+  </ul>
+
+  <h4>Worked Ewe prompt — Adjoavi, market woman, Aneho</h4>
+  <div class="prompt">
+    "Claude, agbɔ. Mele Aneho ƒe agbɔ ƒe dɔ wɔm. Ŋlɔ papé ŋu be: Ama le wɔde atsiakata ŋu. Efoa ame aɖe ŋuti. Nàwɔ topɔtɔ, méle sɔ ɖe ame siwo ɖɔ eŋu ɖa o."
+    <span class="translation">(Claude, good morning. I am working in the Aneho market. Write on paper that: Ama owes me six yards. Nobody has paid yet. Do it simply — don't include the names of people who already paid.)</span>
+  </div>
+  <p>Well-formed because: social greeting opens the exchange (omission signals disrespect in Ewe registers); task is explicit ("write on paper"); context grounds the output (market setting, fabric, specific debtor name); constraint is negatively specified ("don't include X") — Ewe oral communication frequently specifies scope through exclusion rather than inclusion.</p>
+
+  <h3>Objective 2 — Simultaneous Literacy Acquisition</h3>
+  <p>The read-back of Claude-generated Ewe text while the user follows the screen visually is a viable literacy bridge for users at the early literacy stage. Constraints: requires a screen the user can see (viable for smartphone users; not IVR-only 2G users); requires Ewe TTS of sufficient quality — Togolese Ewe TTS does not yet exist at production quality, making this approach a Phase 2–3 deliverable, not Phase 1.</p>
+  <p><strong>Claude as oral-to-written translator.</strong> The opportunity: Ewe praise poetry (halo), historical narrative, and market verbal contracts exist in oral form and have no written record. A Botspeak workflow that allows a user to dictate oral content and receive a written transcription creates documentary value and provides a literacy learning opportunity. <strong>The specific risk:</strong> Ewe oral traditions contain proprietary lineage knowledge. A <em>joto</em> (Ewe praise poet) may not consent to having family lineage records transcribed and stored on a foreign server. The cross-border data transfer problem is not only a regulatory issue — it is a cultural sovereignty issue.</p>
+
+  <h3>Objective 3 — NLP Gaps and Interim Architectures</h3>
+  <table>
+    <thead><tr><th>Language</th><th>ASR WER</th><th>Interim Architecture</th></tr></thead>
+    <tbody>
+      <tr><td>Ewe (Togolese)</td><td>&gt;40% estimated</td><td>Fon-transfer baseline + Togolese native speaker fine-tuning (≥20 hours); manual human review loop</td></tr>
+      <tr><td>Kabiyé</td><td>No data — no ASR</td><td>IVR numeric + literate intermediary; no voice ASR until build complete</td></tr>
+      <tr><td>Ewe-French code-switch</td><td>No published WER</td><td>Language ID layer + Lomé speech samples</td></tr>
+      <tr><td>French</td><td>Production-ready</td><td>None required</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Minimum viable voice interface for Kabiyé today: there is none.</strong> The minimum viable interface for Kabiyé-speaking users in Phase 1–2 is an IVR system with numeric menu structure combined with a literate Kabiyé-French bilingual intermediary. The AI generates the document in French; the intermediary reads it back in Kabiyé. This is not a voice-directed AI system — it is a mediated document production system. It is honest to call it that rather than calling it "Kabiyé voice AI."</p>
+
+  <h3>Objective 4 — Community and Group Models</h3>
+  <p><strong>Shared device session handoff.</strong> In a Togolese market women's cooperative context, the practical session handoff model is sequential and socially governed: one woman completes her session, the device goes to the next, and her session begins. Social protocol governs the queue — the association president or senior member manages access. Technical requirements: complete session isolation, explicit end confirmation in Ewe/Kabiyé, no auto-complete surfacing previous users' content, device-side data encrypted or session-purged on handoff.</p>
+  <p><strong>Literate intermediary — ASC pathway.</strong> The most operationally relevant literate intermediary is the community health worker (<em>agent de santé communautaire</em>). ASCs are present in both south and north, are French-literate, are trusted by their communities, and are already used as digital tool mediators in health programs. Transition model: ASC operates as full intermediary (Months 1–6) → ASC guides user through Problem Formulation and Strategic Delegation while managing Critical Evaluation (Months 6–12) → user operates independently for simple document types (Month 12+).</p>
+  <p><strong>Trust dynamics.</strong> Two specific concerns require attention. <em>Government surveillance concern:</em> the Gnassingbé government has maintained continuous power since 1967; there is documented wariness in civil society — particularly among Ewe-speaking southerners — about tools that could be used for monitoring. A Botspeak introduction perceived as government-affiliated data collection will fail in the south. <em>Reverse concern in the north:</em> a product introduced without any government association in the Kabiyé north may be perceived as politically oppositional. Safe navigation: present Botspeak as a tool for all Togolese people, with government consultation (not endorsement) secured before northern launch.</p>
+
+  <h3>Objective 5 — Teaching Writing While Using Claude to Write</h3>
+  <p>The productive struggle for a non-literate Togolese market woman using Botspeak is not "how do I spell this word" — it is "how do I specify what I want precisely enough that Claude produces a document that accurately represents my situation." This is a higher-order cognitive task than spelling. It is, in fact, the core of the Botspeak supervisory framework.</p>
+
+  <table>
+    <thead><tr><th>Competency</th><th>Literacy Stage Required</th><th>Observable Indicator</th></tr></thead>
+    <tbody>
+      <tr><td>Problem Formulation</td><td>Pre-literate — oral only</td><td>User can state their need clearly in one sentence</td></tr>
+      <tr><td>Strategic Delegation</td><td>Pre-literate — oral only</td><td>User directs with a task statement</td></tr>
+      <tr><td>Critical Evaluation</td><td>Emergent — recognize names/numbers</td><td>User identifies when a name or number is wrong in read-back</td></tr>
+      <tr><td>Iterative Refinement</td><td>Basic — can read key terms</td><td>User corrects output using oral direction</td></tr>
+      <tr><td>Interpretive Judgment</td><td>Functional literacy</td><td>User assesses appropriateness for recipient and purpose</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Case Studies</h2>
+
+  <div class="case-study">
+    <h3>Case Study 1 — Adjoavi Kpakpo, Aneho fabric trader</h3>
+    <p><strong>Profile.</strong> 41, female, Aneho (Maritime Region, coastal trading town on the Togo-Benin border). Mina first language, Ewe fluent market language, minimal passive French. Non-literate in Roman script; can recognize numerals and her own name in print. Wholesale fabric trader selling to market women in Aneho and villages along the coastal road. Typical weekly revenue 80,000–150,000 CFA; 200,000–400,000 CFA outstanding credit at any time.</p>
+    <p><strong>Access.</strong> No personal smartphone. Shared Android device (Tecno Spark 8) held by the Aneho market women's association secretary. Aneho has 3G coverage; occasional 4G at the association office.</p>
+    <p><strong>What she directs Claude to produce.</strong> Credit records (customers, amounts owed, fabric type); supplier correspondence requesting delayed payment when her cash flow is tight; formal complaint to the Aneho market authority about a disputed stall fee.</p>
+    <div class="prompt">
+      "Claude, ŋlɔ papé ŋu. Akpene ɖe adi atsiakata ŋu. Efoa ame aɖe ŋuti. Ablavi ɖe wɔde adetɔ ŋu. Mele fɔm egɔ ɖa o."
+      <span class="translation">(Claude, write it down. Akpene owes me six yards. She has not paid anyone. Ablavi owes me ten yards. I haven't received their money yet.)</span>
+    </div>
+    <p><strong>Output requirements.</strong> Numbered list with customer names in large text, amounts, and date. Read back in Mina or Ewe slowly, one customer at a time, with confirmation after each ("Akpene — six yards — correct?"). Printable via Bluetooth to the cheap thermal printer at the market secretary's office. Numeric amount in both CFA value and fabric yardage.</p>
+    <p><strong>Supervisory loop.</strong> Problem Formulation — yes, oral. Strategic Delegation — partial, with secretary confirming the voice command. Critical Evaluation — yes, oral by ear; her intimate knowledge of her customers makes her a reliable auditor (she will detect "Ablavi" vs "Ablawa"). Iterative Refinement — partial, developing. Interpretive Judgment — no, requires intermediary for formal complaint letter tone.</p>
+    <p><strong>Literacy dimension.</strong> Adjoavi learns to recognize the visual shape of her customers' names as she hears them read back. After 10–15 sessions, she begins to recognize her most frequent customers' names in print. Productive struggle: when Claude produces "Ablavi owes you ten meters" but she specified yards, she catches the unit error — a Critical Evaluation success reinforcing her supervisory role.</p>
+    <p><strong>Gatekeeper.</strong> Aneho market women's association president and the local Mina community chief (<em>Fiaga</em>) who oversees the market area. Association president approached first; demonstration session during the monthly association meeting; Fiaga briefed separately, at his residence with appropriate gifts and protocol. Timeline 4–6 weeks. <strong>Reciprocal obligation:</strong> the tool must not be perceived as threatening the livelihood of the market secretary, who currently earns small fees for letter-writing. Design accommodation: position Botspeak as expanding what the secretary can do, not replacing her.</p>
+  </div>
+
+  <div class="case-study">
+    <h3>Case Study 2 — Moussa Tchakpélé, Kara agricultural extension agent</h3>
+    <p><strong>Profile.</strong> 38, male, Pya district (Kara Region, ~35 km from Kara city). Kabiyé first language, French professional fluency (literate), Tem/Kotokoli for market communication. Fully literate in French; can read basic Kabiyé in romanized script but was not educated in Kabiyé writing — cannot write Kabiyé. Agricultural extension agent (ICAT) serving 12 villages in Pya district.</p>
+    <p><strong>Access.</strong> Individual Android (Tecno Camon 19) as part of his ICAT field kit; Moov Africa data plan. 2G reliable; 3G intermittent in Pya town; village sites often 2G only.</p>
+    <p><strong>What he directs Claude to produce.</strong> (1) Formal French reports for ICAT HQ on farmer activity, subsidy uptake, crop conditions — currently 3–4 hours per monthly report, wants 45 minutes. (2) Simple information bulletins in Kabiyé for village distribution — currently impossible because he cannot write Kabiyé, so farmers who cannot read French receive nothing. (3) Training scripts for village demonstration sessions. (4) Official correspondence to district government on behalf of farmers.</p>
+    <div class="prompt">
+      "Claude, rédige un bulletin d'information pour les agriculteurs de Pya sur la méthode de semis en poquet pour le mil. Maximum une page. Langage simple. Prévu pour lecture à voix haute en réunion de village."
+      <span class="translation">(Claude, write an information bulletin for the Pya farmers on the hill-planting method for millet. Maximum one page. Simple language. Designed for reading aloud at a village meeting.)</span>
+    </div>
+    <p><strong>The Kabiyé translation problem.</strong> After Claude produces the French bulletin, Moussa needs a Kabiyé version for non-French-literate farmers. Claude's Kabiyé output quality is below usable threshold. Current workaround: Moussa dictates a Kabiyé oral version from the French text, records it, plays it at village meetings. This is not a Botspeak solution — it is a demonstration of what an adequate Kabiyé voice tool would enable.</p>
+    <p><strong>Supervisory loop.</strong> Problem Formulation and Strategic Delegation — fully exercised; his professional training produced strong articulation skills. Critical Evaluation — fully in French, <em>partial in Kabiyé because he cannot write it</em>. This is the critical gap: his expertise in the content domain is not matched by ability to evaluate language output in his first language. Iterative Refinement — most developed competency, 3–4 refinement loops on formal reports. Interpretive Judgment — yes for French, no for Kabiyé (requires Kabiyé-literate reviewer).</p>
+    <p><strong>Literacy dimension.</strong> Moussa is literate — the development dimension here is reversed: he is a potential literacy teacher using Botspeak with farmers. When he produces a bulletin and reads it aloud at a village meeting, farmers who follow the printed sheet while listening are engaged in the "reading through listening" bridge. The Kabiyé writing gap is a powerful personal motivation that goes beyond efficiency — it addresses a linguistic identity gap.</p>
+    <p><strong>Gatekeeper — layered trust chain.</strong> (1) ICAT district coordinator — institutional authorization; Moussa will not use a non-authorized tool professionally. (2) Village chief in each of his 12 villages — traditional authority. (3) Local imam in Muslim-majority villages — religious authority with significant influence on what new practices are acceptable. The critical path for northern deployment is a direct ICAT institutional partnership. <strong>Religious authority navigation:</strong> pre-launch briefing with imams in the deployment area, in Kabiyé not French, is required. <strong>Reciprocal obligation:</strong> ICAT agents must not become more burdened. If Botspeak increases the number of reports HQ expects because "now it's easy," agents will resent the tool. Set expectations with ICAT management: Botspeak reduces time per report; it does not commit agents to more reports.</p>
+  </div>
+
+  <h2>Strategic Deployment Brief</h2>
+
+  <div class="warning-box">
+    <h4>North-South bifurcation assessment — mandatory</h4>
+    <p><strong>Decision: Dual-strategy required. Single-market deployment is not available.</strong></p>
+    <p>Botspeak cannot be deployed as a single national product in Togo. The linguistic, technical, and cultural conditions in the Ewe-speaking south and the Kabiyé-speaking north are sufficiently distinct that a product designed for one is wrong for the other in three simultaneous ways: language (no shared NLP infrastructure), device tier (urban south can support hybrid app-voice; rural north is 2G and voice-only), and community trust architecture (Ewe market women associations in south; Kabiyé village chiefs and Islamic authority in north).</p>
+    <p>The Phase 1 practical constraint: Kabiyé NLP is a 14–20 month build. A Phase 1 south-only deployment is technically necessary. The strategic risk is real: in a country where the ruling family is from the Kabiyé-speaking north, a literacy tool deployed only in the south will be read politically — as a tool for the southern commercial elite, not for all Togolese people. <strong>Required response:</strong> name the phasing explicitly and publicly; communicate a Kabiyé timeline commitment at launch; do not present Phase 1 southern deployment as a national deployment.</p>
+  </div>
+
+  <p><strong>Novissi positioning — Complement with integration pathway assessment.</strong> Botspeak is not a financial inclusion program, not a cash transfer mechanism, and does not compete with Novissi's core function. The government's demonstrated capacity means it could build a literacy tool if it chose to — it has not. Botspeak's differentiation is private-sector speed of innovation, UX quality, and the specific supervisory methodology the government has no institutional reason to prioritize. The integration pathway to assess: the ICAT partnership (Case Study 2) is a government-adjacent deployment complementary to, not competitive with, government programs. Do not integrate directly with Novissi social registry or biometric ID without explicit IPDCP authorization and Ministry of Digital Economy partnership agreement.</p>
+
+  <h4>Executive finding</h4>
+  <p>Botspeak's core assumption — that supervisory AI literacy can be taught to users who can already read what Claude produces — fails for a significant and commercially central segment of Togolese users. The adaptation is not peripheral; it is the core design. <span class="highlight">The product that will succeed in Togo is not Botspeak with local language added. It is a voice-first supervisory literacy framework that treats oral prompt composition, audio critical evaluation, and community validation as first-class design targets, with text as a downstream output that learners grow into.</span> The second most important finding: the Kabiyé NLP gap is a 14–20 month build project that determines whether Botspeak is a southern tool or a Togolese tool. That decision must be made now.</p>
+
+  <h4>Dimension priorities</h4>
+  <ol>
+    <li><strong>Linguistic Architecture</strong> — Ewe voice input production-ready before Phase 2; Kabiyé build must begin in Phase 1 to be ready in Phase 3</li>
+    <li><strong>Interface and Interaction Model</strong> — voice-first redesign of all five supervisory competencies is not an adaptation; it is the product</li>
+    <li><strong>Regulatory and Data Sovereignty</strong> — IPDCP registration and cross-border transfer authorization must precede any data collection</li>
+    <li><strong>Cultural and Social Architecture</strong> — social license through market women's associations (south) and ICAT institutional pathway (north)</li>
+    <li><strong>Infrastructure</strong> — session interruption handling and USSD/IVR fallback for 2G users</li>
+    <li><strong>Financial Integration</strong> — micro-payment via T-Money and cooperative group subscription; less urgent but designed before Phase 2 revenue activation</li>
+  </ol>
+
+  <h4>Phased roadmap</h4>
+  <table>
+    <thead><tr><th>Phase</th><th>Months</th><th>Key Gates</th></tr></thead>
+    <tbody>
+      <tr><td>Phase 1 — Regulatory Foundation and Linguistic Architecture</td><td>1–3</td><td>IPDCP registration filed; cross-border transfer authorization submitted; Ewe corpus collection begun (≥10 hours); ARCEP USSD application filed; Kabiyé speaker outreach initiated; ICAT conversation begun</td></tr>
+      <tr><td>Phase 2 — South Deployment and North Preparation</td><td>3–8</td><td>Ewe ASR prototype with Togolese fine-tuning; voice-first loop operational; pilot with 3 market women's associations; Kabiyé corpus ≥20 hours; ICAT agreement signed; audio consent operational; USSD fallback live</td></tr>
+      <tr><td>Phase 3 — North Deployment and Literacy Integration</td><td>8–18</td><td>Kabiyé ASR minimum viable (WER ≤35%); Kabiyé voice loop operational; ICAT northern deployment live; Ewe+Kabiyé feature parity with explicit communication; IPDCP first compliance review</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Next steps</h4>
+  <ol>
+    <li><strong>Month 1, Week 1:</strong> File IPDCP registration and begin cross-border transfer authorization. Obtain legal opinion on voice recording classification under Law 2019-014. This cannot wait — every day of data collection before registration is a compliance violation with a newly active, norm-setting authority.</li>
+    <li><strong>Month 1, Weeks 2–4:</strong> Commission Togolese Ewe voice corpus collection. Contact University of Lomé linguistics department, CARE International Togo field team, and Masakhane network. Target: 20 hours Lomé urban + maritime rural, tonal annotation, 60 speakers minimum.</li>
+    <li><strong>Month 2:</strong> Facilitator training design workshop with 5–8 Togolese adult literacy educators and community health workers in Lomé and Aneho. Co-design the oral TCC prompt structure and audio-based Critical Evaluation protocol with people who know the users — not hand them a framework designed elsewhere.</li>
+  </ol>
+
+  <h2>Integrity Test</h2>
+  <ul class="checklist">
+    <li>Every dimension has a documented finding or a specific investigation instruction</li>
+    <li>Every recommendation traces to a specific matrix cell</li>
+    <li>No claim is unlabeled — every finding carries Observed, Inferred, Unverifiable, or North-South</li>
+    <li>Regional literacy disaggregation applied throughout; national average not used as design input</li>
+    <li>Togo-specific ASR failure modes named; no imports from other countries without verification</li>
+    <li>Session interruption addressed: server-side state; on-device auto-save; Ewe/Kabiyé resume prompt</li>
+    <li>Non-literate consent problem addressed: audio consent in Ewe/Kabiyé; voice confirmation; IPDCP consultation flagged</li>
+    <li>Literate intermediary dependency risk named: transition model from ASC-led to user-led</li>
+    <li>Oral tradition asset named: Ewe halo as Problem Formulation frame; Kabiyé evala as Critical Evaluation frame</li>
+    <li>Social license gatekeepers named specifically: Aneho market association president; Pya ICAT coordinator; village chiefs; northern imams</li>
+    <li>KEKELI forbidden patterns applied: national average headline qualified; Novissi positioning taken; north-south addressed with explicit phasing; Kabiyé as build project with timeline; Vodu content moderation reconfiguration required</li>
+  </ul>
+
+  <blockquote>
+    <strong>About this report.</strong> This is a fictional adaptation study produced as a demonstration of the KEKELI methodology applied to AI literacy tool deployment in Togo. It was produced by the KEKELI framework, not by Anthropic or Irreducibly Human. The Botspeak framework is developed by Irreducibly Human. Claude is a product of Anthropic. Neither organization commissioned, reviewed, or endorsed this report. All case study profiles are fictional. For the full framework methodology and other market audits: <a href="https://MoctarDatt.com">MoctarDatt.com</a>
+  </blockquote>
+
+</div>
+
+<footer>
+  Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+</footer>
+
+</body>
+</html>

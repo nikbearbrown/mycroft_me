@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZIZA × Botspeak — Benin AI Literacy Adaptation Audit</title>
+<meta name="description" content="A six-dimension adaptation audit applying the AZIZA framework to Botspeak × Claude deployment in Benin. Fictional research document covering linguistic, interface, infrastructure, financial, regulatory and cultural architecture for Fon-first voice AI literacy tools.">
+<meta name="keywords" content="AZIZA, Benin, Botspeak, Claude, AI literacy, Fon, Vodoun, Dantokpa, adaptation audit, voice-first AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #000000;
+    --p2: #006030;
+    --p3: #A81520;
+    --p4: #FDEF42;
+    --p5: #333333;
+    --p6: #727272;
+    --p7: #EBEBEB;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--p1);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 32px 40px;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--p2);
+    margin: 0 0 20px 0;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px 0;
+    color: var(--p1);
+  }
+  .subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--p5);
+    margin: 0 0 48px 0;
+    font-weight: 400;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--p6);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .meta-strip span strong {
+    color: var(--p1);
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--p2);
+    margin: 72px 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--p2);
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--p1);
+    margin: 56px 0 16px 0;
+  }
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--p1);
+    margin: 36px 0 12px 0;
+  }
+  p { margin: 0 0 20px 0; }
+  strong { font-weight: 600; color: var(--p1); }
+  em { font-style: italic; }
+  a {
+    color: var(--p2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  a:hover { color: var(--p3); }
+  blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--p3);
+    background: var(--p7);
+    font-size: 15px;
+    color: var(--p5);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  blockquote strong { color: var(--p3); }
+  .disclaimer {
+    border-left: 3px solid var(--p3);
+    background: #fff;
+    border-top: 1px solid var(--p7);
+    border-right: 1px solid var(--p7);
+    border-bottom: 1px solid var(--p7);
+    padding: 20px 24px;
+    margin: 0 0 56px 0;
+    font-size: 14px;
+    color: var(--p5);
+  }
+  .disclaimer strong { color: var(--p3); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--p1);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--p1);
+    background: var(--bg);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  td {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--p7);
+    vertical-align: top;
+    color: var(--p5);
+  }
+  td:first-child { color: var(--p1); font-weight: 500; }
+  .label-obs, .label-inf, .label-unv {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .label-obs { background: var(--p2); color: #fff; }
+  .label-inf { background: var(--p4); color: var(--p1); }
+  .label-unv { background: var(--p3); color: #fff; }
+  ul, ol { padding-left: 22px; margin: 0 0 24px 0; }
+  li { margin-bottom: 8px; color: var(--p5); }
+  li strong { color: var(--p1); }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding-left: 28px;
+    position: relative;
+    color: var(--p1);
+  }
+  .checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--p2);
+    font-weight: 700;
+  }
+  .case-study {
+    border: 1px solid var(--p7);
+    padding: 32px 36px;
+    margin: 32px 0;
+    background: #fafafa;
+  }
+  .case-study h3 {
+    margin-top: 0;
+    color: var(--p2);
+  }
+  .highlight {
+    background: var(--p4);
+    padding: 1px 4px;
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid var(--p7);
+    margin: 56px 0;
+  }
+  .prompt-fon {
+    font-style: italic;
+    padding: 16px 20px;
+    border-left: 2px solid var(--p2);
+    background: var(--p7);
+    margin: 16px 0;
+    color: var(--p1);
+  }
+  .prompt-fon .translation {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    color: var(--p6);
+    font-size: 14px;
+  }
+  footer {
+    max-width: 760px;
+    margin: 80px auto 0;
+    padding: 32px;
+    border-top: 1px solid var(--p7);
+    color: var(--p6);
+    font-size: 13px;
+    text-align: center;
+  }
+  footer a { color: var(--p2); }
+  @media (max-width: 640px) {
+    .wrap { padding: 48px 20px 24px; }
+    h1 { font-size: 32px; }
+    .subtitle { font-size: 17px; }
+    table { font-size: 12px; }
+    th, td { padding: 10px 8px; }
+    .case-study { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">AZIZA Framework · Full Adaptation Audit</p>
+  <h1>Benin AI Literacy Adaptation Audit</h1>
+  <p class="subtitle">Botspeak × Claude deployment analyzed across six dimensions — linguistic, interface, infrastructure, financial, regulatory, and cultural — with the Fon voice gap and the three-gatekeeper rule as defining constraints.</p>
+
+  <div class="meta-strip">
+    <span><strong>Framework:</strong> AZIZA</span>
+    <span><strong>Product:</strong> Botspeak × Claude</span>
+    <span><strong>Date:</strong> April 12, 2026</span>
+  </div>
+
+  <div class="disclaimer">
+    <strong>DISCLAIMER — FICTIONAL RESEARCH DOCUMENT.</strong> This report is a speculative adaptation study produced as an example of what a structured market adaptation audit looks like when applied to AI literacy tool deployment in Benin. It was not commissioned by, requested by, or produced in collaboration with Anthropic, Irreducibly Human, or Claude. All case study profiles are fictional. All deployment recommendations are illustrative.
+  </div>
+
+  <h2>Country Context Summary</h2>
+  <p>The single most important condition shaping Botspeak × Claude deployment in Benin is that the country's primary urban vernacular — Fon — has almost no production-grade ASR or TTS infrastructure, while the population that most urgently needs supervised-AI writing tools (Dantokpa market women, interior smallholders, Vodoun-affiliated community networks) conducts daily economic life in Fon, not in French. <span class="highlight">A voice-first deployment is not an accessibility feature here; it is the product.</span> A text-first deployment reaches the ~15% of Cotonou that operates primarily in French and calls itself a "Benin product," which it is not.</p>
+  <p>The primary risk if this condition is ignored: Botspeak's supervisory pedagogy — prompt clearly, evaluate critically, detect plausibility errors — collapses into French-literacy gatekeeping. The framework then teaches AI supervision to the Beninese who least need an AI scaffold (French-literate urban professionals) and excludes the Beninese for whom AI-mediated writing would be transformational (market women, Vodoun community intermediaries, northern Bariba/Dendi speakers). A second-order risk compounds the first: any health, finance, or community-trust dimension of the product that bypasses Vodoun gatekeeper engagement will experience unexplained adoption failure in exactly the communities the voice-first architecture was built to reach.</p>
+
+  <h2>Six-Dimension Adaptation Matrix</h2>
+
+  <h3>Dimension 1 — Linguistic Architecture</h3>
+  <table>
+    <thead><tr><th>Language</th><th>Tier</th><th>NLP Status</th><th>Implication</th></tr></thead>
+    <tbody>
+      <tr><td>Fon</td><td>1 (south)</td><td>Minimal; no production ASR/TTS</td><td>Core deployment language. Voice-directed Claude use in Fon <em>is</em> the product. <span class="label-obs">Observed gap</span></td></tr>
+      <tr><td>French (Benin)</td><td>1 (formal)</td><td>Full; accent underrepresented</td><td>Formal output layer — letters, BCEAO docs, school forms. <span class="label-obs">Observed</span></td></tr>
+      <tr><td>Yoruba / Nagot</td><td>1 (SE border)</td><td>Limited; 78.8% WER tone-flattening</td><td>Tone-aware ASR mandatory for Kétou/Pobè/Sakété. <span class="label-obs">Observed</span></td></tr>
+      <tr><td>Bariba</td><td>2 (Borgou)</td><td>Near-zero corpus</td><td>USSD + audio-only floor; no Claude voice pipeline. <span class="label-obs">Observed</span></td></tr>
+      <tr><td>Dendi</td><td>2 (Alibori)</td><td>Near-zero; Zarma-adjacent</td><td>Zarma/Songhai transfer learning as interim. <span class="label-inf">Inferred</span></td></tr>
+      <tr><td>Mina / Ewe</td><td>2 (Couffo/Mono)</td><td>Ewe in FLORES-200</td><td>Ewe transfer as interim floor. <span class="label-inf">Inferred</span></td></tr>
+      <tr><td>Fulfulde</td><td>2 (north)</td><td>Kallaama partial applicability</td><td>Dialect drift from Senegal Pulaar; limited reuse. <span class="label-obs">Observed</span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>Defining finding.</strong> Botspeak assumes the user can read Claude's output to supervise it. In Fon, this breaks at the language layer, not the literacy layer — even a fully literate Fon-speaker cannot read Claude's output <em>in Fon</em> because Claude does not write Fon at production quality. The supervisory loop must therefore run through <strong>audio read-back</strong>: Claude generates French → Fon TTS reads back → user evaluates by ear. Until Fon TTS exists, the read-back layer is the bottleneck.</p>
+
+  <h3>Dimension 2 — Interface and Interaction Model</h3>
+  <table>
+    <thead><tr><th>Department</th><th>Literacy</th><th>Interface Floor</th></tr></thead>
+    <tbody>
+      <tr><td>Alibori</td><td>~20–25%</td><td>Voice-only; USSD fallback; Bariba/Dendi audio</td></tr>
+      <tr><td>Atacora</td><td>~28–32%</td><td>Voice-only; icon library without market-literacy assumptions</td></tr>
+      <tr><td>Borgou (Parakou)</td><td>~25–35%</td><td>Voice primary; hybrid in Parakou transit hub</td></tr>
+      <tr><td>Zou / Collines</td><td>~35–40%</td><td>Hybrid voice/icon; Fon audio required</td></tr>
+      <tr><td>Couffo / Mono</td><td>~38–43%</td><td>Hybrid; Fon + Mina</td></tr>
+      <tr><td>Atlantique / Littoral</td><td>~65–70%</td><td>Hybrid text/voice; French-Fon code-switching default</td></tr>
+      <tr><td>Ouémé (Porto-Novo)</td><td>~55–60%</td><td>Hybrid; French + Fon functional</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Dantokpa benchmark.</strong> Can a Fon-speaking market woman issue a well-formed oral prompt, receive a Fon audio read-back in under 15 seconds, correct it by voice, and save it — one-handed, in ambient market noise, without touching a keyboard? If not, the product does not serve its largest intended user segment.</p>
+
+  <h3>Dimension 3 — Infrastructure and Technical Architecture</h3>
+  <table>
+    <thead><tr><th>Factor</th><th>Status</th><th>Implication</th></tr></thead>
+    <tbody>
+      <tr><td>4G coverage</td><td>~70–75% pop</td><td>Claude API calls unreliable in Alibori/Atacora</td></tr>
+      <tr><td>Mobile internet</td><td>~35–40% unique</td><td>Usage gap &gt; coverage gap; offline-tolerant sessions required</td></tr>
+      <tr><td>Device market</td><td>3GB RAM Android budget</td><td>No on-device LLM; Claude server-side with aggressive caching</td></tr>
+      <tr><td>Feature phones</td><td>Active north</td><td>USSD fallback for Bariba/Dendi zones</td></tr>
+      <tr><td>Power reliability</td><td>Variable outside capitals</td><td>Sessions &lt;5 min; state-saving every turn</td></tr>
+      <tr><td>Ambient noise</td><td>Dantokpa ≥ 75 dB</td><td>Noise-robust model or push-to-talk with confirmation loop</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Community listening model.</strong> A single smartphone serving a market women's tontine or a Vodoun convent cannot assume individual authentication. Botspeak × Claude needs a <strong>shared-device session model</strong> — voice profile switching, session timeout, no persistent login tied to one phone number.</p>
+
+  <h3>Dimension 4 — Financial Integration</h3>
+  <table>
+    <thead><tr><th>Rail</th><th>Status</th><th>Use Case</th></tr></thead>
+    <tbody>
+      <tr><td>MTN MoMo</td><td>Market leader</td><td>Subscription billing; literacy stipend disbursement</td></tr>
+      <tr><td>Moov Money</td><td>Strong interior</td><td>Secondary rail for Borgou/Atacora</td></tr>
+      <tr><td>Wave</td><td>Recent entry</td><td>Disruption play; verify activation <span class="label-unv">Unverifiable</span></td></tr>
+      <tr><td>PI-SPI</td><td>June 30, 2026 deadline</td><td>First-mover window for interoperable settlement</td></tr>
+      <tr><td>Naira/CFA</td><td>Informal border reality</td><td>Dual-currency mental models for border trader ledgers</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Idempotency mandate.</strong> If Botspeak produces a document that triggers a payment, duplicate submission on a dropped connection in interior Benin will cause trust damage faster than any linguistic failure.</p>
+
+  <h3>Dimension 5 — Regulatory and Data Sovereignty</h3>
+  <table>
+    <thead><tr><th>Requirement</th><th>Body</th><th>Exposure</th></tr></thead>
+    <tbody>
+      <tr><td>Personal data notification</td><td>APDP (Law 2009-09)</td><td>Voice recordings = personal data; API calls = cross-border transfer</td></tr>
+      <tr><td>Sensitive data authorization</td><td>APDP</td><td>Health petitions, Vodoun healing contexts, voice-prints</td></tr>
+      <tr><td>Cross-border transfer</td><td>APDP</td><td>Anthropic (US), Firebase, analytics SDKs — map every flow</td></tr>
+      <tr><td>BCEAO e-money</td><td>BCEAO</td><td>Only if billing/disbursement integrated</td></tr>
+      <tr><td>USSD licensing</td><td>ARCEP</td><td>Required for northern USSD fallback</td></tr>
+    </tbody>
+  </table>
+  <p><strong>The Fon-audio consent problem.</strong> APDP-compliant consent for users who cannot read French cannot be a French text checkbox. A recorded Fon audio consent flow — played, confirmed, logged — is the minimum viable compliance posture. This is also where Botspeak's supervisory pedagogy starts: the user's first act of AI supervision is hearing and approving what the system will do with their voice.</p>
+
+  <h3>Dimension 6 — Cultural and Social Architecture</h3>
+  <table>
+    <thead><tr><th>Factor</th><th>Implication</th></tr></thead>
+    <tbody>
+      <tr><td>Vodoun (40–50%, constitutionally recognized)</td><td><em>Hounon</em> / <em>bokonon</em> engagement <strong>before</strong> deployment, not endorsement after</td></tr>
+      <tr><td>Zangbeto (night-watch authority)</td><td>Dispute/credit use cases: Zangbeto silence = product failure</td></tr>
+      <tr><td>Christian (south)</td><td>Catholic + Pentecostal distribution for Cotonou/Porto-Novo</td></tr>
+      <tr><td>Islam (north)</td><td>Imam + traditional ruler endorsement; <em>makaranta</em> networks</td></tr>
+      <tr><td>Dantokpa market women</td><td>Phase 1 co-designers, not secondary users</td></tr>
+      <tr><td>Transit corridor</td><td>Cotonou → Parakou → Malanville; TAM beyond 14M</td></tr>
+    </tbody>
+  </table>
+  <blockquote><strong>The three-gatekeeper rule.</strong> A literacy tool claiming to serve Benin must secure social license through (a) Vodoun authority for health/finance/community, (b) Catholic or Pentecostal channels for southern urban, (c) Imam and traditional ruler for northern. Two-track gatekeeper engagement (church + mosque only) is a Senegalese or Ivorian playbook. It is not a Benin playbook.</blockquote>
+
+  <h2>Research Objectives</h2>
+
+  <h3>Objective 1 — Voice-First AI Collaboration Design</h3>
+  <p>Viable interaction model: push-to-talk oral prompt in Fon → server-side ASR (French-Fon code-switched hybrid routed through emerging Masakhane Gbe models, human-in-loop for high-stakes) → Claude receives tagged transcript → generates French draft → TTS read-back (Fon where possible; Cotonou-accent French interim) → user confirms or revises by voice.</p>
+  <p><strong>TCC model (AZIZA adaptation for orality).</strong> <em>Task</em> (what Claude should write — <em>"ma wlan wema ɖé..."</em>), <em>Context</em> (who for, what situation), <em>Constraint</em> (tone, length, audience). The same cognitive discipline as text prompting; what changes is the channel, not the discipline.</p>
+
+  <h3>Objective 2 — Simultaneous Literacy and AI Tool Use</h3>
+  <p><strong>Orthographic bootstrapping.</strong> When Claude reads back its French output while the user sees highlighted text, the user begins associating Fon phonemes (via their own oral prompt) with French orthographic forms. This is not French acquisition; it is learning that written marks encode speech. The Fon TTS gap means the bridge is initially French-mediated — a pedagogical compromise the framework must name honestly.</p>
+  <p><strong>Oral-to-written for Fon.</strong> Claude can serve as a digital scribe for Fon oral material — proverbs, market records, Vodoun liturgical passages where permitted — transcribing into standardized Fon Latin orthography (Alada convention). This is cultural preservation with a literacy side-effect, not a literacy program with a cultural side-effect. The distinction matters for Vodoun gatekeeper engagement.</p>
+
+  <h3>Objective 3 — NLP Gaps and Interim Architectures</h3>
+  <ul>
+    <li><strong>Fon:</strong> 50+ hours audio minimum, Masakhane protocols. 18–24 months to production ASR, 24–36 months to natural TTS.</li>
+    <li><strong>Yoruba / Nagot:</strong> Tone-aware ASR transfer from SW Nigerian work applies directly.</li>
+    <li><strong>Bariba / Dendi:</strong> USSD + pre-recorded audio menus + human interpreter. Claude cannot be in the loop yet. Honest naming required.</li>
+    <li><strong>Mina / Ewe:</strong> Ewe FLORES-200 transfer-learning interim for Couffo.</li>
+    <li><strong>Fulfulde:</strong> Kallaama Pulaar partial; 15–25% WER degradation expected vs Senegal baseline.</li>
+  </ul>
+
+  <h3>Objective 4 — Community and Group Models</h3>
+  <p><strong>Literate intermediary in Benin context.</strong> Cotonou/Dantokpa: <em>mama benz</em> and literate daughters. Rural Zou/Mono: primary school teachers, NGO <em>délégués</em>. Vodoun communities: <em>bokonon</em> apprentices (often more text-literate than the <em>hounon</em>). Northern Borgou: <em>makaranta</em> assistants bridging Ajami-Arabic to Latin French. The intermediary is <strong>not</strong> a Western-style "community facilitator." Each has pre-existing authority the tool must respect, not substitute.</p>
+  <p>Vodoun's constitutional recognition since 1991 and the January 10 national holiday mean Vodoun authority is <strong>state-legitimated</strong>. A Botspeak deployment that engages Vodoun leaders is not working around the state; it is aligning with a state-recognized institution.</p>
+
+  <h3>Objective 5 — Teaching Writing While Using Claude to Write</h3>
+  <p><strong>Griot and oral composition bridge.</strong> Fon has deep oral composition traditions — Vodoun liturgical praise-poetry, market-call rhetoric, Abomey court praise from the historical Dahomey kingdom. These are <strong>existing frameworks for structured oral production</strong> that map onto Botspeak's specification discipline more naturally than French essay conventions do. A Botspeak pedagogy drawing on Fon praise-poetry structure will find learners already trained in the cognitive moves it teaches.</p>
+  <p><strong>Assessment without writing fluency.</strong> Evaluate the learner's ability to (a) reject a Claude output containing a factual error heard in read-back, (b) revise their oral prompt to produce a better second attempt, (c) defend why one output is better than another for a stated audience. None require writing a single word. All three are measurable with audio logs + bilingual evaluators.</p>
+
+  <h2>Case Studies</h2>
+
+  <div class="case-study">
+    <h3>Solange Dossou — Dantokpa wholesale fabric trader</h3>
+    <p><strong>Profile.</strong> 42, female, Cotonou (Dantokpa wax-print section). Primary language Fon; functional market French for price negotiation only; non-literate in French Latin script. Wholesale stall serving resellers from Porto-Novo, Abomey, and cross-border buyers from Togo. Monthly turnover in the low millions of CFA; extends credit routinely; tracks debts mentally and through her literate daughter's notebook.</p>
+    <p><strong>What she asks Claude to produce.</strong> Daily credit ledgers; WhatsApp-ready messages to late resellers (respectful tone, no shaming — the reseller is often a Vodoun-connected peer); formal French petitions to market management over stall disputes.</p>
+    <div class="prompt-fon">
+      "Claude, ma wlan wema ɖé nú Mama Yaba. Ɖɔ nú ɖɔ axɔ ɔ ɖò akwɛ kanweko atɔn enɛ ɔ — wɛnɖagbe ɖagbe, ma dɔn kpo ɖe; agbɔn gbɔ, ma wà nukun titewu ǎ."
+      <span class="translation">(Claude, write a short note to Mama Yaba. Tell her the debt is at 300,000 — polite words, no harshness; tomorrow, don't be too direct about it.)</span>
+    </div>
+    <p><strong>Literacy acquisition.</strong> Solange is not learning to write essays. She is learning (a) to recognize numerals in the thousands range, (b) to associate the French words <em>doit</em> and <em>crédit</em> with their meanings through repeated read-back, (c) to reject a Claude output whose tone she hears is wrong. Progress: fewer revision cycles per document over three months; ability to spot Claude's factual errors in the Fon read-back before confirming.</p>
+    <p><strong>Gatekeeper.</strong> The <em>mama benz</em> collective at Dantokpa — not a Vodoun priest, not an imam, not a church. Endorsement looks like: demonstration at a Dantokpa women's association meeting; three-month trial with five <em>mama benz</em> before broader rollout; visible respect for existing credit-ledger practices. Reciprocal obligation: the tool does not share ledger data with tax authorities, full stop.</p>
+  </div>
+
+  <div class="case-study">
+    <h3>Houngbédji Sossa — Vodoun community health intermediary, Abomey-Calavi</h3>
+    <p><strong>Profile.</strong> 38, male, peri-urban Cotonou. <em>Bokonon</em> apprentice and nurse-assistant at a small community clinic. Primary languages Fon and Goun; French literate at secondary-school level. Mediates between Fon-speaking, Vodoun-affiliated patients and the formal health system.</p>
+    <p><strong>What he asks Claude to produce.</strong> Formal French referral letters from Fon oral accounts; APDP-compliant consent documents re-explained orally in Fon and recorded as Fon-audio consent; community health education scripts in Fon for radio broadcast, drawing on Vodoun healing concepts where compatible with clinical practice.</p>
+    <div class="prompt-fon">
+      "Claude, ɖɔ nú dotoxwé Cotonou tɔn ɔ ɖɔ nyɔnuvi ɖé tɔn jì, é ɖò kanwe, é ɖò ji gbɔn nukunmɛ; mi hen e yi tɔn hudo. Wlan ɛ ɖó wema gbigbɔ mɛ."
+      <span class="translation">(Claude, tell the Cotonou hospital that a young woman has given birth, she is bleeding, her condition is worsening; we need to transfer her urgently. Write it in formal letter style.)</span>
+    </div>
+    <p><strong>Literacy dimension.</strong> Houngbédji is not the low-literacy user — his patients are. But he is learning supervisory skills he did not have: specifying tone for a referral, catching errors where the French sounds correct but clinical urgency has been lost, holding two registers (clinical French + Vodoun-respectful Fon) in a single document. Productive struggle: resisting Claude's first output because it "sounds official."</p>
+    <p><strong>Gatekeeper (three layers, sequential).</strong> (1) The <em>hounon</em> of his local Vodoun community must approve the use of a foreign AI tool in health work. (2) The clinic's supervising physician must accept that French referrals generated through Fon voice prompts are legitimate. (3) APDP notification for voice + health data filed and visible. Reciprocal obligation: the tool respects Vodoun healing framings and does not produce material positioning clinical care <em>against</em> traditional healing. Content moderation that flags Vodoun imagery or terminology as unsafe will break this arrangement immediately.</p>
+  </div>
+
+  <h2>Strategic Deployment Brief</h2>
+  <p><strong>Executive finding.</strong> Botspeak × Claude cannot deploy in Benin as a text-first French-language supervisory framework and claim to serve the country. The Fon NLP gap is the defining technical constraint; the Vodoun gatekeeper architecture is the defining social constraint. Any phased plan that defers either to Phase 3 is a plan to serve ~15% of Cotonou and mislabel it.</p>
+
+  <h4>Dimension priorities (ranked)</h4>
+  <ol>
+    <li>Linguistic — Fon voice pipeline is the product, not a feature</li>
+    <li>Cultural — three-gatekeeper engagement is social license</li>
+    <li>Interface — Dantokpa benchmark is the UX floor</li>
+    <li>Regulatory — APDP Fon-audio consent is the compliance floor</li>
+    <li>Infrastructure — offline-tolerant session design for interior</li>
+    <li>Financial — PI-SPI window assessed against June 30, 2026</li>
+  </ol>
+
+  <h4>Phased roadmap</h4>
+  <p><strong>Phase 1 (Months 1–4) — Foundation.</strong> APDP notification filed; Fon corpus collection initiated under Masakhane protocols; three-gatekeeper engagement opened (<em>mama benz</em> in Dantokpa, <em>hounon</em> in Abomey-Calavi, imam in Parakou); MTN MoMo integration with idempotency if billing in scope; +234 number handling; Dantokpa benchmark defined and testable.</p>
+  <p><strong>Phase 2 (Months 4–8) — Localization.</strong> French-Fon code-switched interim pipeline with human verification for high-stakes outputs; Cotonou-accent French TTS as interim read-back; content moderation reconfigured for Vodoun imagery and Fon ceremonial contexts; Yoruba tone-aware module for south-east border; first supervised pilots in Dantokpa and Abomey-Calavi.</p>
+  <p><strong>Phase 3 (Months 8–16) — Reach expansion.</strong> Fon TTS production if corpus targets met; Bariba or Dendi USSD + audio-menu floor; transit-corridor variant with multi-language; PI-SPI integration if financial flows warrant; community listening models in market associations and Vodoun networks.</p>
+
+  <h2>AZIZA Integrity Test</h2>
+  <ul class="checklist">
+    <li>Every dimension has a documented finding or a flagged gap with specific investigation instruction</li>
+    <li>Every recommendation traces to a specific matrix cell</li>
+    <li>All claims labeled Observed, Inferred, or Unverifiable</li>
+    <li>Regional literacy table used, not ignored</li>
+    <li>APDP cross-border pipeline audit performed (not assumed clean)</li>
+    <li>PI-SPI June 2026 deadline assessed (conditional on financial flow scope)</li>
+    <li>Payment idempotency addressed for transaction-adjacent use cases</li>
+    <li>Naira/CFA border dynamic assessed (Nigerian SIM handling)</li>
+    <li>Vodoun gatekeeper question answered with named authority types (<em>hounon</em>, <em>bokonon</em>)</li>
+    <li>Informal economy assessed as primary user base via Dantokpa case study</li>
+    <li>Fon-first architecture named as product definition, not feature</li>
+    <li>Three-gatekeeper architecture named (Vodoun + Christian + Islam), not two</li>
+  </ul>
+
+  <blockquote>
+    <strong>About this report.</strong> This is a fictional adaptation study produced as a demonstration of the AZIZA methodology applied to AI literacy tool deployment. It was produced by AZIZA's AI adaptation framework, not by Anthropic or Claude. The Botspeak framework is developed by Irreducibly Human. Claude is a product of Anthropic. Neither organization commissioned, reviewed, or endorsed this report. All case study profiles are fictional. For the full framework methodology and other market audits: <a href="https://MoctarDatt.com">MoctarDatt.com</a>
+  </blockquote>
+
+</div>
+
+<footer>
+  Built with <a href="https://www.bearbrown.co">bearbrown.co</a> · AI tools for educators, creators &amp; founders
+</footer>
+
+</body>
+</html>
