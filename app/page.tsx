@@ -255,7 +255,7 @@ export default async function Home() {
 
             <p className="text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
               The right language isn&rsquo;t there. The payment rail doesn&rsquo;t reach where the users are.
-              The data pipeline violates sovereignty law. I&rsquo;ve mapped the conditions in all fifteen
+              The data pipeline violates sovereignty law. I&rsquo;ve mapped the conditions in all sixteen
               markets. The frameworks are here.
             </p>
 
@@ -271,16 +271,16 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ══ SECTION 2 — FIFTEEN MARKETS ═══════════════════════════════════ */}
+      {/* ══ SECTION 2 — SIXTEEN MARKETS ═══════════════════════════════════ */}
       <section className="w-full py-16 md:py-24 border-y bg-muted/40">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="mb-10">
             <div className="w-10 h-1 bg-primary mb-5" />
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-3">
-              Fifteen Markets. One Methodology.
+              Sixteen Markets. One Methodology.
             </h2>
             <p className="text-muted-foreground max-w-xl">
-              The TERANGA framework &mdash; six dimensions, applied systematically to every West African market.
+              Sixteen frameworks &mdash; six dimensions each, applied systematically to every West African market.
             </p>
           </div>
 
