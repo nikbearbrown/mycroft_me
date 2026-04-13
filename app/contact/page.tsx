@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact - MoctarDatt.com',
-  description: 'Contact Moctar Datt.',
+  title: 'Contact — Mycroft',
+  description: 'Get in touch with the Mycroft project.',
 }
 
 export default function ContactPage() {
@@ -11,16 +11,16 @@ export default function ContactPage() {
       <div className="max-w-xl mx-auto">
         <h1 className="text-4xl font-bold tracking-tighter mb-6">Contact</h1>
         <p className="text-muted-foreground mb-6">
-          Have a question, want to collaborate, or just want to say hello?
+          Have a question, want to contribute, or just want to say hello?
         </p>
         <div className="space-y-4">
           <div>
             <p className="text-sm font-medium mb-1">Email</p>
             <a
-              href="mailto:moctardatt@hotmail.com"
+              href="mailto:info@humanitarians.ai"
               className="text-primary hover:underline font-medium"
             >
-              moctardatt@hotmail.com
+              info@humanitarians.ai
             </a>
           </div>
         </div>

@@ -27,15 +27,15 @@ export default function Header() {
   }, [isMenuOpen])
 
   const navigation = [
-    { name: "Analysis", href: "/analysis", external: false },
-    { name: "Blog", href: "/blog", external: false },
-    { name: "Consulting", href: "/consulting", external: false },
-    { name: "Substack", href: "https://moctardatt.substack.com/", external: true },
-    { name: "Tools", href: "/tools", external: false },
+    { name: "Research", href: "/research", external: false },
+    { name: "Portfolio", href: "/portfolio", external: false },
+    { name: "Intelligence", href: "/intelligence", external: false },
+    { name: "Learn", href: "/learn", external: false },
+    { name: "Contribute", href: "https://github.com/humanitarians-ai/mycroft", external: true },
   ]
 
   const socialLinks = [
-    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/about" },
   ]
 
   return (
@@ -43,7 +43,7 @@ export default function Header() {
       <div className="container px-4 md:px-6 mx-auto flex h-16 items-center justify-between">
         <div className="flex items-center gap-6 md:gap-10">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-lg font-bold tracking-tighter">Moctar Datt</span>
+            <span className="text-lg font-bold tracking-tighter">Mycroft</span>
           </Link>
           <nav className="hidden lg:flex gap-6">
             {navigation.map((item) => (

@@ -20,14 +20,14 @@ export default function Footer() {
           <div className="md:col-span-3">
             <div className="max-w-sm">
               <Link href="/" className="flex items-center space-x-2">
-                <span className="text-lg font-bold tracking-tighter">Moctar Datt</span>
+                <span className="text-lg font-bold tracking-tighter">Mycroft</span>
               </Link>
               <p className="mt-4 text-sm text-muted-foreground">
-                MoctarDatt.com
-                <br />Moctar Datt - AI Deployment Strategy, West Africa
+                mycroft.biz
+                <br />Open-source AI-powered investment intelligence.
               </p>
               <div className="mt-6 flex space-x-4 items-center">
-                <Link href="mailto:moctardatt@hotmail.com" className="text-sm hover:text-primary transition-colors">
+                <Link href="mailto:info@humanitarians.ai" className="text-sm hover:text-primary transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block">
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -43,18 +43,17 @@ export default function Footer() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Platform</h3>
               <ul className="space-y-2">
-                <li><Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link></li>
-                <li><Link href="/tools" className="text-muted-foreground hover:text-foreground transition-colors">Tools</Link></li>
-                <li><Link href="/analysis" className="text-muted-foreground hover:text-foreground transition-colors">Analysis</Link></li>
-                <li><a href="https://moctardatt.substack.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">Substack</a></li>
-                <li><Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link></li>
+                <li><Link href="/research" className="text-muted-foreground hover:text-foreground transition-colors">Research</Link></li>
+                <li><Link href="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">Portfolio</Link></li>
+                <li><Link href="/intelligence" className="text-muted-foreground hover:text-foreground transition-colors">Intelligence</Link></li>
+                <li><Link href="/learn" className="text-muted-foreground hover:text-foreground transition-colors">Learn</Link></li>
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Connect</h3>
+              <h3 className="text-lg font-semibold">Community</h3>
               <ul className="space-y-2">
-                <li><Link href="/consulting" className="text-muted-foreground hover:text-foreground transition-colors">Consulting</Link></li>
-                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
+                <li><a href="https://github.com/humanitarians-ai/mycroft" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">GitHub</a></li>
+                <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link></li>
               </ul>
             </div>
             <div className="space-y-4">
@@ -67,9 +66,9 @@ export default function Footer() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Contact</h3>
               <p className="text-sm text-muted-foreground">
-                Have a question or want to collaborate?
+                Questions or contributions?
                 <br />
-                <a href="mailto:moctardatt@hotmail.com" className="text-primary hover:underline">moctardatt@hotmail.com</a>
+                <a href="mailto:info@humanitarians.ai" className="text-primary hover:underline">info@humanitarians.ai</a>
               </p>
             </div>
           </div>
@@ -78,14 +77,14 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-sm text-muted-foreground">
-              At MoctarDatt.com, we respect your privacy. For details, please read our{" "}
+              At Mycroft.biz, we respect your privacy. For details, please read our{" "}
               <Link href="/privacy" className="text-primary hover:underline">full privacy policy</Link>.
             </p>
           </div>
         </div>
 
         <div className="mt-8 text-center text-sm text-muted-foreground space-y-1">
-          <p>&copy; {currentYear} MoctarDatt.com. All rights reserved.</p>
+          <p>&copy; {currentYear} Mycroft Project. Open source. mycroft.biz</p>
           <p>
             Built by Bear Brown, LLC{" "}
             <a href="https://bearbrown.co" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">bearbrown.co</a>

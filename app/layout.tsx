@@ -12,8 +12,14 @@ import { cn } from "@/lib/utils"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "MoctarDatt.com",
-  description: "Personal website of Moctar Datt — researcher, writer, and AI enthusiast.",
+  title: "Mycroft — Using AI to Invest in AI",
+  description: "An open-source experiment in AI-powered investment intelligence. Specialized agents analyzing the AI sector. Built to learn what works.",
+  openGraph: {
+    title: "Mycroft",
+    description: "An open-source experiment in AI-powered investment intelligence. Specialized agents analyzing the AI sector. Built to learn what works.",
+    siteName: "Mycroft",
+    url: "https://mycroft.biz",
+  },
 }
 
 export default function RootLayout({
