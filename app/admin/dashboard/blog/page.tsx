@@ -210,6 +210,11 @@ export default function BlogAdminPage() {
           <p className="text-sm text-muted-foreground">Create and manage blog posts</p>
         </div>
         <div className="flex gap-2">
+          <Link href="/admin/dashboard/blog/import">
+            <Button variant="outline" className="gap-2">
+              <Upload className="h-4 w-4" />Import
+            </Button>
+          </Link>
           <Button variant="outline" className="gap-2" onClick={() => { setExportTags(activeTag || ''); setExportOpen(true) }}>
             <Download className="h-4 w-4" />Export
           </Button>
