@@ -24,7 +24,7 @@ export default function Footer() {
               </Link>
               <p className="mt-4 text-sm text-muted-foreground">
                 MoctarDatt.com
-                <br />Personal website of Moctar Datt
+                <br />Moctar Datt - AI Deployment Strategy, West Africa
               </p>
               <div className="mt-6 flex space-x-4 items-center">
                 <Link href="mailto:moctardatt@hotmail.com" className="text-sm hover:text-primary transition-colors">
